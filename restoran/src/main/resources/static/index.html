@@ -1,0 +1,38 @@
+
+<!doctype html>
+<html lang="en" ng-app="routerApp">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restorani</title>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<!-- AngularJS ============================================================= -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-resource.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+
+<!-- AngularJS App Code ==================================================== -->
+<script src="app.js"></script>
+
+<script src="loginRegistration/loginRegistrationService.js"></script>
+<script src="loginRegistration/loginRegistrationController.js"></script>
+<script src="guestt/guestService.js"></script>
+<script src="guestt/guestController.js"></script>
+
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA51cekTreWTzFiFLC_0Nu2LQ7Bbi5ojW0&callback=myMap"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+</head>
+<body class="bg">
+
+	<div>
+		<div ui-view></div>
+	</div>
+
+</body>
+</html>

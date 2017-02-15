@@ -1,0 +1,15 @@
+<div class="center">
+ 
+ <form  name = "loginForm">
+
+<label>Email</label><br/>
+<input name = "email" type="mail" ng-model = "$parent.korisnik.mail" class="form-control"  required><br/>  
+
+ <label>Password</label><br/>
+ <input name = "password" type="password" ng-model = "$parent.korisnik.password" class="form-control"  required></br><br/>
+
+<button class="btn btn-default" ng-click="loginForm.$valid && submitLogin()">Log In </button>
+<a ui-sref="registration">Sign up</a>
+</form>
+</div>
+

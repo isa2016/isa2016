@@ -1,0 +1,24 @@
+<div ng-init=getLoggedUser()>
+
+Name: {{loggedUser.ime}} </br></br>
+Surname: {{loggedUser.prezime}} </br></br>
+Email: {{loggedUser.mail}} </br></br>
+
+
+
+<form >
+  Name:<br>
+  <input type="text" name="name" ng-model="$loggedUser.ime"  >
+  <br>
+  Surname:<br>
+  <input type="text" name="lastName" ng-model="$loggedUser.prezime"  >
+  <br>
+  Password:<br>
+  <input type="text" name="password" ng-model="$loggedUser.password"  >
+
+  <br>
+  <br>
+  <input type="submit" value="Submit" ng-click="update()">
+  
+</form> 
+</div>
