@@ -57,6 +57,7 @@ public class GostController {
 		Optional.ofNullable(gostServis.findOne(id))
 				.orElseThrow(() -> new ResourceNotFoundException("Resource Not Found!"));
 		guest.setId(id);
+		httpSession.setAttribute("korisnik", guest);
 		return gostServis.save(guest);
 	}
 }

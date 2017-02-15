@@ -14,7 +14,7 @@ app.controller('guestController', ['$scope','$window','guestService', '$location
 		$scope.update = function() {
 			guestService.updateGuestProfile($scope.loggedUser).then(
 				function (response) {
-                    //$scope.state = undefined;
+                    $scope.state = undefined;
                     $location.path('gost/pocetna');
 				}
 			);
