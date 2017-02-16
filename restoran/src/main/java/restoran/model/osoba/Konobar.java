@@ -14,7 +14,7 @@ public class Konobar extends Korisnik{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
+	@Column(name = "Konobar_ID")
 	private Long id;
 
 	public Long getId() {
