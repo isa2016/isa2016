@@ -7,8 +7,11 @@ app.controller('guestController', ['$scope','$window','guestService', '$location
 			guestService.getLoggedUser().then(
 				function (response) {
 					$scope.loggedUser = response.data;
-	            }		
+	            }	
+				
+				
 			)
+			//ucitaj();
 		}
 		
 		$scope.update = function() {
@@ -18,6 +21,16 @@ app.controller('guestController', ['$scope','$window','guestService', '$location
                     $location.path('gost/pocetna');
 				}
 			);
+		}
+		
+		//function ucitaj(){
+		$scope.sviRestorani = function(){
+			guestService.sviRestorani().then(
+					function(response){
+						$scope.restorani = response.data;
+						
+					}
+				);
 		}
 		
 }]);

@@ -76,6 +76,14 @@ angular.module(
 				templateUrl : 'guestt/prijatelji.html',
 				controller : 'guestController'
 			})
+			
+			.state('gost/restorani', {
+				url : '/gost/restorani',
+				templateUrl : 'guestt/restorani.html',
+				controller : 'guestController'
+			})
+			
+			
 
 			.state('login/logOut', {
 				url : '/logout',

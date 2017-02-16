@@ -16,6 +16,10 @@ services.service('guestService', ['$http', function($http){
 	this.updateGuestProfile = function(guest){
 		return $http.put("/guest/"+guest.id,guest);
 	}
+	
+	this.sviRestorani = function(){
+		return $http.get("/guest/restorani");
+	}
 
 
 }]);

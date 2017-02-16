@@ -18,20 +18,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import restoran.model.Restoran;
 import restoran.model.osoba.Gost;
 import restoran.servis.GostServis;
+import restoran.servis.RestoranServis;
 
 @RestController
 @RequestMapping("/guest")
 public class GostController {
 
 	private final GostServis gostServis;
+	private final RestoranServis restoranServis;
 	private HttpSession httpSession;
 
 	@Autowired
-	public GostController(final HttpSession httpSession, final GostServis servis) {
+	public GostController(final HttpSession httpSession, final GostServis servis,final RestoranServis restoranServis) {
 		this.gostServis = servis;
 		this.httpSession = httpSession;
+		this.restoranServis = restoranServis;
 
 	}
 
@@ -65,6 +69,11 @@ public class GostController {
 	@ResponseStatus(HttpStatus.OK)
 	public void activateGuest(@PathVariable String reg) {
 		gostServis.aktiviraj(reg);
+	}
+	
+	@GetMapping("/restorani")
+	public ResponseEntity<List<Restoran>> findAllR() {
+		return new ResponseEntity<>(restoranServis.findAll(), HttpStatus.OK);
 	}
 
 }
