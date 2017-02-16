@@ -1,0 +1,13 @@
+<div ng-init=getLoggedUser()>
+	<form>
+		Name:<br> <input type="text" name="name"
+			ng-model="loggedUser.ime" value={{logedUser.ime}}> <br>
+		Surname:<br> <input type="text" name="lastName"
+			ng-model="loggedUser.prezime" value={{loggedUser.prezime}}> <br>
+		Password:<br> <input type="text" name="password"
+			ng-model="loggedUser.password" value={{loggedUser.password}}>
+		<br> <br> <input type="submit" value="Submit"
+			ng-click="update()"> <a ui-sref="gost/pocetna">Cancel</a>
+
+	</form>
+</div>
