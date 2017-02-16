@@ -13,6 +13,6 @@ public class MenadzerRestorana extends Korisnik{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
+	@Column(name = "Menadzer_restorana_ID")
 	private Long id;
 }

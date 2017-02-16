@@ -13,6 +13,6 @@ public class Sanker extends Korisnik {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
+	@Column(name = "Sanker_ID")
 	private int id;
 }
