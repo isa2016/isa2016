@@ -1,6 +1,7 @@
 package restoran.logovanje;
 
 import java.util.NoSuchElementException;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -52,7 +53,10 @@ public class LoginController {
 		String userType = "";
 		if (gostServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword()) != null) {
 			k = gostServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword());
-			userType = "gost";
+			if (k.getRegistrovan().equals("1"))
+				userType = "gost";
+			else
+				userType = "gostNijeAktiviran";
 		} else if (kuvarServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword()) != null) {
 			k = kuvarServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword());
 			userType = "kuvar";
@@ -86,13 +90,18 @@ public class LoginController {
 	public void save(@Valid @RequestBody Gost gost) {
 		gost.setId(null);
 		gostServis.save(gost);
+		gost.setRegistrovan(Long.toString(gost.getId()));
+		
 
 		try {
 			SimpleMailMessage mail = new SimpleMailMessage();
-			mail.setTo("mgvero94@gmail.com");
+			System.out.println("Sadfa");
+			System.out.println(gost.getMail());
+			mail.setTo(gost.getMail());
 			mail.setFrom("isaisaija@gmail.com");
 			mail.setSubject("Activation link");
-			mail.setText("Your activation link is: http://localhost:8080/#/activation/7");
+			
+			mail.setText("Your activation link is: http://localhost:8080/#/activation/"+gost.getId());
 
 			javaMailSender.send(mail);
 		} catch (Exception m) {

@@ -10,4 +10,6 @@ public interface GostRep extends JpaRepository<Gost, Long> {
 	public Gost findById(Long id);
 
 	public Gost findByMailAndPassword(String mail, String password);
+	
+	public Gost findByRegistrovan(String registrovan);
 }

@@ -16,4 +16,5 @@ public interface GostServis {
 
 	Gost findByMailAndPassword(String usn, String pass);
 
+	void aktiviraj(String broj);
 }

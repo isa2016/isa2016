@@ -50,7 +50,7 @@ public class GostController {
 	public ResponseEntity<List<Gost>> findAll() {
 		return new ResponseEntity<>(gostServis.findAll(), HttpStatus.OK);
 	}
-	
+
 	@PutMapping(path = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Gost update(@PathVariable Long id, @Valid @RequestBody Gost guest) {
@@ -60,4 +60,11 @@ public class GostController {
 		httpSession.setAttribute("korisnik", guest);
 		return gostServis.save(guest);
 	}
+
+	@PutMapping(path = "/activate/{reg}")
+	@ResponseStatus(HttpStatus.OK)
+	public void activateGuest(@PathVariable String reg) {
+		gostServis.aktiviraj(reg);
+	}
+
 }

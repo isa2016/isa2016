@@ -56,4 +56,11 @@ public class GostServisImpl implements GostServis {
 		return gostRep.findByMailAndPassword(usn, pass);
 	}
 
+	@Override
+	public void aktiviraj(String broj) {
+		// TODO Auto-generated method stub
+		Gost gost = gostRep.findById(Long.valueOf(broj).longValue());
+		gost.setRegistrovan("1");
+	}
+
 }
