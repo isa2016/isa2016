@@ -1,0 +1,22 @@
+<style>
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	display: inline;
+}
+</style>
+<div id="options" ng-init=getLoggedUser()>
+	<ul>
+		<li><button ng-click="count = 'menadzerSistema/restoraniMS.html'">Restoraunts</button></li>
+		<li><button ng-click="count = 'menadzerSistema/menadzeriMS.html'">System Managers</button></li>
+		<li><button ui-sref="login/logOut">Log out</button></li>
+	</ul>
+	</br></br>
+	
+	<div ng-include=count></div>
+
+</div>

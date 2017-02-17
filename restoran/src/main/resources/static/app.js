@@ -4,7 +4,8 @@ angular.module(
 		'routerApp',
 		[ 'ui.router', 'loginRegistration.services',
 				'loginRegistration.controllers', 'guest.services',
-				'guest.controllers' ]).config(
+				'guest.controllers', 'menadzerSistema.services',
+				'menadzerSistema.controllers' ]).config(
 		function($stateProvider, $urlRouterProvider) {
 
 			$urlRouterProvider.otherwise('/login');
@@ -51,12 +52,14 @@ angular.module(
 
 			.state('logovan/menadzerSistema/pocetna', {
 				url : '/logovan/menadzerSistema/pocetna',
-				templateUrl : 'zaposleni/menadzerSistema.html'
+				templateUrl : 'menadzerSistema/navBarMS.html',
+				controller : 'menadzerSistemaController'
 			})
 
 			.state('logovan/menadzerRestorana/pocetna', {
 				url : '/logovan/menadzerRestorana/pocetna',
-				templateUrl : 'zaposleni/menadzerRestorana.html'
+				templateUrl : 'zaposleni/menadzerRestorana.html',
+
 			})
 
 			.state('gost/pocetna', {
@@ -76,14 +79,12 @@ angular.module(
 				templateUrl : 'guestt/prijatelji.html',
 				controller : 'guestController'
 			})
-			
+
 			.state('gost/restorani', {
 				url : '/gost/restorani',
 				templateUrl : 'guestt/restorani.html',
 				controller : 'guestController'
 			})
-			
-			
 
 			.state('login/logOut', {
 				url : '/logout',
@@ -95,13 +96,17 @@ angular.module(
 					}
 				}
 			})
-			
-			.state('activation/:reg', {
-        	url: '/activation/:reg',
-        	templateUrl: 'guestt/aktivaciona.html',
-        	resolve: {
-        		promiseObj:  function($http, $stateParams){
-                return $http.put("/guest/activate/"+ $stateParams.reg);
-             }}
-        })
+
+			.state(
+					'activation/:reg',
+					{
+						url : '/activation/:reg',
+						templateUrl : 'guestt/aktivaciona.html',
+						resolve : {
+							promiseObj : function($http, $stateParams) {
+								return $http.put("/guest/activate/"
+										+ $stateParams.reg);
+							}
+						}
+					})
 		});

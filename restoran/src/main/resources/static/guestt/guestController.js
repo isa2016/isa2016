@@ -28,7 +28,6 @@ app.controller('guestController', ['$scope','$window','guestService', '$location
 			guestService.sviRestorani().then(
 					function(response){
 						$scope.restorani = response.data;
-						
 					}
 				);
 		}

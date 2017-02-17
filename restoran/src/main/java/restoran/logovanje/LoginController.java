@@ -22,6 +22,7 @@ import restoran.model.osoba.Gost;
 import restoran.servis.GostServis;
 import restoran.servis.KonobarServis;
 import restoran.servis.KuvarServis;
+import restoran.servis.MenadzerSistemaServis;
 import restoran.servis.SankerServis;
 
 @RestController
@@ -30,6 +31,7 @@ public class LoginController {
 
 	private HttpSession httpSession;
 
+	private MenadzerSistemaServis mss;
 	private GostServis gostServis;
 	private KuvarServis kuvarServis;
 	private KonobarServis konobarServis;
@@ -37,14 +39,16 @@ public class LoginController {
 	private JavaMailSender javaMailSender;
 
 	@Autowired
-	public LoginController(final HttpSession httpSession, final GostServis gostServis, final KuvarServis kuvarServis,
-			final KonobarServis konobarServis, final SankerServis sankerServis, final JavaMailSender javaMailSender) {
+	public LoginController(final HttpSession httpSession, final MenadzerSistemaServis mss, final GostServis gostServis,
+			final KuvarServis kuvarServis, final KonobarServis konobarServis, final SankerServis sankerServis,
+			final JavaMailSender javaMailSender) {
 		this.httpSession = httpSession;
 		this.gostServis = gostServis;
 		this.kuvarServis = kuvarServis;
 		this.konobarServis = konobarServis;
 		this.sankerServis = sankerServis;
 		this.javaMailSender = javaMailSender;
+		this.mss = mss;
 	}
 
 	@PostMapping(path = "/logIn")
@@ -66,6 +70,10 @@ public class LoginController {
 		} else if (sankerServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword()) != null) {
 			k = sankerServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword());
 			userType = "sanker";
+		} else if (mss.findByMailAndPassword(userInput.getMail(), userInput.getPassword()) != null) {
+			k = mss.findByMailAndPassword(userInput.getMail(), userInput.getPassword());
+			System.out.println("usaoosoadoaosdoasfa");
+			userType = "menadzerSistema";
 		}
 		if (k != null) {
 			httpSession.setAttribute("korisnik", k);
@@ -91,7 +99,6 @@ public class LoginController {
 		gost.setId(null);
 		gostServis.save(gost);
 		gost.setRegistrovan(Long.toString(gost.getId()));
-		
 
 		try {
 			SimpleMailMessage mail = new SimpleMailMessage();
@@ -100,8 +107,8 @@ public class LoginController {
 			mail.setTo(gost.getMail());
 			mail.setFrom("isaisaija@gmail.com");
 			mail.setSubject("Activation link");
-			
-			mail.setText("Your activation link is: http://localhost:8080/#/activation/"+gost.getId());
+
+			mail.setText("Your activation link is: http://localhost:8080/#/activation/" + gost.getId());
 
 			javaMailSender.send(mail);
 		} catch (Exception m) {

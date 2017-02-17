@@ -1,0 +1,56 @@
+<div ng-init = "sviRestorani()">
+
+<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Country</th>
+				<th>City</th>
+				<th>Street</th>
+		
+            </tr>
+			<tr ng-repeat="restoran in restorani">
+				<td> 
+					{{restoran.id}}
+				</td>
+				<td> 
+					{{restoran.naziv}}
+				</td>
+				<td>
+					{{restoran.opis}}
+				</td>
+				<td>
+					{{restoran.drzava}}
+				</td>
+				<td>
+					{{restoran.grad}}
+				</td>
+				<td>
+					{{restoran.ulica}}
+				</td>
+			</tr>
+		</tbody>
+    </table> 
+    
+
+<label>Name</label><br/>
+<input name = "name" type="text" class="form-control" ng-model = "$parent.rest.naziv"  required><br/>
+
+<label>Description</label><br/>
+<input type="text" class="form-control" ng-model = "$parent.rest.opis"  required><br/> 
+
+<label>Country</label><br/>
+<input type="text" class="form-control" ng-model = "$parent.rest.drzava"  required><br/> 
+
+<label>City</label><br/>
+<input type="text" class="form-control" ng-model = "$parent.rest.grad" required></br>
+ 
+<label>Street and number</label><br/>
+<input type="text" class="form-control" ng-model = "$parent.rest.adresa" required></br><br/>
+
+{{rest.naziv}}
+
+<button class="btn btn-default" ng-click= "dodajRest()" >Sign up </button>
+</div>

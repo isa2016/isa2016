@@ -11,13 +11,13 @@ li {
 </style>
 <div id="options" ng-init=getLoggedUser()>
 	<ul>
-		<li><a ui-sref="gost/pocetna">Profile</a></li>
-		<li><a ui-sref="gost/prijatelji">Friends</a></li>
-		<li><a ui-sref="gost/rezervacije">Reservations</a></li>
-		<li><a ui-sref="gost/restorani">Restaurants</a></li>
-		<li><a ui-sref="login/logOut">Log out</a></li>
+		<li><button ng-click="count = 'guestt/guestHome.html'">Profile</button></li>
+		<li><button ng-click="count = 'guestt/navBar.html'">Friends</button></li>
+		<li><button ng-click="count = 'guestt/navBar.html'">Reservations</button></li>
+		<li><button ng-click="count = 'guestt/restorani.html'">Restaurants</button></li>
+		<li><button ui-sref="login/logOut">Log out</button></li>
 	</ul>
-	
-	<div ui-view></div>
+	</br></br>
+	<div ng-include=count></div>
 
 </div>
