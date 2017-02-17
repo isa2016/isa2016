@@ -27,7 +27,6 @@ public class MenadzerSistemaController {
 	@PostMapping(path = "/addRest")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void save(@Valid @RequestBody Restoran rest) {
-		System.out.println("safasfsafasfasfas");
 		
 		rs.save(rest);
 		

@@ -1,7 +1,6 @@
 package restoran.logovanje;
 
 import java.util.NoSuchElementException;
-import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -72,7 +71,6 @@ public class LoginController {
 			userType = "sanker";
 		} else if (mss.findByMailAndPassword(userInput.getMail(), userInput.getPassword()) != null) {
 			k = mss.findByMailAndPassword(userInput.getMail(), userInput.getPassword());
-			System.out.println("usaoosoadoaosdoasfa");
 			userType = "menadzerSistema";
 		}
 		if (k != null) {

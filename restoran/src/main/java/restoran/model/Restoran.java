@@ -27,7 +27,7 @@ public class Restoran {
 	@Id
     @GeneratedValue
     @Column(name = "Restoran_ID")
-	private int id;
+	private Long id;
 	
 	@Column(name="naziv", nullable = false)
 	public String naziv;
@@ -36,15 +36,12 @@ public class Restoran {
 	public String opis;
 	
 	@Column
-	@NotBlank
 	private String drzava;
 
 	@Column
-	@NotBlank
 	private String grad;
 	
 	@Column
-	@NotBlank
 	private String ulica;
 	
 	
@@ -118,11 +115,11 @@ public class Restoran {
 		this.ulica = ulica;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

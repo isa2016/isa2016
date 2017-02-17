@@ -61,8 +61,6 @@ public class Korisnik {
 	@Column
 	private String prezime;
 
-	// flag koji je inicijalno false, i kad korisnik klikne na link pri
-	// registraciji postaje true
 	@Column
 	private String registrovan;
 
