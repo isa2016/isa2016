@@ -20,6 +20,13 @@ services.service('guestService', ['$http', function($http){
 	this.sviRestorani = function(){
 		return $http.get("/guest/restorani");
 	}
+	
+	this.find = function(id){
+		return $http.get("/restoran/"+id)
+	}
 
+	this.potvrda = function(loggedUser,resttt){
+		return $http.post("/rezervacija/dodaj")
+	}
 
 }]);

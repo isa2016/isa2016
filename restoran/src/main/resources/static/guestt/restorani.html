@@ -1,5 +1,6 @@
-<div ng-init = "sviRestorani()">
 
+<div ng-init = "sviRestorani()">
+<div>
 <table  class="table table-bordered tableBG" border="1">
 		<tbody>
 	        <tr>
@@ -9,6 +10,7 @@
 				<th>Country</th>
 				<th>City</th>
 				<th>Street</th>
+				<th>Reservate</th>
 		
             </tr>
 			<tr ng-repeat="restoran in restorani">
@@ -30,9 +32,22 @@
 				<td>
 					{{restoran.ulica}}
 				</td>
+				<td>
+					<button ng-click="zaRezervaciju(restoran)">Reservate</button>
+				</td>
 			</tr>
 		</tbody>
     </table> 
+    <br></br><br></br>
 
+</div>
+ <h3>Make a reservation</h3>
+ Restaurant : {{resttt.naziv}}<br></br>
+ Date : <br></br>
+ Time : <br></br>
+ Duration :  <br></br>
+ <button ng-click="potvrdaRezervacije()">Confirm</button>
+<div>
 
+</div>
 </div>

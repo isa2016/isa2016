@@ -11,25 +11,44 @@ app.controller('guestController', ['$scope','$window','guestService', '$location
 				
 				
 			)
-			//ucitaj();
+			// ucitaj();
 		}
 		
 		$scope.update = function() {
 			guestService.updateGuestProfile($scope.loggedUser).then(
 				function (response) {
                     $scope.state = undefined;
-                    $location.path('gost/pocetna');
+                    $location.path('logovan');
 				}
 			);
 		}
 		
-		//function ucitaj(){
+		$scope.zaRezervaciju = function(restoran){
+			guestService.find(restoran.id).then(
+					function(response){
+						$scope.resttt = response.data;
+						$location.path('logovan');
+					}
+					)
+		
+		}
+		
+		// function ucitaj(){
 		$scope.sviRestorani = function(){
 			guestService.sviRestorani().then(
 					function(response){
 						$scope.restorani = response.data;
 					}
 				);
+		}
+		
+		$scope.potvrdaRezervacije = function() {
+			guestService.potvrda($scope.loggedUser,$scope.resttt).then(
+				function (response) {
+                    //$scope.state = undefined;
+                    $location.path('logovan');
+				}
+			);
 		}
 		
 }]);

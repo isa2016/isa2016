@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import lombok.Data;
 import restoran.model.osoba.Konobar;
 import restoran.model.osoba.Kuvar;

@@ -75,5 +75,6 @@ public class GostController {
 	public ResponseEntity<List<Restoran>> findAllR() {
 		return new ResponseEntity<>(restoranServis.findAll(), HttpStatus.OK);
 	}
+	
 
 }

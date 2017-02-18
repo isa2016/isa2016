@@ -1,3 +1,4 @@
+<div id="options" ng-init=getLoggedUser()>
 <style>
 ul {
 	list-style-type: none;
@@ -9,15 +10,16 @@ li {
 	display: inline;
 }
 </style>
-<div id="options" ng-init=getLoggedUser()>
+<div >
 	<ul>
 		<li><button ng-click="count = 'guestt/guestHome.html'">Profile</button></li>
-		<li><button ng-click="count = 'guestt/navBar.html'">Friends</button></li>
-		<li><button ng-click="count = 'guestt/navBar.html'">Reservations</button></li>
+		<li><button ng-click="count = 'guestt/prijatelji.html'">Friends</button></li>
+		<li><button ng-click="count = 'guestt/rezervacije.html'">Reservations</button></li>
 		<li><button ng-click="count = 'guestt/restorani.html'">Restaurants</button></li>
 		<li><button ui-sref="login/logOut">Log out</button></li>
 	</ul>
 	</br></br>
 	<div ng-include=count></div>
 
+</div>
 </div>
