@@ -1,0 +1,39 @@
+<div ng-init = "sviMS()">
+
+<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>Name</th>
+				<th>Surname</th>
+				<th>Mail</th>
+		
+            </tr>
+			<tr ng-repeat="ms in MSa">
+				<td> 
+					{{ms.ime}}
+				</td>
+				<td> 
+					{{ms.prezime}}
+				</td>
+				<td>
+					{{ms.mail}}
+				</td>
+			</tr>
+		</tbody>
+    </table> 
+    
+
+<label>Name</label><br/>
+<input name = "name" type="text" class="form-control" ng-model = "$parent.ms.ime"  required><br/>
+
+<label>Surname</label><br/>
+<input type="text" class="form-control" ng-model = "$parent.ms.prezime"  required><br/> 
+
+<label>Mail</label><br/>
+<input type="mail" class="form-control" ng-model = "$parent.ms.mail"  required><br/> 
+
+<label>Password</label><br/>
+<input type="text" class="form-control" ng-model = "$parent.ms.password" required></br>
+ 
+<button class="btn btn-default" ng-click= "dodajMS()" >Add System Manager</button>
+</div>

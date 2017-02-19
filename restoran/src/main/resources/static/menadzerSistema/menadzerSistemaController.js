@@ -19,5 +19,22 @@ app.controller('menadzerSistemaController', ['$scope','$window','menadzerSistema
 				}
 			);
 	}
-		
+
+	$scope.dodajMS = function () {  
+
+		menadzerSistemaService.saveMS($scope.ms).then(
+			function (response) {
+                $location.path('menadzerSistema');
+            }
+        ); 	
+	}
+	
+	$scope.sviMS = function(){
+		menadzerSistemaService.sviMS().then(
+				function(response){
+					$scope.MSa = response.data;
+				}
+			);
+	}
+
 }]);

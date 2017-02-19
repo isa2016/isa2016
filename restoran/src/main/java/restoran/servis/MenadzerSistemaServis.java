@@ -5,6 +5,7 @@ import java.util.List;
 import restoran.model.osoba.MenadzerSistema;
 
 public interface MenadzerSistemaServis {
+	
 	List<MenadzerSistema> findAll();
 
 	MenadzerSistema findOne(Long id);
@@ -14,4 +15,5 @@ public interface MenadzerSistemaServis {
 	MenadzerSistema delete(Long id);
 
 	MenadzerSistema findByMailAndPassword(String usn, String pass);
+	
 }
