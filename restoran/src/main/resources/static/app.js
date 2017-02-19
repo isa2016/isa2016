@@ -54,9 +54,15 @@ angular.module(
 				controller : 'guestController'
 			})
 			
-			.state('gost.restoran', {
-				url : '/gost/restoran',
-				templateUrl : 'gost/restoran.html',
+			.state('gost.restorani.rezervisi', {
+				url : '/rezervisi',
+				templateUrl : 'gost/rezervisi.html',
+				controller : 'guestController'
+			})
+			
+			.state('gost.rezervacije', {
+				url : '/rezervacije',
+				templateUrl : 'gost/rezervacije.html',
 				controller : 'guestController'
 			})
 

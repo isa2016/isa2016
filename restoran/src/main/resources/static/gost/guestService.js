@@ -25,8 +25,8 @@ services.service('guestService', ['$http', function($http){
 		return $http.get("/restoran/"+id)
 	}
 
-	this.potvrda = function(loggedUser,resttt){
-		return $http.post("/rezervacija/dodaj")
+	this.potvrda = function(rezervacija){
+		return $http.post("/guest/dodaj",rezervacija)
 	}
 
 }]);

@@ -3,11 +3,15 @@ package restoran.servis.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import restoran.model.Rezervacija;
 import restoran.repozitorijum.RezervacijaRep;
 import restoran.servis.RezervacijaServis;
 
+@Service
+@Transactional
 public class RezervacijaServisImpl implements RezervacijaServis{
 
 	@Autowired

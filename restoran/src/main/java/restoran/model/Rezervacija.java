@@ -1,19 +1,13 @@
 package restoran.model;
 
-import java.sql.Date;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 
-import restoran.model.osoba.Gost;
+import lombok.Data;
 
+@Data
 @Entity
 public class Rezervacija {
 
@@ -22,8 +16,11 @@ public class Rezervacija {
 	@Column(name = "Rezervacija_ID")
 	private Long id;
 	
+	/*@ManyToOne(cascade = CascadeType.ALL)
+	private Restoran restaurant;*/
+	
 	@Column
-	private Date date;
+	private String date;
 	
 	@Column
 	private int hours;
@@ -34,9 +31,9 @@ public class Rezervacija {
 	@Column
 	private Double duration;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	/*@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "Rezervacije", joinColumns = @JoinColumn(name = "Rezervacija_ID"), inverseJoinColumns = @JoinColumn(name = "Gost_ID"))
-	private List<Gost> gosti;
+	private List<Gost> gosti;*/
 
 	public Long getId() {
 		return id;
@@ -46,11 +43,11 @@ public class Rezervacija {
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -78,13 +75,21 @@ public class Rezervacija {
 		this.duration = duration;
 	}
 
-	public List<Gost> getGosti() {
+	/*public List<Gost> getGosti() {
 		return gosti;
 	}
 
 	public void setGosti(List<Gost> gosti) {
 		this.gosti = gosti;
+	}*/
+
+	/*public Restoran getRestaurant() {
+		return restaurant;
 	}
+
+	public void setRestaurant(Restoran restaurant) {
+		this.restaurant = restaurant;
+	}*/
 	
 	
 	

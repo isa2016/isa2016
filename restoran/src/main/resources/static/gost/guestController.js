@@ -35,7 +35,7 @@ app.controller('guestController', ['$scope','$window','guestService', '$location
 			guestService.find(restoran.id).then(
 					function(response){
 						$scope.resttt = response.data;
-						$location.path('/gost/restorani');
+						$location.path('/gost/restorani/rezervisi');
 					}
 					)
 		
@@ -43,10 +43,9 @@ app.controller('guestController', ['$scope','$window','guestService', '$location
 		
 		
 		$scope.potvrdaRezervacije = function() {
-			guestService.potvrda($scope.loggedUser,$scope.resttt).then(
+			guestService.potvrda($scope.rezervacija).then(
 				function (response) {
-                    //$scope.state = undefined;
-                    $location.path('gost');
+                    $location.path('/gost/rezervacije');
 				}
 			);
 		}
