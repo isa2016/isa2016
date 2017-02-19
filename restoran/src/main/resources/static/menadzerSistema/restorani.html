@@ -1,4 +1,4 @@
-<div ng-init = "sviRestorani()">
+<div ng-init = "getLoggedManager()">
 
 <table  class="table table-bordered tableBG" border="1">
 		<tbody>
@@ -49,6 +49,12 @@
  
 <label>Street and number</label><br/>
 <input type="text" class="form-control" ng-model = "$parent.rest.adresa" required></br><br/>
+
+<label>Manager</label>
+    <select data-ng-model="$parent.restaurant.rest.id" class="form-control" required>
+   		<option value=>Select manager</option>
+     	<option data-ng-repeat="mr in sviMR" value="{{ mr.id }}">{{mr.ime}}</option>
+	</select>
 
 <button class="btn btn-default" ng-click= "dodajRest()" >Add Restaurant </button>
 </div>

@@ -69,6 +69,14 @@ public class Restoran {
 	
 	
 	
+	public List<MenadzerRestorana> getMenadzeriRestorana() {
+		return menadzeriRestorana;
+	}
+
+	public void setMenadzeriRestorana(List<MenadzerRestorana> menadzeriRestorana) {
+		this.menadzeriRestorana = menadzeriRestorana;
+	}
+
 	public Restoran() {
 		super();
 	}

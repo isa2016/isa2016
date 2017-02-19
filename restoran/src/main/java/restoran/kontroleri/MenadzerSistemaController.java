@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import restoran.model.Restoran;
+import restoran.model.osoba.MenadzerRestorana;
 import restoran.model.osoba.MenadzerSistema;
+import restoran.servis.MenadzerRestoranaServis;
 import restoran.servis.MenadzerSistemaServis;
 import restoran.servis.RestoranServis;
 
@@ -25,11 +27,13 @@ public class MenadzerSistemaController {
 
 	private RestoranServis rs;
 	private MenadzerSistemaServis mss;
+	private MenadzerRestoranaServis mrs;
 
 	@Autowired
-	public MenadzerSistemaController(final RestoranServis rs, final MenadzerSistemaServis mss) {
+	public MenadzerSistemaController(final RestoranServis rs, final MenadzerSistemaServis mss, final MenadzerRestoranaServis mrs) {
 		this.rs = rs;
 		this.mss = mss;
+		this.mrs = mrs;
 
 	}
 
@@ -41,7 +45,12 @@ public class MenadzerSistemaController {
 
 	}
 
-	@GetMapping("/menadzeri")
+	@GetMapping("/sviMR")
+	public ResponseEntity<List<MenadzerRestorana>> findAllMR() {
+		return new ResponseEntity<>(mrs.findAll(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/sviMS")
 	public ResponseEntity<List<MenadzerSistema>> findAllMS() {
 		return new ResponseEntity<>(mss.findAll(), HttpStatus.OK);
 	}
