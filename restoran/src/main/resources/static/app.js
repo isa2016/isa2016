@@ -24,11 +24,42 @@ angular.module(
 				controller : 'loginRegistrationController'
 			})
 
-			.state('logovan', {
-				url : '/logovan',
-				templateUrl : 'guestt/navBar.html',
+			.state('gost', {
+				url : '/gost',
+				templateUrl : 'gost/navBar.html',
 				controller : 'guestController'
 			})
+			
+			.state('gost.profil', {
+				url : '/gost/profil',
+				templateUrl : 'gost/profil.html',
+				controller : 'guestController'
+			})
+
+			.state('gost.izmena', {
+				url : '/gost/izmena',
+				templateUrl : 'gost/izmena.html',
+				controller : 'guestController'
+			})
+
+			.state('gost.prijatelji', {
+				url : '/gost/prijatelji',
+				templateUrl : 'gost/prijatelji.html',
+				controller : 'guestController'
+			})
+
+			.state('gost.restorani', {
+				url : '/gost/restorani',
+				templateUrl : 'gost/restorani.html',
+				controller : 'guestController'
+			})
+			
+			.state('gost.restoran', {
+				url : '/gost/restoran',
+				templateUrl : 'gost/restoran.html',
+				controller : 'guestController'
+			})
+
 
 			.state('logovan/kuvar/pocetna', {
 				url : '/logovan/kuvar/pocetna',
@@ -50,48 +81,31 @@ angular.module(
 				templateUrl : 'zaposleni/sanker.html'
 			})
 
-			.state('logovan/menadzerSistema/pocetna', {
-				url : '/logovan/menadzerSistema/pocetna',
+			.state('menadzerSistema', {
+				url : '/menadzerSistema',
 				templateUrl : 'menadzerSistema/navBarMS.html',
 				controller : 'menadzerSistemaController'
 			})
+			
+			.state('menadzerSistema.menadzeri', {
+				url : '/menadzerSistema/menadzeri',
+				templateUrl : 'menadzerSistema/menadzeri.html',
+				controller : 'menadzerSistemaController'
+			})
 
+			.state('menadzerSistema.restorani', {
+				url : '/menadzerSistema/restorani',
+				templateUrl : 'menadzerSistema/restorani.html',
+				controller : 'menadzerSistemaController'
+			})
+			
 			.state('logovan/menadzerRestorana/pocetna', {
 				url : '/logovan/menadzerRestorana/pocetna',
 				templateUrl : 'zaposleni/menadzerRestorana.html',
 
 			})
 
-			.state('gost/pocetna', {
-				url : '/gost/pocetna',
-				templateUrl : 'guestt/guestHome.html',
-				controller : 'guestController'
-			})
-
-			.state('gost/izmena', {
-				url : '/gost/izmena',
-				templateUrl : 'guestt/izmena.html',
-				controller : 'guestController'
-			})
-
-			.state('gost/prijatelji', {
-				url : '/gost/prijatelji',
-				templateUrl : 'guestt/prijatelji.html',
-				controller : 'guestController'
-			})
-
-			.state('gost/restorani', {
-				url : '/gost/restorani',
-				templateUrl : 'guestt/restorani.html',
-				controller : 'guestController'
-			})
 			
-			.state('gost/restoran', {
-				url : '/gost/restoran',
-				templateUrl : 'guestt/restoran.html',
-				controller : 'guestController'
-			})
-
 			.state('login/logOut', {
 				url : '/logout',
 				// templateUrl : 'loginRegistration/login.html',
@@ -107,7 +121,7 @@ angular.module(
 					'activation/:reg',
 					{
 						url : '/activation/:reg',
-						templateUrl : 'guestt/aktivaciona.html',
+						templateUrl : 'gost/aktivaciona.html',
 						resolve : {
 							promiseObj : function($http, $stateParams) {
 								return $http.put("/guest/activate/"

@@ -7,7 +7,7 @@ app.controller('menadzerSistemaController', ['$scope','$window','menadzerSistema
 
 		menadzerSistemaService.save($scope.rest).then(
 			function (response) {
-                $location.path('logovan/menadzerSistema/pocetna');
+                $location.path('menadzerSistema');
             }
         ); 	
 	}
