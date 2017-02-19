@@ -31,13 +31,13 @@ angular.module(
 			})
 			
 			.state('gost.profil', {
-				url : '/gost/profil',
+				url : '/profil',
 				templateUrl : 'gost/profil.html',
 				controller : 'guestController'
 			})
 
 			.state('gost.izmena', {
-				url : '/gost/izmena',
+				url : '/izmena',
 				templateUrl : 'gost/izmena.html',
 				controller : 'guestController'
 			})
@@ -49,7 +49,7 @@ angular.module(
 			})
 
 			.state('gost.restorani', {
-				url : '/gost/restorani',
+				url : '/restorani',
 				templateUrl : 'gost/restorani.html',
 				controller : 'guestController'
 			})

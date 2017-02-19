@@ -5,3 +5,5 @@ INSERT INTO menadzer_sistema(ime,prezime,mail,password) VALUES ('ms','ms','ms@ms
 INSERT INTO sanker(ime,prezime,mail,password) VALUES ('Pera','Peric','san@san.com','san')
 INSERT INTO restoran(naziv,opis,drzava,grad,ulica) VALUES('restoran1', 'opis', 'drzava', 'grad', 'ulica')
 INSERT INTO restoran(naziv,opis,drzava,grad,ulica) VALUES('restoran2', 'opis', 'drzava', 'grad', 'ulica')
+INSERT INTO menadzer_restorana(ime,prezime,mail,password) VALUES ('mr','mr','mr@mr.com','mr')
+INSERT INTO menadzer_restorana(ime,prezime,mail,password) VALUES ('m','m','m@m.com','m')
