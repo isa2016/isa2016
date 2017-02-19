@@ -83,28 +83,21 @@ angular.module(
 
 			.state('menadzerSistema', {
 				url : '/menadzerSistema',
-				templateUrl : 'menadzerSistema/restorani.html',
+				templateUrl : 'menadzerSistema/navBarMS.html',
 				controller : 'menadzerSistemaController'
 			})
 			
 			.state('menadzerSistema.menadzeri', {
-				url : '/menadzerSistema/menadzeri',
+				url : '/menadzeri',
 				templateUrl : 'menadzerSistema/menadzeri.html',
 				controller : 'menadzerSistemaController'
 			})
 
 			.state('menadzerSistema.restorani', {
-				url : '/menadzerSistema/restorani',
+				url : '/restorani',
 				templateUrl : 'menadzerSistema/restorani.html',
 				controller : 'menadzerSistemaController'
 			})
-			
-			/*.state('logovan/menadzerRestorana/pocetna', {
-				url : '/logovan/menadzerRestorana/pocetna',
-				templateUrl : 'zaposleni/menadzerRestorana.html',
-
-			})*/
-
 			
 			.state('login/logOut', {
 				url : '/logout',

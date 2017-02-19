@@ -10,11 +10,11 @@ app.controller('menadzerSistemaController', [
 			$scope.getLoggedManager = function() {
 				menadzerSistemaService.getLoggedManager().then(
 						function(response) {
+							findAll();
 							$scope.loggedManager = response.data;
 						});
-				findAll();
 			}
-			
+
 			function findAll() {
 
 				menadzerSistemaService.sviMR().then(function(response) {
@@ -35,16 +35,20 @@ app.controller('menadzerSistemaController', [
 
 				menadzerSistemaService.save($scope.rest).then(
 						function(response) {
-							$location.path('menadzerSistema');
+							findAll();
+							$location.path('/menadzerSistema/restorani');
 						});
+				
 			}
 
 			$scope.dodajMS = function() {
 
 				menadzerSistemaService.saveMS($scope.ms).then(
 						function(response) {
-							$location.path('menadzerSistema');
+							findAll();
+							$location.path('/menadzerSistema/menadzeri');
 						});
+				
 			}
 
 		} ]);

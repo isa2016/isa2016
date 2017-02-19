@@ -13,7 +13,7 @@ app.controller('loginRegistrationController', ['$scope','loginRegistrationServic
                     if(response.data === "boss")
                     	$location.path('loggedIn/bossManager/list');
                     else if(response.data === "menadzerSistema")
-                    	$location.path('/menadzerSistema');
+                    	$location.path('/menadzerSistema/restorani');
                     else if(response.data === "menadzerRestorana")
                     	$location.path('/menadzerRestorana');
                     else if(response.data === "gost")                 	

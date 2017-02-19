@@ -1,15 +1,16 @@
 <div data-ng-init="getLoggedManager()">
 <nav class="navbar navbar-default">
-	<div class="container-fluid" data-ng-init=findaAll()>
+	<div class="container-fluid">
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 		<!--  	<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->	
-				<li><a ui-sref=".restorani" ng-click = findAll()>Restaurants</a></li>
-				<li data-ng-show="loggedManager.naziv == 'ms'"><a data-ui-sref=".menadzeri">System Managers</a></li>
+				<li><a ui-sref=".restorani">Restaurants</a></li>
+				<li data-ng-hide="loggedManager.ime != 'ms'"><a data-ui-sref=".menadzeri">System Managers</a></li>
 				<li class="dropdown"></li>
+				
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a ui-sref="login/logOut">Log out</a></li>
