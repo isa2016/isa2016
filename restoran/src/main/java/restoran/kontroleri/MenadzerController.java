@@ -3,7 +3,6 @@ package restoran.kontroleri;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,21 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import restoran.model.Restoran;
 import restoran.model.osoba.Kuvar;
-import restoran.servis.MenadzerRestoranaServis;
 import restoran.servis.RestoranServis;
 
 @RestController
 @RequestMapping("/menadzer")
 public class MenadzerController {
 
-	private final MenadzerRestoranaServis menadzerRestServis;
-	private HttpSession httpSession;
+	//private final MenadzerRestoranaServis menadzerRestServis;
+	//private HttpSession httpSession;
     private RestoranServis restoranServis;   
 	
 	@Autowired
-	public MenadzerController(final HttpSession httpSession, final MenadzerRestoranaServis servis, final RestoranServis restServis) {
-		this.menadzerRestServis = servis;
-		this.httpSession = httpSession;
+	public MenadzerController(final RestoranServis restServis) {
+		//this.menadzerRestServis = servis;
+		//this.httpSession = httpSession;
 		this.restoranServis = restServis;	
 	}
      

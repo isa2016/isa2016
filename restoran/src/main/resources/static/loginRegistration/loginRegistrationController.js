@@ -13,11 +13,11 @@ app.controller('loginRegistrationController', ['$scope','loginRegistrationServic
                     if(response.data === "boss")
                     	$location.path('loggedIn/bossManager/list');
                     else if(response.data === "menadzerSistema")
-                    	$location.path('/menadzerSistema/profil');
+                    	$location.path('/menadzerSistema');
                     else if(response.data === "menadzerRestorana")
                     	$location.path('/menadzerRestorana');
                     else if(response.data === "gost")                 	
-                    	$location.path('/menadzerSistema/menadzeri');
+                    	$location.path('/gost/profil');
                     else if(response.data === "ponudjac")
                     	$location.path('logovan/ponudjac/pocetna');
                     else if(response.data === "sanker")

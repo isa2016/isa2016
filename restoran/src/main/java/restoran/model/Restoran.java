@@ -129,11 +129,6 @@ public class Restoran {
 		this.id = id;
 	}
 
-	public List<MenadzerRestorana> getMenadzeriRestorana() {
-		// TODO Auto-generated method stub
-		return menadzeriRestorana;
-	}
-
 
 
 	

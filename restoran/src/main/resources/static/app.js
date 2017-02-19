@@ -83,7 +83,7 @@ angular.module(
 
 			.state('menadzerSistema', {
 				url : '/menadzerSistema',
-				templateUrl : 'menadzerSistema/navBarMS.html',
+				templateUrl : 'menadzerSistema/restorani.html',
 				controller : 'menadzerSistemaController'
 			})
 			
