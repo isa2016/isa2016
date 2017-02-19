@@ -15,7 +15,7 @@ app.controller('loginRegistrationController', ['$scope','loginRegistrationServic
                     else if(response.data === "menadzerSistema")
                     	$location.path('menadzerSistema');
                     else if(response.data === "menadzerRestorana")
-                    	$location.path('logovan/menadzerRestorana/pocetna');
+                    	$location.path('/menadzerRestorana');
                     else if(response.data === "gost")                 	
                     	$location.path('gost');
                     else if(response.data === "ponudjac")

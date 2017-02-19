@@ -13,4 +13,6 @@ public interface MenadzerRestoranaRep extends JpaRepository<MenadzerRestorana, L
 	List<MenadzerRestorana> findById(Long id);
 	
 	public MenadzerRestorana findByMailAndPassword(String mail, String password);
+	
+	public MenadzerRestorana findByMail(String mail);
 }

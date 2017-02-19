@@ -55,5 +55,11 @@ public class MenadzerRestoranaServisImpl implements MenadzerRestoranaServis{
 		// TODO Auto-generated method stub
 		return menRep.findByMailAndPassword(usn, pass);
 	}
+
+	@Override
+	public MenadzerRestorana findByMail(String usn) {
+		// TODO Auto-generated method stub
+		return menRep.findByMail(usn);
+	}
 	
 }

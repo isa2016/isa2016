@@ -5,7 +5,7 @@ angular.module(
 		[ 'ui.router', 'loginRegistration.services',
 				'loginRegistration.controllers', 'guest.services',
 				'guest.controllers', 'menadzerSistema.services',
-				'menadzerSistema.controllers' ]).config(
+				'menadzerSistema.controllers','menRestorana.services','menRestorana.controllers' ]).config(
 		function($stateProvider, $urlRouterProvider) {
 
 			$urlRouterProvider.otherwise('/login');
@@ -99,11 +99,11 @@ angular.module(
 				controller : 'menadzerSistemaController'
 			})
 			
-			.state('logovan/menadzerRestorana/pocetna', {
+			/*.state('logovan/menadzerRestorana/pocetna', {
 				url : '/logovan/menadzerRestorana/pocetna',
 				templateUrl : 'zaposleni/menadzerRestorana.html',
 
-			})
+			})*/
 
 			
 			.state('login/logOut', {
@@ -115,6 +115,18 @@ angular.module(
 						return $http.get("/loginController/logOut");
 					}
 				}
+			})
+			
+			.state('menadzerRestorana', {
+				url : '/menadzerRestorana',
+				templateUrl : 'menRestorana/menadzerRestorana.html',
+				controller : 'menRestoranaController'
+			})
+			
+			.state('menadzerRestorana.restorani', {
+				url : '/restorani',
+				templateUrl : 'menRestorana/listaRestorana.html',
+				controller : 'menRestoranaController'
 			})
 
 			.state(
@@ -129,4 +141,7 @@ angular.module(
 							}
 						}
 					})
+					
+					
+					
 		});

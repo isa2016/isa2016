@@ -15,4 +15,14 @@ public class MenadzerRestorana extends Korisnik{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Menadzer_restorana_ID")
 	private Long id;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 }

@@ -15,4 +15,6 @@ public interface MenadzerRestoranaServis {
 	MenadzerRestorana delete(Long id);
 
 	MenadzerRestorana findByMailAndPassword(String usn, String pass);
+	
+	MenadzerRestorana findByMail(String usn);
 }

@@ -52,7 +52,7 @@ public class Restoran {
 	public List<Jelo> jelovnik = new ArrayList<>();
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "Restorani_i_menadzeri", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Pice_ID"))
+	@JoinTable(name = "Karta_pica", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Pice_ID"))
 	public List<Pice> kartaPica = new ArrayList<>();
 	
 	@OneToMany(cascade = CascadeType.ALL)
@@ -120,6 +120,12 @@ public class Restoran {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public List<MenadzerRestorana> getMenadzeriRestorana() {
+		// TODO Auto-generated method stub
+		return menadzeriRestorana;
+	}
+
 
 
 	
