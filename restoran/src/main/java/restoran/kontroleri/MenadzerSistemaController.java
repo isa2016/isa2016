@@ -1,5 +1,6 @@
 package restoran.kontroleri;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -41,8 +42,8 @@ public class MenadzerSistemaController {
 	@PostMapping(path = "/addRest/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void save(@PathVariable Long id,@Valid @RequestBody Restoran rest) {
-		System.out.println(id);
 		MenadzerRestorana mr = mrs.findOne(id);
+		mr.setZaposlen(1);
 		rest.getMenadzeriRestorana().add(mr);
 		rs.save(rest);
 
@@ -53,6 +54,17 @@ public class MenadzerSistemaController {
 		return new ResponseEntity<>(mrs.findAll(), HttpStatus.OK);
 	}
 	
+	@GetMapping("/nezaposleni")
+	public ResponseEntity<List<MenadzerRestorana>> findAllMR2() {
+		List<MenadzerRestorana> lista = new ArrayList<MenadzerRestorana>();
+		for(MenadzerRestorana m : mrs.findAll()){
+			if(m.getZaposlen()==0){
+				lista.add(m);
+			}
+		}
+		return new ResponseEntity<>(lista, HttpStatus.OK);
+	}
+	
 	@GetMapping("/sviMS")
 	public ResponseEntity<List<MenadzerSistema>> findAllMS() {
 		return new ResponseEntity<>(mss.findAll(), HttpStatus.OK);
@@ -60,8 +72,7 @@ public class MenadzerSistemaController {
 
 	@PostMapping(path = "/addMS")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void saveMS(@Valid @RequestBody MenadzerSistema ms) {
-		System.out.println("udjees");
+	public void saveMS(@Valid @RequestBody MenadzerSistema ms) {	
 		mss.save(ms);
 	}
 }

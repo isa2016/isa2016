@@ -20,6 +20,10 @@ app.controller('menadzerSistemaController', [
 				menadzerSistemaService.sviMR().then(function(response) {
 					$scope.sviMR = response.data;
 				});
+				
+				menadzerSistemaService.sviMR2().then(function(response) {
+					$scope.sviMR2 = response.data;
+				});
 
 				menadzerSistemaService.sviRestorani().then(function(response) {
 					$scope.restorani = response.data;

@@ -12,6 +12,10 @@ services.service('menadzerSistemaService', ['$http', function($http){
 		return $http.get("/menadzerSistemaController/sviMR");
 	}
 	
+	this.sviMR2 = function(){
+		return $http.get("/menadzerSistemaController/nezaposleni");
+	}
+	
 	this.save = function(rest,mr){
 		return $http.post("/menadzerSistemaController/addRest/"+mr.id,rest);
 	}

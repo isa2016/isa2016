@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import restoran.model.Restoran;
-import restoran.model.osoba.Gost;
 import restoran.model.osoba.Kuvar;
 import restoran.servis.RestoranServis;
 
@@ -74,24 +73,5 @@ public class MenadzerController {
 		// restaurant.getKuvari().add(cook);
 		restoranServis.save(restaurant);
 	}
-	/*
-	 * @PostMapping(path = "/restaurant/saveBartender")
-	 * 
-	 * @ResponseStatus(HttpStatus.CREATED) public void
-	 * saveCook(@Valid @RequestBody Bartender bartender) {
-	 * bartender.setRegistrated("0"); Restaurant restaurant =
-	 * findRestaurantForRestaurantManager();
-	 * restaurant.getBartenders().add(bartender);
-	 * restaurantService.save(restaurant); }
-	 * 
-	 * @PostMapping(path = "/restaurant/saveBidder")
-	 * 
-	 * @ResponseStatus(HttpStatus.CREATED) public void
-	 * saveBidder(@Valid @RequestBody Bidder bidder) {
-	 * bidder.setRegistrated("0"); Restaurant restaurant =
-	 * findRestaurantForRestaurantManager();
-	 * restaurant.getBidders().add(bidder); restaurantService.save(restaurant);
-	 * }
-	 */
 
 }

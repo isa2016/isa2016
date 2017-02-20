@@ -17,6 +17,9 @@ public class MenadzerRestorana extends Korisnik{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Menadzer_restorana_ID")
 	private Long id;
+	
+	@Column
+	private int zaposlen;
 
 	public Long getId() {
 		return id;
@@ -25,6 +28,21 @@ public class MenadzerRestorana extends Korisnik{
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public int getZaposlen() {
+		return zaposlen;
+	}
+
+	public void setZaposlen(int zaposlen) {
+		this.zaposlen = zaposlen;
+	}
+
+	public MenadzerRestorana() {
+		super();
+		this.zaposlen = 0;
+	}
+	
+	
 	
 	
 }

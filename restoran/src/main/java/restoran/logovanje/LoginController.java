@@ -94,7 +94,6 @@ public class LoginController {
 
 	@GetMapping(path = "/getLoggedUser")
 	public Korisnik getLoggedUser() {
-		Korisnik k = (Korisnik)httpSession.getAttribute("korisnik");
 		return (Korisnik) httpSession.getAttribute("korisnik");
 	}
 
