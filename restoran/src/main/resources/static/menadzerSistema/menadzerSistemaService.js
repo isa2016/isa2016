@@ -24,6 +24,10 @@ services.service('menadzerSistemaService', ['$http', function($http){
 		return $http.post("/menadzerSistemaController/addMS",rest);
 	}
 	
+	this.saveMR = function(rest){
+		return $http.post("/menadzerSistemaController/addMR",rest);
+	}
+	
 	this.sviRestorani = function(){
 		return $http.get("/guest/restorani");
 	}

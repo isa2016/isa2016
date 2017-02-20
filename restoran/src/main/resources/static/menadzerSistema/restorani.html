@@ -1,3 +1,4 @@
+<div data-ng-init="getLoggedManager()">
 <table  class="table table-bordered tableBG" border="1">
 		<tbody>
 	        <tr>
@@ -52,6 +53,7 @@
     <select data-ng-model="$parent.manager.id" class="form-control" required>
    		<option value=>Select manager</option>
      	<option data-ng-repeat="mr in sviMR2" value="{{ mr.id }}">{{mr.ime}}</option>
-	</select>
+	</select><a ui-sref="menadzerSistema.noviMenadzerRestorana">New Restauran Manager</a>
 
 <button class="btn btn-default" ng-click= "dodajRest()" >Add Restaurant </button>
+</div>

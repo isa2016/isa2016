@@ -1,0 +1,39 @@
+<div data-ng-init="findAll()">
+Unemployeed restaurant managers:
+<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>Name</th>
+				<th>Surname</th>
+				<th>Mail</th>
+		
+            </tr>
+			<tr ng-repeat="mr in sviMR2">
+				<td> 
+					{{mr.ime}}
+				</td>
+				<td> 
+					{{mr.prezime}}
+				</td>
+				<td>
+					{{mr.mail}}
+				</td>
+			</tr>
+		</tbody>
+    </table> 
+    
+
+<label>Name</label><br/>
+<input name = "name" type="text" class="form-control" ng-model = "$parent.menadzerR.ime"  required><br/>
+
+<label>Surname</label><br/>
+<input type="text" class="form-control" ng-model = "$parent.menadzerR.prezime"  required><br/> 
+
+<label>Mail</label><br/>
+<input type="mail" class="form-control" ng-model = "$parent.menadzerR.mail"  required><br/> 
+
+<label>Password</label><br/>
+<input type="password" class="form-control" ng-model = "$parent.menadzerR.password" required></br>
+ 
+<button class="btn btn-default" ng-click= "dodajMR()" >Add Restaurant Manager</button>
+</div>

@@ -105,6 +105,12 @@ angular.module(
 				controller : 'menadzerSistemaController'
 			})
 			
+			.state('menadzerSistema.noviMenadzerRestorana', {
+				url : '/noviMenadzerRestorana',
+				templateUrl : 'menadzerSistema/noviMR.html',
+				controller : 'menadzerSistemaController'
+			})
+			
 			.state('login/logOut', {
 				url : '/logout',
 				// templateUrl : 'loginRegistration/login.html',

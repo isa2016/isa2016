@@ -75,4 +75,11 @@ public class MenadzerSistemaController {
 	public void saveMS(@Valid @RequestBody MenadzerSistema ms) {	
 		mss.save(ms);
 	}
+	
+	@PostMapping(path = "/addMR")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void saveMR(@Valid @RequestBody MenadzerRestorana mr) {	
+		mr.setZaposlen(0);
+		mrs.save(mr);
+	}
 }
