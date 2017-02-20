@@ -38,7 +38,6 @@ public class MenadzerController {
 		this.restoranServis = restServis;
 	}
 
-	
 	@PutMapping(path = "/updateRest/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Restoran update(@PathVariable Long id, @Valid @RequestBody Restoran rest) {
@@ -47,22 +46,19 @@ public class MenadzerController {
 		rest.setId(id);
 		return restoranServis.save(rest);
 	}
-	
+
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<List<Restoran>> list(@PathVariable Long id) {
+	public Restoran list(@PathVariable Long id) {
 		List<Restoran> l = restoranServis.findAll();
-		List<Restoran> lista = new ArrayList<Restoran>();
 		for (int i = 0; i < l.size(); i++) {
 			Restoran r = l.get(i);
 			for (int j = 0; j < r.getMenadzeriRestorana().size(); j++) {
 				if (id.equals(r.getMenadzeriRestorana().get(j).getId())) {
-					lista.add(r);
+					return r;
 				}
 			}
 		}
-
-		return new ResponseEntity<>(lista, HttpStatus.OK);
-
+		return null;
 	}
 
 	@PostMapping(path = "/{id}")

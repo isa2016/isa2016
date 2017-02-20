@@ -1,42 +1,23 @@
 <div ng-init="list('{{loggedUser.id}}')">
-	<table class="table table-bordered tableBG" border="1">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Description</th>
-				<th>Country</th>
-				<th>City</th>
-				<th>Street</th>
-
-			</tr>
-			<tr ng-repeat="restoran in lista">
-				<td>{{restoran.id}}</td>
-				<td>{{restoran.naziv}}</td>
-				<td>{{restoran.opis}}</td>
-				<td>{{restoran.drzava}}</td>
-				<td>{{restoran.grad}}</td>
-				<td>{{restoran.ulica}}</td>
-				<td>
-					<button ng-click="zaIzmenu(restoran)">Modify</button>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	Id: {{restoran.id}}<br></br> Name: {{restoran.naziv}} <br></br>Description:
+	{{restoran.opis}} <br></br>Country: {{restoran.drzava}} <br></br>City:
+	{{restoran.grad}} <br></br>Street: {{restoran.ulica}} <br></br>
+	<button data-ng-click="zaIzmenu(restoran)">Modify</button>
+	
+	<br><br></br><br>
 
 
 	<div ng-show="prikazi">
 		<form ng-model="resttt"">
-			Name:<br> <input type="text" name="name"
+			{{resttt.id}}Name:<br> <input type="text" name="name"
 				ng-model="resttt.naziv" value={{resttt.naziv}}> <br>
 			Description:<br> <input type="text" name="description"
 				ng-model="resttt.opis" value={{resttt.opis}}> <br>
 			Country:<br> <input type="text" name="country"
 				ng-model="resttt.drzava" value={{resttt.drzava}}><br>
-				City:<br>
-			<input type="text" name="city" ng-model="resttt.grad"
-				value={{resttt.grad}}><br> Street and number:<br> <input type="text"
-				name="street" ng-model="resttt.ulica"
+			City:<br> <input type="text" name="city" ng-model="resttt.grad"
+				value={{resttt.grad}}><br> Street and number:<br>
+			<input type="text" name="street" ng-model="resttt.ulica"
 				value={{resttt.ulica}}> <br> <br> <input
 				type="submit" value="Submit" ng-click="update()"> <a
 				ui-sref="menadzerRestorana.restorani">Cancel</a>

@@ -18,7 +18,7 @@ app.controller('menadzerRestoranaController', [
 			function findRest(loggedUser) {
 				menadzerRestoranaService.list($scope.loggedUser).then(
 						function(response) {
-							$scope.lista = response.data;
+							$scope.restoran = response.data;
 							//$location.path('/menadzerRestorana/restorani');
 						});
 			}
