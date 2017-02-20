@@ -1,0 +1,13 @@
+<div>
+	<form ng-model="resttt"">
+		Name:<br> <input type="text" name="name"
+			ng-model="resttt.naziv" value={{resttt.naziv}}> <br>
+		Surname:<br> <input type="text" name="lastName"
+			ng-model="loggedUser.prezime" value={{loggedUser.prezime}}> <br>
+		Password:<br> <input type="text" name="password"
+			ng-model="loggedUser.password" value={{loggedUser.password}}>
+		<br> <br> <input type="submit" value="Submit"
+			ng-click="update()"> <a ui-sref="gost.profil">Cancel</a>
+
+	</form>
+</div>

@@ -127,6 +127,11 @@ angular.module(
 				templateUrl : 'menadzerRestorana/listaRestorana.html',
 				controller : 'menadzerRestoranaController'
 			})
+			.state('menadzerRestorana.izmeni', {
+				url : '/izmeni',
+				templateUrl : 'menadzerRestorana/izmeniRestoran.html',
+				controller : 'menadzerRestoranaController'
+			})
 
 			.state(
 					'activation/:reg',

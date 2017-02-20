@@ -32,7 +32,7 @@ public class LoginController {
 	private HttpSession httpSession;
 
 	private MenadzerSistemaServis mss;
-	private MenadzerRestoranaServis menServis;
+	private MenadzerRestoranaServis mrs;
 	private GostServis gostServis;
 	private KuvarServis kuvarServis;
 	private KonobarServis konobarServis;
@@ -41,7 +41,7 @@ public class LoginController {
 
 	@Autowired
 	public LoginController(final HttpSession httpSession, final MenadzerSistemaServis mss, final GostServis gostServis,
-			final KuvarServis kuvarServis, final KonobarServis konobarServis, final SankerServis sankerServis,final MenadzerRestoranaServis menServis,
+			final KuvarServis kuvarServis, final KonobarServis konobarServis, final SankerServis sankerServis,final MenadzerRestoranaServis mrs,
 			final JavaMailSender javaMailSender) {
 		this.httpSession = httpSession;
 		this.gostServis = gostServis;
@@ -49,7 +49,7 @@ public class LoginController {
 		this.konobarServis = konobarServis;
 		this.sankerServis = sankerServis;
 		this.javaMailSender = javaMailSender;
-		this.menServis = menServis;
+		this.mrs = mrs;
 		this.mss = mss;
 	}
 
@@ -75,8 +75,8 @@ public class LoginController {
 		} else if (mss.findByMailAndPassword(userInput.getMail(), userInput.getPassword()) != null) {
 			k = mss.findByMailAndPassword(userInput.getMail(), userInput.getPassword());
 			userType = "menadzerSistema";
-		}else if (menServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword()) != null) {
-			k = menServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword());
+		}else if (mrs.findByMailAndPassword(userInput.getMail(), userInput.getPassword()) != null) {
+			k = mrs.findByMailAndPassword(userInput.getMail(), userInput.getPassword());
 			userType = "menadzerRestorana";
 		}
 		if (k != null) {
@@ -94,6 +94,7 @@ public class LoginController {
 
 	@GetMapping(path = "/getLoggedUser")
 	public Korisnik getLoggedUser() {
+		Korisnik k = (Korisnik)httpSession.getAttribute("korisnik");
 		return (Korisnik) httpSession.getAttribute("korisnik");
 	}
 
