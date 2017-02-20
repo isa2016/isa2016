@@ -5,7 +5,7 @@ angular.module(
 		[ 'ui.router', 'loginRegistration.services',
 				'loginRegistration.controllers', 'guest.services',
 				'guest.controllers', 'menadzerSistema.services',
-				'menadzerSistema.controllers','menRestorana.services','menRestorana.controllers' ]).config(
+				'menadzerSistema.controllers','menadzerRestorana.services','menadzerRestorana.controllers' ]).config(
 		function($stateProvider, $urlRouterProvider) {
 
 			$urlRouterProvider.otherwise('/login');
@@ -118,14 +118,14 @@ angular.module(
 			
 			.state('menadzerRestorana', {
 				url : '/menadzerRestorana',
-				templateUrl : 'menRestorana/menadzerRestorana.html',
-				controller : 'menRestoranaController'
+				templateUrl : 'menadzerRestorana/navBarMR.html',
+				controller : 'menadzerRestoranaController'
 			})
 			
 			.state('menadzerRestorana.restorani', {
 				url : '/restorani',
-				templateUrl : 'menRestorana/listaRestorana.html',
-				controller : 'menRestoranaController'
+				templateUrl : 'menadzerRestorana/listaRestorana.html',
+				controller : 'menadzerRestoranaController'
 			})
 
 			.state(
