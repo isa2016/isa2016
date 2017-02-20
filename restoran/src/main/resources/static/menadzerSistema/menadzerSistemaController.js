@@ -45,6 +45,16 @@ app.controller('menadzerSistemaController', [
 				
 			}
 
+			$scope.dodajMR = function() {
+
+				menadzerSistemaService.saveMR($scope.menadzerR).then(
+						function(response) {
+							findAll();
+							$location.path('/menadzerSistema/restorani');
+						});
+				
+			}
+			
 			$scope.dodajMS = function() {
 
 				menadzerSistemaService.saveMS($scope.ms).then(
@@ -52,7 +62,5 @@ app.controller('menadzerSistemaController', [
 							findAll();
 							$location.path('/menadzerSistema/menadzeri');
 						});
-				
 			}
-
 		} ]);
