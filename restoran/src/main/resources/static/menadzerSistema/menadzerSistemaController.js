@@ -33,7 +33,7 @@ app.controller('menadzerSistemaController', [
 
 			$scope.dodajRest = function() {
 
-				menadzerSistemaService.save($scope.rest).then(
+				menadzerSistemaService.save($scope.rest,$scope.manager).then(
 						function(response) {
 							findAll();
 							$location.path('/menadzerSistema/restorani');

@@ -79,6 +79,7 @@ public class Restoran {
 
 	public Restoran() {
 		super();
+		this.menadzeriRestorana = new ArrayList<MenadzerRestorana>();
 	}
 
 	public String getNaziv() {

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,10 +38,12 @@ public class MenadzerSistemaController {
 
 	}
 
-	@PostMapping(path = "/addRest")
+	@PostMapping(path = "/addRest/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void save(@Valid @RequestBody Restoran rest) {
-
+	public void save(@PathVariable Long id,@Valid @RequestBody Restoran rest) {
+		System.out.println(id);
+		MenadzerRestorana mr = mrs.findOne(id);
+		rest.getMenadzeriRestorana().add(mr);
 		rs.save(rest);
 
 	}

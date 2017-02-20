@@ -12,8 +12,8 @@ services.service('menadzerSistemaService', ['$http', function($http){
 		return $http.get("/menadzerSistemaController/sviMR");
 	}
 	
-	this.save = function(rest){
-		return $http.post("/menadzerSistemaController/addRest",rest);
+	this.save = function(rest,mr){
+		return $http.post("/menadzerSistemaController/addRest/"+mr.id,rest);
 	}
 	
 	this.saveMS = function(rest){
