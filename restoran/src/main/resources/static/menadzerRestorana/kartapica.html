@@ -1,0 +1,40 @@
+<div data-ng-init="pica()">
+<div style="position: absolute; top: 80px; left: 25px; width: 500px;">
+<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+		
+            </tr>
+			<tr ng-repeat="pice in picaa">
+				<td> 
+					{{pice.naziv}}
+				</td>
+				<td> 
+					{{pice.opis}}
+				</td>
+				<td>
+					{{pice.cena}}
+				</td>
+
+			</tr>
+		</tbody>
+    </table> 
+    </div>
+    <div style="position: absolute; top: 80px; left: 750px; width: 50px;">
+    <h4>New: </h4>
+    	<form ng-model="resttt"">
+		Name:<br> <input type="text" name="name"
+			ng-model="$parent.picee.naziv"> <br>
+		Description:<br> <input type="text" name="lastName"
+			ng-model="$parent.picee.opis" ><br>
+		Price:<br> <input type="number" name="password"
+			ng-model="$parent.picee.cena" >
+		<br> <br> <input type="submit" value="Submit"
+			ng-click="dodajPice()"> <a ui-sref="menadzerRestorana.kartapica">Cancel</a>
+
+		</form>
+    </div>
+   </div>

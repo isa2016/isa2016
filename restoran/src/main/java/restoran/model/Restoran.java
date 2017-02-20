@@ -130,6 +130,46 @@ public class Restoran {
 		this.id = id;
 	}
 
+	public List<Jelo> getJelovnik() {
+		return jelovnik;
+	}
+
+	public void setJelovnik(List<Jelo> jelovnik) {
+		this.jelovnik = jelovnik;
+	}
+
+	public List<Pice> getKartaPica() {
+		return kartaPica;
+	}
+
+	public void setKartaPica(List<Pice> kartaPica) {
+		this.kartaPica = kartaPica;
+	}
+
+	public List<Konobar> getKonobari() {
+		return konobari;
+	}
+
+	public void setKonobari(List<Konobar> konobari) {
+		this.konobari = konobari;
+	}
+
+	public List<Kuvar> getKuvari() {
+		return kuvari;
+	}
+
+	public void setKuvari(List<Kuvar> kuvari) {
+		this.kuvari = kuvari;
+	}
+
+	public List<Sanker> getSankeri() {
+		return sankeri;
+	}
+
+	public void setSankeri(List<Sanker> sankeri) {
+		this.sankeri = sankeri;
+	}
+
 
 
 	

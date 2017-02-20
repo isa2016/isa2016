@@ -127,6 +127,25 @@ angular.module(
 				templateUrl : 'menadzerRestorana/listaRestorana.html',
 				controller : 'menadzerRestoranaController'
 			})
+			
+			.state('menadzerRestorana.jelovnik', {
+				url : '/jelovnik',
+				templateUrl : 'menadzerRestorana/jelovnik.html',
+				controller : 'menadzerRestoranaController'
+			})
+			
+			.state('menadzerRestorana.kartapica', {
+				url : '/kartapica',
+				templateUrl : 'menadzerRestorana/kartapica.html',
+				controller : 'menadzerRestoranaController'
+			})
+			
+			.state('menadzerRestorana.zaposleni', {
+				url : '/zaposleni',
+				templateUrl : 'menadzerRestorana/zaposleni.html',
+				controller : 'menadzerRestoranaController'
+			})
+			
 			.state('menadzerRestorana.izmeni', {
 				url : '/izmeni',
 				templateUrl : 'menadzerRestorana/izmeniRestoran.html',

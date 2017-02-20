@@ -5,11 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import lombok.Data;
+
+@Data
 @Entity
 public class Pice {
 
 	@Id
     @GeneratedValue
+    @Column(name = "Pice_ID")
     private int id;
 	    
 	@Column(name="naziv", nullable = false)
@@ -21,7 +25,7 @@ public class Pice {
 	@Column(name="cena", nullable = false)
 	private Double cena;
 	
-	@Column(name="ocena", nullable = false)
+	@Column(name="ocena", nullable = true)
 	private Double ocena;
 	
 	public Pice() {

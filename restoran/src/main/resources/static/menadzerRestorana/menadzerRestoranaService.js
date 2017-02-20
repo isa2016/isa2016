@@ -16,6 +16,22 @@ services.service('menadzerRestoranaService', ['$http', function($http){
 		return $http.get("/restoran/"+id)
 	}
 	
+	this.jelovnik = function(rest){
+		return $http.get("restoran/jelovnik/"+rest.id)
+	}
+	
+	this.pica = function(rest){
+		return $http.get("restoran/pice/"+rest.id)
+	}
+	
+	this.dodajJelo = function(rest,jeloo){
+		return $http.post("menadzer/jelo/"+rest.id,jeloo)
+	}
+	
+	this.dodajPice = function(rest,picee){
+		return $http.post("menadzer/pice/"+rest.id,picee)
+	}
+	
 	this.updateRest = function(rest){
 		return $http.put("/menadzer/updateRest/"+rest.id,rest);
 	}

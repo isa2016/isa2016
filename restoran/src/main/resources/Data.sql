@@ -9,4 +9,10 @@ INSERT INTO sanker(ime,prezime,mail,password) VALUES ('Pera','Peric','san@san.co
 INSERT INTO restoran(naziv,opis,drzava,grad,ulica) VALUES('restoran1', 'opis', 'drzava', 'grad', 'ulica')
 INSERT INTO restoran(naziv,opis,drzava,grad,ulica) VALUES('restoran2', 'opis', 'drzava', 'grad', 'ulica')
 INSERT INTO restorani_i_menadzeri(Restoran_ID,Menadzer_restorana_ID) VALUES (1,1)
+INSERT INTO jelo(naziv,opis,cena,ocena) VALUES ('Pljeskavica','Opis',150,5)
+INSERT INTO jelo(naziv,opis,cena,ocena) VALUES ('Piletina','Opis',200,4)
+INSERT INTO pice(naziv,opis,cena,ocena) VALUES ('Caj','Opis',80,4)
+INSERT INTO jelovnik(Restoran_ID,Jelo_ID) VALUES (1,1)
+INSERT INTO jelovnik(Restoran_ID,Jelo_ID) VALUES (1,2)
+INSERT INTO karta_pica(Restoran_ID,Pice_ID) VALUES (1,1)
 

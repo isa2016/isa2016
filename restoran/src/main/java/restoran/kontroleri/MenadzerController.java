@@ -1,6 +1,5 @@
 package restoran.kontroleri;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +8,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import restoran.model.Jelo;
+import restoran.model.Pice;
 import restoran.model.Restoran;
 import restoran.model.osoba.Kuvar;
 import restoran.servis.RestoranServis;
@@ -70,4 +70,21 @@ public class MenadzerController {
 		restoranServis.save(restaurant);
 	}
 
+	
+	@PostMapping(path = "jelo/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void dodajJelo(@PathVariable Long id,@Valid @RequestBody Jelo jelo) {
+
+		Restoran restaurant = restoranServis.findOne(id);
+		restaurant.getJelovnik().add(jelo);
+		restoranServis.save(restaurant);
+	}
+	
+	@PostMapping(path = "pice/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void dodajJelo(@PathVariable Long id,@Valid @RequestBody Pice pice) {
+		Restoran restaurant = restoranServis.findOne(id);
+		restaurant.getKartaPica().add(pice);
+		restoranServis.save(restaurant);
+	}
 }

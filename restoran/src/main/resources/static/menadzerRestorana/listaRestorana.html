@@ -1,5 +1,5 @@
 <div ng-init="list('{{loggedUser.id}}')">
-	Id: {{restoran.id}}<br></br> Name: {{restoran.naziv}} <br></br>Description:
+	<br></br> Name: {{restoran.naziv}} <br></br>Description:
 	{{restoran.opis}} <br></br>Country: {{restoran.drzava}} <br></br>City:
 	{{restoran.grad}} <br></br>Street: {{restoran.ulica}} <br></br>
 	<button data-ng-click="zaIzmenu(restoran)">Modify</button>
@@ -9,7 +9,7 @@
 
 	<div ng-show="prikazi">
 		<form ng-model="resttt"">
-			{{resttt.id}}Name:<br> <input type="text" name="name"
+			Name:<br> <input type="text" name="name"
 				ng-model="resttt.naziv" value={{resttt.naziv}}> <br>
 			Description:<br> <input type="text" name="description"
 				ng-model="resttt.opis" value={{resttt.opis}}> <br>

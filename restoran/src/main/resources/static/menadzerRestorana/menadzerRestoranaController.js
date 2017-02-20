@@ -10,7 +10,6 @@ app.controller('menadzerRestoranaController', [
 				menadzerRestoranaService.getLoggedUser().then(
 						function(response) {
 							$scope.loggedUser = response.data;
-							$scope.loggedUser;
 							findRest($scope.loggedUser);
 						})
 			}
@@ -19,7 +18,34 @@ app.controller('menadzerRestoranaController', [
 				menadzerRestoranaService.list($scope.loggedUser).then(
 						function(response) {
 							$scope.restoran = response.data;
-							//$location.path('/menadzerRestorana/restorani');
+						});
+			}
+			
+			$scope.jelovnik = function() {
+				menadzerRestoranaService.jelovnik($scope.restoran).then(
+						function(response) {
+							$scope.jela = response.data;
+						});
+			}
+			
+			$scope.pica = function() {
+				menadzerRestoranaService.pica($scope.restoran).then(
+						function(response) {
+							$scope.picaa = response.data;
+						});
+			}
+			
+			function jelovnik2(){
+				menadzerRestoranaService.jelovnik($scope.restoran).then(
+						function(response) {
+							$scope.jela = response.data;
+						});
+			}
+			
+			function pica2(){
+				menadzerRestoranaService.pica($scope.restoran).then(
+						function(response) {
+							$scope.picaa = response.data;
 						});
 			}
 			
@@ -41,6 +67,25 @@ app.controller('menadzerRestoranaController', [
 	                    $scope.state = undefined;
 	                    findRest($scope.loggedUser);
 	                    $location.path('/menadzerRestorana/restorani');
+					}
+				);
+			}
+			
+			
+			$scope.dodajJelo = function() {
+				menadzerRestoranaService.dodajJelo($scope.restoran,$scope.jeloo).then(
+					function (response) {
+						jelovnik2();
+	                    $location.path('/menadzerRestorana/jelovnik');
+					}
+				);
+			}
+			
+			$scope.dodajPice = function() {
+				menadzerRestoranaService.dodajPice($scope.restoran,$scope.picee).then(
+					function (response) {
+						pica2();
+	                    $location.path('/menadzerRestorana/kartapica');
 					}
 				);
 			}
