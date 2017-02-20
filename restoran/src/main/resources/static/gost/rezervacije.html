@@ -1,0 +1,29 @@
+<div data-ng-init="sveRez2()">
+<h3>Your reservations:</h3>
+
+<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>Restaurant</th>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Duration</th>
+		
+            </tr>
+			<tr ng-repeat="rezervacija in rezervacije">
+				<td> 
+					{{rezervacija.restaurant.naziv}}
+				</td>
+				<td> 
+					{{rezervacija.date}}
+				</td>
+				<td>
+					{{rezervacija.hours}}:{{rezervacija.minutes}}
+				</td>
+				<td>
+					{{rezervacija.duration}}
+				</td>
+			</tr>
+		</tbody>
+    </table> 
+    </div>

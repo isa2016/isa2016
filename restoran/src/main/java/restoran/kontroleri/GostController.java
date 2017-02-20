@@ -1,5 +1,6 @@
 package restoran.kontroleri;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,17 +46,6 @@ public class GostController {
 
 	}
 
-	@SuppressWarnings("unused")
-	@GetMapping("/checkRights")
-	public boolean checkRights() {
-		try {
-			Gost guest = ((Gost) httpSession.getAttribute("korisnik"));
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-	}
-
 	@GetMapping
 	public ResponseEntity<List<Gost>> findAll() {
 		return new ResponseEntity<>(gostServis.findAll(), HttpStatus.OK);
@@ -82,9 +72,33 @@ public class GostController {
 		return new ResponseEntity<>(restoranServis.findAll(), HttpStatus.OK);
 	}
 	
-	@PostMapping(path = "/dodaj")
+	@GetMapping("/rezervacije/{id}")
+	public ResponseEntity<List<Rezervacija>> findAllRez(@PathVariable Long id) {
+		
+		Gost gost = gostServis.findOne(id);
+		List<Rezervacija> sveRez = rezervacijaServis.findAll();
+		List<Rezervacija> gostoveRez = new ArrayList<Rezervacija>();
+		for(Rezervacija r : sveRez){
+			for(Gost g : r.getGosti()){
+				if(g.getId().equals(gost.getId())){
+					gostoveRez.add(r);
+				}
+			}
+		}
+		return new ResponseEntity<>(gostoveRez, HttpStatus.OK);
+	}
+	
+	@PostMapping(path = "/rezervisi/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void save(@RequestBody Rezervacija rez) {
+	public void save(@PathVariable Long id,@RequestBody Rezervacija rez) {
+		Restoran rest = restoranServis.findOne(id);
+		rez.setRestaurant(rest);
+		
+		Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
+		Gost gost = gostServis.findOne(gostID);
+		
+		rez.getGosti().add(gost);
+		
 		rezervacijaServis.save(rez);
 		
 	}

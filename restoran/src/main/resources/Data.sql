@@ -1,4 +1,5 @@
 INSERT INTO gost(ime,prezime,mail,password,registrovan) VALUES ('Milos','Nisic','gost@gost.com','gost','1')
+INSERT INTO gost(ime,prezime,mail,password,registrovan) VALUES ('Djura','Djuric','gost2@gost2.com','gost2','1')
 INSERT INTO kuvar(ime,prezime,mail,password) VALUES ('Stefan','Ceranic','kuv@kuv.com','kuv')
 INSERT INTO konobar(ime,prezime,mail,password) VALUES ('Milan','Gvero','kon@kon.com','kon')
 INSERT INTO menadzer_sistema(ime,prezime,mail,password) VALUES ('ms','ms','ms@ms.com','ms')

@@ -1,15 +1,16 @@
 </div>
  <h3>Make a reservation</h3>
- <form>
- Restaurant : {{resttt.id}}><br></br>
- Date : <input type="text" name="name"
-			ng-model="$parent.rezervacija.date"> <br></br>
- Hours : <input type="text" name="name"
-			ng-model="$parent.rezervacija.hours"> <br></br>
- Minutes : <input type="text" name="name"
+ <form name="rez">
+ Restaurant : {{resttt.naziv}}<br></br>
+ Date : <input type="date" name="date"
+			ng-model="$parent.rezervacija.date" required> <br></br>
+ Hours : <input type="number" min=0 max=24 name="hours"
+			ng-model="$parent.rezervacija.hours" required> <br></br>
+ Minutes : <input type="number" min=0 max=60 name="min"
 			ng-model="$parent.rezervacija.minutes"> <br></br>
- Duration : <input type="text" name="name"
-			ng-model="$parent.rezervacija.duration">  <br></br>
+ Duration : <input type="number" min=0 max=12 name="dur"
+			ng-model="$parent.rezervacija.duration" required>  <br></br>
  <button ng-click="potvrdaRezervacije()">Confirm</button>
+ 
  </form>
 <div>

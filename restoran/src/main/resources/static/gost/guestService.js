@@ -21,12 +21,16 @@ services.service('guestService', ['$http', function($http){
 		return $http.get("/guest/restorani");
 	}
 	
+	this.sveRez = function(loggedUser){
+		return $http.get("/guest/rezervacije/"+loggedUser.id);
+	}
+	
 	this.find = function(id){
 		return $http.get("/restoran/"+id)
 	}
 
-	this.potvrda = function(rezervacija){
-		return $http.post("/guest/dodaj",rezervacija)
+	this.potvrda = function(rezervacija,restoran){
+		return $http.post("/guest/rezervisi/"+restoran.id,rezervacija)
 	}
 
 }]);
