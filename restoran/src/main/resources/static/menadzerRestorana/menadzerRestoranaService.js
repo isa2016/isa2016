@@ -24,12 +24,20 @@ services.service('menadzerRestoranaService', ['$http', function($http){
 		return $http.get("restoran/pice/"+rest.id)
 	}
 	
+	this.sviKuvari = function(rest){
+		return $http.get("restoran/kuvari/"+rest.id)
+	}
+	
 	this.dodajJelo = function(rest,jeloo){
 		return $http.post("menadzer/jelo/"+rest.id,jeloo)
 	}
 	
 	this.dodajPice = function(rest,picee){
 		return $http.post("menadzer/pice/"+rest.id,picee)
+	}
+	
+	this.dodajKuvara = function(rest,kuv){
+		return $http.post("menadzer/kuvar/"+rest.id,kuv)
 	}
 	
 	this.updateRest = function(rest){

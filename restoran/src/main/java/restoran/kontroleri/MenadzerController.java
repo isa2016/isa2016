@@ -82,9 +82,17 @@ public class MenadzerController {
 	
 	@PostMapping(path = "pice/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void dodajJelo(@PathVariable Long id,@Valid @RequestBody Pice pice) {
+	public void dodajPice(@PathVariable Long id,@Valid @RequestBody Pice pice) {
 		Restoran restaurant = restoranServis.findOne(id);
 		restaurant.getKartaPica().add(pice);
+		restoranServis.save(restaurant);
+	}
+	
+	@PostMapping(path = "kuvar/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void dodajKuvara(@PathVariable Long id,@Valid @RequestBody Kuvar kuvar) {
+		Restoran restaurant = restoranServis.findOne(id);
+		restaurant.getKuvari().add(kuvar);
 		restoranServis.save(restaurant);
 	}
 }

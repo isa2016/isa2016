@@ -35,6 +35,13 @@ app.controller('menadzerRestoranaController', [
 						});
 			}
 			
+			$scope.sviKuvari = function() {
+				menadzerRestoranaService.sviKuvari($scope.restoran).then(
+						function(response) {
+							$scope.kuvari = response.data;
+						});
+			}
+			
 			function jelovnik2(){
 				menadzerRestoranaService.jelovnik($scope.restoran).then(
 						function(response) {
@@ -46,6 +53,13 @@ app.controller('menadzerRestoranaController', [
 				menadzerRestoranaService.pica($scope.restoran).then(
 						function(response) {
 							$scope.picaa = response.data;
+						});
+			}
+			
+			function sviKuvari2(){
+				menadzerRestoranaService.sviKuvari($scope.restoran).then(
+						function(response) {
+							$scope.kuvari = response.data;
 						});
 			}
 			
@@ -86,6 +100,15 @@ app.controller('menadzerRestoranaController', [
 					function (response) {
 						pica2();
 	                    $location.path('/menadzerRestorana/kartapica');
+					}
+				);
+			}
+			
+			$scope.dodajKuvara = function() {
+				menadzerRestoranaService.dodajKuvara($scope.restoran,$scope.kuv).then(
+					function (response) {
+						sviKuvari2();
+	                    $location.path('/menadzerRestorana/kuvari');
 					}
 				);
 			}

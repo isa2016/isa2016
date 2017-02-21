@@ -1,0 +1,51 @@
+<div data-ng-init="sviKuvari()">
+<div style="position: absolute; top: 80px; left: 25px; width: 500px;">
+<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>First name</th>
+				<th>Last name</th>
+				<th>Shoes size</th>
+				<th>Clothes size</th>
+		
+            </tr>
+			<tr ng-repeat="kuv in kuvari">
+				<td> 
+					{{kuv.ime}}
+				</td>
+				<td> 
+					{{kuv.prezime}}
+				</td>
+				<td>
+					{{kuv.velicinaObuce}}
+				</td>
+				<td>
+					{{kuv.velicinaOdece}}
+				</td>
+
+			</tr>
+		</tbody>
+    </table> 
+    </div>
+    
+    <div style="position: absolute; top: 80px; left: 750px; width: 50px;">
+    <h4>New: </h4>
+    	<form ng-model="resttt"">  	
+		Firs name:<br> <input type="text" name="name"
+			ng-model="$parent.kuv.ime"> <br>
+		Last name:<br> <input type="text" name="lastName"
+			ng-model="$parent.kuv.prezime" ><br>
+		Shoes size:<br> <input type="text" name="password"
+			ng-model="$parent.kuv.velicinaObuce" >
+		Clothes size:<br> <input type="text" name="password"
+			ng-model="$parent.kuv.velicinaOdece" >
+		Email:<br> <input type="text" name="password"
+			ng-model="$parent.kuv.mail" >
+		Password:<br> <input type="text" name="password"
+			ng-model="$parent.kuv.password" >
+		<br> <br> <input type="submit" value="Submit"
+			ng-click="dodajKuvara()"> <a ui-sref="menadzerRestorana.kuvari">Cancel</a>
+
+		</form>
+    </div>
+   </div>

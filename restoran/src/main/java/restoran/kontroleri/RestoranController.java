@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import restoran.model.Jelo;
 import restoran.model.Pice;
 import restoran.model.Restoran;
+import restoran.model.osoba.Kuvar;
 import restoran.servis.RestoranServis;
 
 @RestController
@@ -48,6 +49,14 @@ public class RestoranController {
 	public ResponseEntity<List<Pice>> findDrinks(@PathVariable Long id) {
 		Restoran r =  restoranServis.findOne(id);		
 		return new ResponseEntity<>(r.getKartaPica(), HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/kuvari/{id}")
+	public ResponseEntity<List<Kuvar>> findCooks(@PathVariable Long id) {
+		System.out.println("usaooooo");
+		Restoran r =  restoranServis.findOne(id);		
+		return new ResponseEntity<>(r.getKuvari(), HttpStatus.OK);
 		
 	}
 	

@@ -146,9 +146,21 @@ angular.module(
 				controller : 'menadzerRestoranaController'
 			})
 			
-			.state('menadzerRestorana.zaposleni', {
-				url : '/zaposleni',
-				templateUrl : 'menadzerRestorana/zaposleni.html',
+			.state('menadzerRestorana.kuvari', {
+				url : '/kuvari',
+				templateUrl : 'menadzerRestorana/kuvari.html',
+				controller : 'menadzerRestoranaController'
+			})
+			
+			.state('menadzerRestorana.konobari', {
+				url : '/konobari',
+				templateUrl : 'menadzerRestorana/konobari.html',
+				controller : 'menadzerRestoranaController'
+			})
+			
+			.state('menadzerRestorana.sankeri', {
+				url : '/sankeri',
+				templateUrl : 'menadzerRestorana/sankeri.html',
 				controller : 'menadzerRestoranaController'
 			})
 			

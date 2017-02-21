@@ -1,5 +1,5 @@
 package restoran.enumeracije;
 
 public enum Obuca {
-	no36, no37, no38, no39, no40, no41, no42, no43, no44, no45, no46;
+	br36, br37, br38, br39, br40, br41, br42, br43, br44, br45, br46;
 }
