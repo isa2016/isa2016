@@ -6,7 +6,7 @@ angular.module(
 				'loginRegistration.controllers', 'guest.services',
 				'guest.controllers', 'menadzerSistema.services',
 				'menadzerSistema.controllers', 'menadzerRestorana.services',
-				'menadzerRestorana.controllers']).config(
+				'menadzerRestorana.controllers', 'kuvar.services', 'kuvar.controllers', 'kon.services', 'kon.controllers']).config(
 		function($stateProvider, $urlRouterProvider) {
 
 			$urlRouterProvider.otherwise('/login');
@@ -75,38 +75,38 @@ angular.module(
 
 			.state('konobar', {
 				url : '/konobar',
-				templateUrl : 'konobar/navBar.html',
-				controller : 'konobarController'
+				templateUrl : 'kon/navBar.html',
+				controller : 'konController'
 			})
 
 			.state('konobar.raspored', {
 				url : '/raspored',
-				templateUrl : 'konobar/raspored.html',
-				controller : 'konobarController'
+				templateUrl : 'kon/raspored.html',
+				controller : 'konController'
 			})
 
 			.state('konobar.kalendar', {
 				url : '/kalendar',
-				templateUrl : 'konobar/kalendar.html',
-				controller : 'konobarController'
+				templateUrl : 'kon/kalendar.html',
+				controller : 'konController'
 			})
 
 			.state('konobar.porudzbine', {
 				url : '/porudzbine',
-				templateUrl : 'konobar/porudzbine.html',
-				controller : 'konobarController'
+				templateUrl : 'kon/porudzbine.html',
+				controller : 'konController'
 			})
 
 			.state('konobar.profil', {
 				url : '/profil',
-				templateUrl : 'konobar/profil.html',
-				controller : 'konobarController'
+				templateUrl : 'kon/profil.html',
+				controller : 'konController'
 			})
 
 			.state('konobar.izmena', {
 				url : '/izmena',
-				templateUrl : 'konobar/izmena.html',
-				controller : 'konobarController'
+				templateUrl : 'kon/izmena.html',
+				controller : 'konController'
 			})
 
 			.state('menadzerSistema', {
