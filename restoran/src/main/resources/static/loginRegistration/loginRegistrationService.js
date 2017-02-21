@@ -1,24 +1,23 @@
-var services = angular.module('loginRegistration.services', ['ngResource']);
+var services = angular.module('loginRegistration.services', [ 'ngResource' ]);
 
 var baseUrl = 'http://localhost\\:8080';
 
-services.service('loginRegistrationService', ['$http', function($http){
-	
-	this.logIn = function(korisnik){
-		return $http.post("/loginController/logIn",korisnik);
+services.service('loginRegistrationService', [ '$http', function($http) {
+
+	this.logIn = function(korisnik) {
+		return $http.post("/loginController/logIn", korisnik);
 	}
-	
-	this.firstLogin = function(id,korisnik){
-		return $http.put("/loginController/prviLogin/"+id,korisnik);
+
+	this.firstLogin = function(id, korisnik) {
+		return $http.put("/loginController/prviLogin/" + id, korisnik);
 	}
-	
-	this.logOut = function(){
+
+	this.logOut = function() {
 		return $http.get("/loginController/logOut");
 	}
-	
-	this.save = function(gost){
-		return $http.post("/loginController/registration",gost);
+
+	this.save = function(gost) {
+		return $http.post("/loginController/registration", gost);
 	}
-	
-	
-}]);
+
+} ]);

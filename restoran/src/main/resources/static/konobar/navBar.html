@@ -1,0 +1,26 @@
+<div data-ng-init="getLoggedUser()">
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+			<li><a data-ui-sref=".profil">Profile</a></li>
+				<li><a data-ui-sref=".kalendar">Calendar</a></li>
+				<li><a data-ui-sref=".raspored">Tables Schedule</a></li>
+				<li><a data-ui-sref=".porudzbine">Orders</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a data-ui-sref="login/logOut">Log out</a></li>
+
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container-fluid -->
+</nav>
+
+
+<div ui-view></div>
+</div>
+

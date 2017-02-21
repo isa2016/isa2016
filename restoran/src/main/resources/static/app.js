@@ -5,7 +5,8 @@ angular.module(
 		[ 'ui.router', 'loginRegistration.services',
 				'loginRegistration.controllers', 'guest.services',
 				'guest.controllers', 'menadzerSistema.services',
-				'menadzerSistema.controllers','menadzerRestorana.services','menadzerRestorana.controllers' ]).config(
+				'menadzerSistema.controllers', 'menadzerRestorana.services',
+				'menadzerRestorana.controllers']).config(
 		function($stateProvider, $urlRouterProvider) {
 
 			$urlRouterProvider.otherwise('/login');
@@ -23,7 +24,7 @@ angular.module(
 				templateUrl : 'loginRegistration/prviLogin.html',
 				controller : 'loginRegistrationController'
 			})
-			
+
 			.state('registration', {
 				url : '/registration',
 				templateUrl : 'loginRegistration/registration.html',
@@ -35,7 +36,7 @@ angular.module(
 				templateUrl : 'gost/navBar.html',
 				controller : 'guestController'
 			})
-			
+
 			.state('gost.profil', {
 				url : '/profil',
 				templateUrl : 'gost/profil.html',
@@ -59,38 +60,53 @@ angular.module(
 				templateUrl : 'gost/restorani.html',
 				controller : 'guestController'
 			})
-			
+
 			.state('gost.restorani.rezervisi', {
 				url : '/rezervisi',
 				templateUrl : 'gost/rezervisi.html',
 				controller : 'guestController'
 			})
-			
+
 			.state('gost.rezervacije', {
 				url : '/rezervacije',
 				templateUrl : 'gost/rezervacije.html',
 				controller : 'guestController'
 			})
 
-
-			.state('logovan/kuvar/pocetna', {
-				url : '/logovan/kuvar/pocetna',
-				templateUrl : 'zaposleni/kuvar.html'
+			.state('konobar', {
+				url : '/konobar',
+				templateUrl : 'konobar/navBar.html',
+				controller : 'konobarController'
 			})
 
-			.state('konobar.pocetna', {
-				url : '/pocetna',
-				templateUrl : 'gost/restorani.html'
+			.state('konobar.raspored', {
+				url : '/raspored',
+				templateUrl : 'konobar/raspored.html',
+				controller : 'konobarController'
 			})
 
-			.state('logovan/ponudjac/pocetna', {
-				url : '/logovan/ponudjac/pocetna',
-				templateUrl : 'zaposleni/ponudjac.html'
+			.state('konobar.kalendar', {
+				url : '/kalendar',
+				templateUrl : 'konobar/kalendar.html',
+				controller : 'konobarController'
 			})
 
-			.state('logovan/sanker/pocetna', {
-				url : '/logovan/sanker/pocetna',
-				templateUrl : 'zaposleni/sanker.html'
+			.state('konobar.porudzbine', {
+				url : '/porudzbine',
+				templateUrl : 'konobar/porudzbine.html',
+				controller : 'konobarController'
+			})
+
+			.state('konobar.profil', {
+				url : '/profil',
+				templateUrl : 'konobar/profil.html',
+				controller : 'konobarController'
+			})
+
+			.state('konobar.izmena', {
+				url : '/izmena',
+				templateUrl : 'konobar/izmena.html',
+				controller : 'konobarController'
 			})
 
 			.state('menadzerSistema', {
@@ -98,7 +114,7 @@ angular.module(
 				templateUrl : 'menadzerSistema/navBarMS.html',
 				controller : 'menadzerSistemaController'
 			})
-			
+
 			.state('menadzerSistema.menadzeri', {
 				url : '/menadzeri',
 				templateUrl : 'menadzerSistema/menadzeri.html',
@@ -110,13 +126,13 @@ angular.module(
 				templateUrl : 'menadzerSistema/restorani.html',
 				controller : 'menadzerSistemaController'
 			})
-			
+
 			.state('menadzerSistema.noviMenadzerRestorana', {
 				url : '/noviMenadzerRestorana',
 				templateUrl : 'menadzerSistema/noviMR.html',
 				controller : 'menadzerSistemaController'
 			})
-			
+
 			.state('login/logOut', {
 				url : '/logout',
 				// templateUrl : 'loginRegistration/login.html',
@@ -127,49 +143,49 @@ angular.module(
 					}
 				}
 			})
-			
+
 			.state('menadzerRestorana', {
 				url : '/menadzerRestorana',
 				templateUrl : 'menadzerRestorana/navBarMR.html',
 				controller : 'menadzerRestoranaController'
 			})
-			
+
 			.state('menadzerRestorana.restorani', {
 				url : '/restorani',
 				templateUrl : 'menadzerRestorana/listaRestorana.html',
 				controller : 'menadzerRestoranaController'
 			})
-			
+
 			.state('menadzerRestorana.jelovnik', {
 				url : '/jelovnik',
 				templateUrl : 'menadzerRestorana/jelovnik.html',
 				controller : 'menadzerRestoranaController'
 			})
-			
+
 			.state('menadzerRestorana.kartapica', {
 				url : '/kartapica',
 				templateUrl : 'menadzerRestorana/kartapica.html',
 				controller : 'menadzerRestoranaController'
 			})
-			
+
 			.state('menadzerRestorana.kuvari', {
 				url : '/kuvari',
 				templateUrl : 'menadzerRestorana/kuvari.html',
 				controller : 'menadzerRestoranaController'
 			})
-			
+
 			.state('menadzerRestorana.konobari', {
 				url : '/konobari',
 				templateUrl : 'menadzerRestorana/konobari.html',
 				controller : 'menadzerRestoranaController'
 			})
-			
+
 			.state('menadzerRestorana.sankeri', {
 				url : '/sankeri',
 				templateUrl : 'menadzerRestorana/sankeri.html',
 				controller : 'menadzerRestoranaController'
 			})
-			
+
 			.state('menadzerRestorana.izmeni', {
 				url : '/izmeni',
 				templateUrl : 'menadzerRestorana/izmeniRestoran.html',
@@ -188,7 +204,5 @@ angular.module(
 							}
 						}
 					})
-					
-					
-					
+
 		});
