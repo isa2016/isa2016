@@ -28,6 +28,14 @@ services.service('menadzerRestoranaService', ['$http', function($http){
 		return $http.get("restoran/kuvari/"+rest.id)
 	}
 	
+	this.sviKonobari = function(rest){
+		return $http.get("restoran/konobari/"+rest.id)
+	}
+	
+	this.sviSankeri = function(rest){
+		return $http.get("restoran/sankeri/"+rest.id)
+	}
+	
 	this.dodajJelo = function(rest,jeloo){
 		return $http.post("menadzer/jelo/"+rest.id,jeloo)
 	}
@@ -38,6 +46,14 @@ services.service('menadzerRestoranaService', ['$http', function($http){
 	
 	this.dodajKuvara = function(rest,kuv){
 		return $http.post("menadzer/kuvar/"+rest.id,kuv)
+	}
+	
+	this.dodajKonobara = function(rest,kon){
+		return $http.post("menadzer/konobar/"+rest.id,kon)
+	}
+	
+	this.dodajSankera = function(rest,san){
+		return $http.post("menadzer/sanker/"+rest.id,san)
 	}
 	
 	this.updateRest = function(rest){

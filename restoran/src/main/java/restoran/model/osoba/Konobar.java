@@ -9,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import lombok.Data;
 import restoran.enumeracije.Obuca;
 import restoran.enumeracije.Odeca;
 import restoran.logovanje.Korisnik;
 
+@Data
 @Entity
 public class Konobar extends Korisnik{
 

@@ -42,6 +42,20 @@ app.controller('menadzerRestoranaController', [
 						});
 			}
 			
+			$scope.sviKonobari = function() {
+				menadzerRestoranaService.sviKonobari($scope.restoran).then(
+						function(response) {
+							$scope.konobari = response.data;
+						});
+			}
+			
+			$scope.sviSankeri = function() {
+				menadzerRestoranaService.sviSankeri($scope.restoran).then(
+						function(response) {
+							$scope.sankeri = response.data;
+						});
+			}
+			
 			function jelovnik2(){
 				menadzerRestoranaService.jelovnik($scope.restoran).then(
 						function(response) {
@@ -60,6 +74,20 @@ app.controller('menadzerRestoranaController', [
 				menadzerRestoranaService.sviKuvari($scope.restoran).then(
 						function(response) {
 							$scope.kuvari = response.data;
+						});
+			}
+			
+			function sviKonobari2(){
+				menadzerRestoranaService.sviKonobari($scope.restoran).then(
+						function(response) {
+							$scope.konobari = response.data;
+						});
+			}
+			
+			function sviSankeri2(){
+				menadzerRestoranaService.sviSankeri($scope.restoran).then(
+						function(response) {
+							$scope.sankeri = response.data;
 						});
 			}
 			
@@ -109,6 +137,24 @@ app.controller('menadzerRestoranaController', [
 					function (response) {
 						sviKuvari2();
 	                    $location.path('/menadzerRestorana/kuvari');
+					}
+				);
+			}
+			
+			$scope.dodajKonobara = function() {
+				menadzerRestoranaService.dodajKonobara($scope.restoran,$scope.kon).then(
+					function (response) {
+						sviKonobari2();
+	                    $location.path('/menadzerRestorana/konobari');
+					}
+				);
+			}
+			
+			$scope.dodajSankera = function() {
+				menadzerRestoranaService.dodajSankera($scope.restoran,$scope.san).then(
+					function (response) {
+						sviSankeri2();
+	                    $location.path('/menadzerRestorana/sankeri');
 					}
 				);
 			}

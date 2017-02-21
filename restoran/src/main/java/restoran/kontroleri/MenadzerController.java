@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import restoran.model.Jelo;
 import restoran.model.Pice;
 import restoran.model.Restoran;
+import restoran.model.osoba.Konobar;
 import restoran.model.osoba.Kuvar;
+import restoran.model.osoba.Sanker;
 import restoran.servis.RestoranServis;
 
 @RestController
@@ -92,7 +94,26 @@ public class MenadzerController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public void dodajKuvara(@PathVariable Long id,@Valid @RequestBody Kuvar kuvar) {
 		Restoran restaurant = restoranServis.findOne(id);
+		kuvar.setRegistrovan("0");
 		restaurant.getKuvari().add(kuvar);
+		restoranServis.save(restaurant);
+	}
+	
+	@PostMapping(path = "konobar/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void dodajKonobara(@PathVariable Long id,@Valid @RequestBody Konobar konobar) {
+		Restoran restaurant = restoranServis.findOne(id);
+		konobar.setRegistrovan("0");
+		restaurant.getKonobari().add(konobar);
+		restoranServis.save(restaurant);
+	}
+	
+	@PostMapping(path = "sanker/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void dodajSankera(@PathVariable Long id,@Valid @RequestBody Sanker sanker) {
+		Restoran restaurant = restoranServis.findOne(id);
+		sanker.setRegistrovan("0");
+		restaurant.getSankeri().add(sanker);
 		restoranServis.save(restaurant);
 	}
 }
