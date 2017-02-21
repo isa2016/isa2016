@@ -56,4 +56,10 @@ public class MenadzerSistemaServisImpl implements MenadzerSistemaServis{
 		return menRep.findByMailAndPassword(usn, pass);
 	}
 
+	@Override
+	public MenadzerSistema findByMail(String mail) {
+		// TODO Auto-generated method stub
+		return menRep.findByMail(mail);
+	}
+
 }

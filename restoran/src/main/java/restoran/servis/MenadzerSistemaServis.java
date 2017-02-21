@@ -15,5 +15,7 @@ public interface MenadzerSistemaServis {
 	MenadzerSistema delete(Long id);
 
 	MenadzerSistema findByMailAndPassword(String usn, String pass);
+
+	MenadzerSistema findByMail(String mail);
 	
 }

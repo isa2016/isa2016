@@ -18,6 +18,12 @@ angular.module(
 				controller : 'loginRegistrationController'
 			})
 
+			.state('firstLogin', {
+				url : '/firstLogin',
+				templateUrl : 'loginRegistration/prviLogin.html',
+				controller : 'loginRegistrationController'
+			})
+			
 			.state('registration', {
 				url : '/registration',
 				templateUrl : 'loginRegistration/registration.html',
@@ -72,9 +78,9 @@ angular.module(
 				templateUrl : 'zaposleni/kuvar.html'
 			})
 
-			.state('logovan/konobar/pocetna', {
-				url : '/logovan/konobar/pocetna',
-				templateUrl : 'zaposleni/konobar.html'
+			.state('konobar.pocetna', {
+				url : '/pocetna',
+				templateUrl : 'gost/restorani.html'
 			})
 
 			.state('logovan/ponudjac/pocetna', {

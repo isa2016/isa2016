@@ -13,4 +13,6 @@ public interface MenadzerSistemaRep extends JpaRepository<MenadzerSistema, Long>
 	List<MenadzerSistema> findById(Long id);
 	
 	public MenadzerSistema findByMailAndPassword(String mail, String password);
+
+	MenadzerSistema findByMail(String mail);
 }

@@ -13,4 +13,6 @@ public interface SankerRep extends JpaRepository<Sanker, Long>{
 		List<Sanker> findById(Long id);
 		
 		public Sanker findByMailAndPassword(String mail, String password);
+
+		Sanker findByMail(String mail);
 }

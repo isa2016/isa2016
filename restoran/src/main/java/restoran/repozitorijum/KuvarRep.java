@@ -13,4 +13,6 @@ public interface KuvarRep extends JpaRepository<Kuvar, Long>{
 	List<Kuvar> findById(Long id);
 	
 	public Kuvar findByMailAndPassword(String mail, String password);
+
+	Kuvar findByMail(String mail);
 }

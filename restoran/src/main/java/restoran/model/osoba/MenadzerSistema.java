@@ -18,4 +18,12 @@ public class MenadzerSistema extends Korisnik{
 	@Column(name = "Menadzer_sistema_ID")
 	private Long id;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 }

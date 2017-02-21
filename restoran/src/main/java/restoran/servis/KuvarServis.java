@@ -14,4 +14,6 @@ public interface KuvarServis {
 	Kuvar delete(Long id);
 
 	Kuvar findByMailAndPassword(String usn, String pass);
+
+	Kuvar findByMail(String mail);
 }

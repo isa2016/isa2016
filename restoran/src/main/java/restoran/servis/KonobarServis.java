@@ -15,4 +15,6 @@ public interface KonobarServis {
 	Konobar delete(Long id);
 
 	Konobar findByMailAndPassword(String usn, String pass);
+
+	Konobar findByMail(String mail);
 }

@@ -73,6 +73,7 @@ public class MenadzerSistemaController {
 	@PostMapping(path = "/addMS")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void saveMS(@Valid @RequestBody MenadzerSistema ms) {	
+		ms.setRegistrovan("1");
 		mss.save(ms);
 	}
 	
@@ -80,6 +81,7 @@ public class MenadzerSistemaController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public void saveMR(@Valid @RequestBody MenadzerRestorana mr) {	
 		mr.setZaposlen(0);
+		mr.setRegistrovan("1");
 		mrs.save(mr);
 	}
 }

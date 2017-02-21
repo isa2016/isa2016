@@ -25,7 +25,7 @@ app.controller('loginRegistrationController', ['$scope','loginRegistrationServic
                     else if(response.data === "kuvar")
                     	$location.path('logovan/kuvar/pocetna');
                     else if(response.data === "konobar")
-                    	$location.path('logovan/konobar/pocetna');
+                    	$location.path('/konobar/pocetna');
                     else {
                     	firstLoginId = response.data;
                     	$location.path('firstLogin');
@@ -36,6 +36,18 @@ app.controller('loginRegistrationController', ['$scope','loginRegistrationServic
                 }
 			);
 		}
+		
+		$scope.firstLogin = function () {
+			if($("input[name='password']").val() != $("input[name='passwordRepeat']").val()){
+				alert("Password does not match the confirm password: ");
+				return;
+			}
+			loginRegistrationService.firstLogin(firstLoginId,$scope.korisnik).then(
+				function (response) {
+					$location.path('login');
+	            }
+            ); 	
+		};
 		
 		$scope.submitRegistration = function () {  
 			if($("#pass").val() != $("#passRepeat").val()){

@@ -8,6 +8,10 @@ services.service('loginRegistrationService', ['$http', function($http){
 		return $http.post("/loginController/logIn",korisnik);
 	}
 	
+	this.firstLogin = function(id,korisnik){
+		return $http.put("/loginController/prviLogin/"+id,korisnik);
+	}
+	
 	this.logOut = function(){
 		return $http.get("/loginController/logOut");
 	}

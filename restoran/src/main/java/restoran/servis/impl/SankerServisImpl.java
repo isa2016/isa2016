@@ -56,4 +56,10 @@ public class SankerServisImpl implements SankerServis{
 		return sankerRep.findByMailAndPassword(usn, pass);
 	}
 
+	@Override
+	public Sanker findByMail(String mail) {
+		// TODO Auto-generated method stub
+		return sankerRep.findByMail(mail);
+	}
+
 }

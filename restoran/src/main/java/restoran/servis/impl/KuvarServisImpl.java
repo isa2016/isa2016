@@ -56,4 +56,10 @@ public class KuvarServisImpl implements KuvarServis{
 		return kuvarRep.findByMailAndPassword(usn, pass);
 	}
 
+	@Override
+	public Kuvar findByMail(String mail) {
+		// TODO Auto-generated method stub
+		return kuvarRep.findByMail(mail);
+	}
+
 }

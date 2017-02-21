@@ -12,11 +12,11 @@ import restoran.servis.KonobarServis;
 
 @Service
 @Transactional
-public class KonobarServisImpl implements KonobarServis{
+public class KonobarServisImpl implements KonobarServis {
 
 	@Autowired
 	private KonobarRep konobarRep;
-	
+
 	@Override
 	public List<Konobar> findAll() {
 		// TODO Auto-generated method stub
@@ -54,6 +54,12 @@ public class KonobarServisImpl implements KonobarServis{
 	public Konobar findByMailAndPassword(String usn, String pass) {
 		// TODO Auto-generated method stub
 		return konobarRep.findByMailAndPassword(usn, pass);
+	}
+
+	@Override
+	public Konobar findByMail(String mail) {
+		// TODO Auto-generated method stub
+		return konobarRep.findByMail(mail);
 	}
 
 }

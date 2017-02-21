@@ -14,4 +14,6 @@ public interface SankerServis {
 	Sanker delete(Long id);
 
 	Sanker findByMailAndPassword(String usn, String pass);
+
+	Sanker findByMail(String mail);
 }
