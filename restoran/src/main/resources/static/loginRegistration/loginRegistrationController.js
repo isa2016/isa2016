@@ -24,9 +24,9 @@ app.controller('loginRegistrationController', [
 							else if (response.data === "ponudjac")
 								$location.path('logovan/ponudjac/pocetna');
 							else if (response.data === "sanker")
-								$location.path('logovan/sanker/pocetna');
+								$location.path('sanker/profil');
 							else if (response.data === "kuvar")
-								$location.path('logovan/kuvar/pocetna');
+								$location.path('kuvar/profil');
 							else if (response.data === "konobar")
 								$location.path('/konobar/profil');
 							else {

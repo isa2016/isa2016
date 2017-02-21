@@ -11,7 +11,6 @@ app.controller('konController', [
 				konService.getLoggedUser().then(
 						function(response) {
 							$scope.loggedUser = response.data;
-							findRest($scope.loggedUser);
 						})
 			}
 			
