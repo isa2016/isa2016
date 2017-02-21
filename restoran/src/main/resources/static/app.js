@@ -77,110 +77,110 @@ angular.module(
 
 					.state('konobar', {
 						url : '/konobar',
-						templateUrl : 'kon/navBar.html',
+						templateUrl : 'kon/navBarKonobar.html',
 						controller : 'konController'
 					})
 
 					.state('konobar.raspored', {
 						url : '/raspored',
-						templateUrl : 'kon/raspored.html',
+						templateUrl : 'kon/rasporedKonobar.html',
 						controller : 'konController'
 					})
 
 					.state('konobar.kalendar', {
 						url : '/kalendar',
-						templateUrl : 'kon/kalendar.html',
+						templateUrl : 'kon/kalendarKonobar.html',
 						controller : 'konController'
 					})
 
 					.state('konobar.porudzbine', {
 						url : '/porudzbine',
-						templateUrl : 'kon/porudzbine.html',
+						templateUrl : 'kon/porudzbineKonobar.html',
 						controller : 'konController'
 					})
 
 					.state('konobar.profil', {
 						url : '/profil',
-						templateUrl : 'kon/profil.html',
+						templateUrl : 'kon/profilKonobar.html',
 						controller : 'konController'
 					})
 
 					.state('konobar.izmena', {
 						url : '/izmena',
-						templateUrl : 'kon/izmena.html',
+						templateUrl : 'kon/izmenaKonobar.html',
 						controller : 'konController'
 					})
 
 					.state('kuvar', {
 						url : '/kuvar',
-						templateUrl : 'kuv/navBar.html',
-						controller : 'kuvarController'
+						templateUrl : 'kuv/navBarKuvar.html',
+						controller : 'kuvController'
 					})
 
 					.state('kuvar.raspored', {
 						url : '/raspored',
-						templateUrl : 'kuv/raspored.html',
-						controller : 'kuvarController'
+						templateUrl : 'kuv/rasporedKuvar.html',
+						controller : 'kuvController'
 					})
 
 					.state('kuvar.kalendar', {
 						url : '/kalendar',
-						templateUrl : 'kuv/kalendar.html',
-						controller : 'kuvarController'
+						templateUrl : 'kuv/kalendarKuvar.html',
+						controller : 'kuvController'
 					})
 
 					.state('kuvar.porudzbine', {
 						url : '/porudzbine',
-						templateUrl : 'kuv/porudzbine.html',
-						controller : 'kuvarController'
+						templateUrl : 'kuv/porudzbineKuvar.html',
+						controller : 'kuvController'
 					})
 
 					.state('kuvar.profil', {
 						url : '/profil',
-						templateUrl : 'kuv/profil.html',
-						controller : 'kuvarController'
+						templateUrl : 'kuv/profilKuvar.html',
+						controller : 'kuvController'
 					})
 
 					.state('kuvar.izmena', {
 						url : '/izmena',
-						templateUrl : 'kuv/izmena.html',
-						controller : 'kuvarController'
+						templateUrl : 'kuv/izmenaKuvar.html',
+						controller : 'kuvController'
 					})
 
 					.state('sanker', {
 						url : '/sanker',
-						templateUrl : 'sank/navBar.html',
-						controller : 'sankerController'
+						templateUrl : 'sank/navBarSanker.html',
+						controller : 'sankController'
 					})
 
 					.state('sanker.raspored', {
 						url : '/raspored',
-						templateUrl : 'sank/raspored.html',
-						controller : 'sankerController'
+						templateUrl : 'sank/rasporedSanker.html',
+						controller : 'sankController'
 					})
 
 					.state('sanker.kalendar', {
 						url : '/kalendar',
-						templateUrl : 'sank/kalendar.html',
-						controller : 'sankerController'
+						templateUrl : 'sank/kalendarSanker.html',
+						controller : 'sankController'
 					})
 
 					.state('sanker.porudzbine', {
 						url : '/porudzbine',
-						templateUrl : 'sank/porudzbine.html',
-						controller : 'sankerController'
+						templateUrl : 'sank/porudzbineSanker.html',
+						controller : 'sankController'
 					})
 
 					.state('sanker.profil', {
 						url : '/profil',
-						templateUrl : 'kon/profil.html',
-						controller : 'sankerController'
+						templateUrl : 'sank/profilSanker.html',
+						controller : 'sankController'
 					})
 
 					.state('sanker.izmena', {
 						url : '/izmena',
-						templateUrl : 'sank/izmena.html',
-						controller : 'sankerController'
+						templateUrl : 'sank/izmenaSanker.html',
+						controller : 'sankController'
 					})
 
 					
