@@ -8,6 +8,7 @@
 				<th>Date</th>
 				<th>Time</th>
 				<th>Duration</th>
+				<th>Detalis</th>
 		
             </tr>
 			<tr ng-repeat="rezervacija in rezervacije">
@@ -23,7 +24,12 @@
 				<td>
 					{{rezervacija.duration}}
 				</td>
+				<td>
+					<button ng-click="detaljiRez(rezervacija)">Details</button>
+				</td>
 			</tr>
 		</tbody>
     </table> 
+    
+    <div ui-view></div>
     </div>

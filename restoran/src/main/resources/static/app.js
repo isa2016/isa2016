@@ -52,14 +52,22 @@ angular.module(
 					})
 
 					.state('gost.prijatelji', {
-						url : '/gost/prijatelji',
+						url : '/prijatelji',
 						templateUrl : 'gost/prijatelji.html',
 						controller : 'guestController'
 					})
+					
+					
 
 					.state('gost.restorani', {
 						url : '/restorani',
 						templateUrl : 'gost/restorani.html',
+						controller : 'guestController'
+					})
+					
+					.state('gost.restorani.detalji', {
+						url : '/detalji',
+						templateUrl : 'gost/detalji.html',
 						controller : 'guestController'
 					})
 
@@ -72,6 +80,18 @@ angular.module(
 					.state('gost.rezervacije', {
 						url : '/rezervacije',
 						templateUrl : 'gost/rezervacije.html',
+						controller : 'guestController'
+					})
+					
+					.state('gost.rezervacije.detalji', {
+						url : '/detalji',
+						templateUrl : 'gost/detaljiRez.html',
+						controller : 'guestController'
+					})
+					
+					.state('gost.restorani.rezervisi2', {
+						url : '/rezervisi2',
+						templateUrl : 'gost/rezervisi2.html',
 						controller : 'guestController'
 					})
 

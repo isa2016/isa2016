@@ -3,10 +3,9 @@ package restoran.repozitorijum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import restoran.model.Rezervacija;
+import restoran.model.Porudzbina;
 
 @Repository
-public interface RezervacijaRep extends JpaRepository<Rezervacija, Long>{
-	
-	public Rezervacija findById(Long id);
+public interface PorudzbinaRep extends JpaRepository<Porudzbina, Long>{
+	public Porudzbina findById(Long id);
 }

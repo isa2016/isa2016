@@ -1,0 +1,35 @@
+<h3>Food</h3>
+	 	<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Order</th>
+				</tr>
+				<tr ng-repeat="jelo in resttt.jelovnik">
+					<td>{{jelo.naziv}}</td>
+					<td>{{jelo.cena}}</td>
+					<td>
+					<button ng-click="dodaj(jelo)">Order</button>
+				</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<br> <br> <br>
+	<h3>Drinks</h3>
+	<table class="table table-bordered tableBG" border="1">
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Order</th>
+			</tr>
+			<tr ng-repeat="pice in resttt.kartaPica | orderBy:'text'">
+				<td>{{pice.naziv}}</td>
+				<td>{{pice.cena}}</td>
+				<td>
+				<button ng-click="dodaj2(pice])">Order</button></td>
+			</tr>
+		</tbody>
+	</table>

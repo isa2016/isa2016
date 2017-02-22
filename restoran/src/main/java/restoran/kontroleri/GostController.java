@@ -20,10 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import restoran.model.Jelo;
+import restoran.model.Porudzbina;
 import restoran.model.Restoran;
 import restoran.model.Rezervacija;
 import restoran.model.osoba.Gost;
 import restoran.servis.GostServis;
+import restoran.servis.JeloServis;
+import restoran.servis.PorudzbinaServis;
 import restoran.servis.RestoranServis;
 import restoran.servis.RezervacijaServis;
 
@@ -34,15 +38,20 @@ public class GostController {
 	private final GostServis gostServis;
 	private final RestoranServis restoranServis;
 	private final RezervacijaServis rezervacijaServis;
-	
+	private final JeloServis jeloServis;
+	private final PorudzbinaServis porudzbinaServis;
+
 	private HttpSession httpSession;
 
 	@Autowired
-	public GostController(final HttpSession httpSession, final GostServis servis,final RestoranServis restoranServis,final RezervacijaServis rezervacijaServis) {
+	public GostController(final HttpSession httpSession, final JeloServis jeloServis, final GostServis servis,
+			final RestoranServis restoranServis,final PorudzbinaServis porudzbinaServis, final RezervacijaServis rezervacijaServis) {
 		this.gostServis = servis;
 		this.httpSession = httpSession;
 		this.restoranServis = restoranServis;
 		this.rezervacijaServis = rezervacijaServis;
+		this.jeloServis = jeloServis;
+		this.porudzbinaServis = porudzbinaServis;
 
 	}
 
@@ -66,41 +75,83 @@ public class GostController {
 	public void activateGuest(@PathVariable String reg) {
 		gostServis.aktiviraj(reg);
 	}
-	
+
 	@GetMapping("/restorani")
 	public ResponseEntity<List<Restoran>> findAllR() {
 		return new ResponseEntity<>(restoranServis.findAll(), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/rezervacije/{id}")
 	public ResponseEntity<List<Rezervacija>> findAllRez(@PathVariable Long id) {
-		
+
 		Gost gost = gostServis.findOne(id);
 		List<Rezervacija> sveRez = rezervacijaServis.findAll();
 		List<Rezervacija> gostoveRez = new ArrayList<Rezervacija>();
-		for(Rezervacija r : sveRez){
-			for(Gost g : r.getGosti()){
-				if(g.getId().equals(gost.getId())){
+		for (Rezervacija r : sveRez) {
+			for (Gost g : r.getGosti()) {
+				if (g.getId().equals(gost.getId())) {
 					gostoveRez.add(r);
 				}
 			}
 		}
 		return new ResponseEntity<>(gostoveRez, HttpStatus.OK);
 	}
-	
-	@PostMapping(path = "/rezervisi/{id}")
+
+	@PostMapping(path = "/rezervisi/{id}/{id2}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void save(@PathVariable Long id,@RequestBody Rezervacija rez) {
+	public void potvrdaRezervacije(@PathVariable Long id,@PathVariable Long id2, @RequestBody Rezervacija rez) {
 		Restoran rest = restoranServis.findOne(id);
+		Porudzbina p = porudzbinaServis.findOne(id2);
+		
 		rez.setRestaurant(rest);
+		rez.setPorudzbine(new ArrayList<Porudzbina>());
+		rez.getPorudzbine().add(p);
+		
+		//Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
+		//Gost gost = gostServis.findOne(gostID);
+		rez.getGosti().add(p.getGost());
+		
+		rezervacijaServis.save(rez);
+	}
+	
+	@PostMapping(path = "/rezervisiBez/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void potvrdaRezervacije2(@PathVariable Long id, @RequestBody Rezervacija rez) {
+		Restoran rest = restoranServis.findOne(id);
+		
+		rez.setRestaurant(rest);
+		rez.setPorudzbine(new ArrayList<Porudzbina>());
+		
+		Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
+		Gost gost = gostServis.findOne(gostID);
+		rez.getGosti().add(gost);
+		
+		rezervacijaServis.save(rez);
+	}
+	
+	@GetMapping("/porudzbineJelo/{id}/{id2}")
+	public ResponseEntity<Porudzbina> dodajJ(@PathVariable Long id,@PathVariable Long id2) {
+		Jelo j = jeloServis.findOne(id);
+		Porudzbina p = porudzbinaServis.findOne(id2);
+		p.getHrana().add(j);
+		porudzbinaServis.save(p);
+		
+		return new ResponseEntity<>(p, HttpStatus.OK);
+	}
+	
+	@GetMapping("/napraviPJ/{id}")
+	public ResponseEntity<Porudzbina> napraviPJ(@PathVariable Long id) {
+		Jelo j = jeloServis.findOne(id);
+		Porudzbina p = new Porudzbina();
 		
 		Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
 		Gost gost = gostServis.findOne(gostID);
 		
-		rez.getGosti().add(gost);
+		p.setGost(gost);
+		p.getHrana().add(j);
+		porudzbinaServis.save(p);
 		
-		rezervacijaServis.save(rez);
-		
+		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 
 }

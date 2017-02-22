@@ -14,7 +14,7 @@ public class Pice {
 	@Id
     @GeneratedValue
     @Column(name = "Pice_ID")
-    private int id;
+    private Long id;
 	    
 	@Column(name="naziv", nullable = false)
 	private String naziv;
@@ -59,6 +59,15 @@ public class Pice {
 	public void setOcena(Double ocena) {
 		this.ocena = ocena;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	
 	
 }

@@ -17,6 +17,9 @@ app.controller('guestController', [
 				guestService.getLoggedUser().then(function(response) {
 					$scope.loggedUser = response.data;
 				});
+				$scope.prikazi = "true";
+				$scope.prikazi2 = "false";
+				$scope.prikazi3 = "false";
 				sviRestorani();
 			}
 
@@ -31,17 +34,26 @@ app.controller('guestController', [
 			$scope.zaRezervaciju = function(restoran) {
 				guestService.find(restoran.id).then(function(response) {
 					$scope.resttt = response.data;
-					$location.path('/gost/restorani/rezervisi');
+					$scope.prikazi = "false";
+					$scope.prikazi2 = "true";
+					$scope.prikazi3 = "false";
+					// $location.path('/gost/restorani/rezervisi');
 				})
 
 			}
 
-			$scope.potvrdaRezervacije = function() {
-				guestService.potvrda($scope.rezervacija, $scope.resttt).then(
-						function(response) {
-							//sveRez();
-							$location.path('/gost/rezervacije');
-						});
+			$scope.detalji = function(restoran) {
+				guestService.find(restoran.id).then(function(response) {
+					$scope.resttt = response.data;
+					$location.path('/gost/restorani/detalji');
+				})
+			}
+			
+			$scope.detaljiRez = function(rez) {
+				guestService.findRez(rez.id).then(function(response) {
+					$scope.porr = response.data;
+					$location.path('/gost/rezervacije/detalji');
+				})
 			}
 
 			function sveRez() {
@@ -55,7 +67,41 @@ app.controller('guestController', [
 					$scope.rezervacije = response.data;
 				});
 			}
-			
+
+			$scope.potvrdaRezervacije = function() {
+				$scope.prikazi = "false";
+				$scope.prikazi2 = "false";
+				$scope.prikazi3 = "true";
+			}
+
+			$scope.dodajJelo = function(jelo) {
+				if ($scope.porudzbina !== undefined) {
+					guestService.dodajJelo(jelo, $scope.porudzbina).then(
+							function(response) {
+								$scope.porudzbina = response.data;
+							});
+				} else {
+					guestService.napraviP(jelo).then(function(response) {
+						$scope.porudzbina = response.data;
+					});
+				}
+
+			}
+
+			$scope.rezervisi = function(porudzbina) {
+				if (porudzbina !== undefined) {
+					guestService.potvrda(porudzbina, $scope.rezervacija,
+							$scope.resttt).then(
+									function(response) {
+										$location.path('/gost/rezervacije');
+									});
+				}else{
+					guestService.potvrda2($scope.rezervacija,
+							$scope.resttt).then(
+									function(response) {
+										$location.path('/gost/rezervacije');
+									});
+				}
+			}
 
 		} ]);
-

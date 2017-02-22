@@ -1,0 +1,29 @@
+
+<h3>Ordered food</h3>
+	 	<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+				</tr>
+				<tr ng-repeat="rez in porr.hrana">
+					<td>{{rez.naziv}}</td>
+					<td>{{rez.cena}}</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<br> <br> <br>
+	<h3>Ordered drinks</h3>
+	<table class="table table-bordered tableBG" border="1">
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<th>Price</th>
+			</tr>
+			<tr ng-repeat="pice in porr.pice | orderBy:'text'">
+				<td>{{pice.naziv}}</td>
+				<td>{{pice.cena}}</td>
+			</tr>
+		</tbody>
+	</table>

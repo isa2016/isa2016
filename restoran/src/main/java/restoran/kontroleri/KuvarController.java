@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import restoran.model.osoba.Konobar;
 import restoran.model.osoba.Kuvar;
-import restoran.servis.KonobarServis;
 import restoran.servis.KuvarServis;
 
 @RestController

@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import restoran.model.osoba.Gost;
@@ -43,6 +44,10 @@ public class Rezervacija {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "Rezervacije", joinColumns = @JoinColumn(name = "Rezervacija_ID"), inverseJoinColumns = @JoinColumn(name = "Gost_ID"))
 	private List<Gost> gosti;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "Rezervacija_porudzbina", joinColumns = @JoinColumn(name = "Rezervacija_ID"), inverseJoinColumns = @JoinColumn(name = "Porudzbina_ID"))
+	private List<Porudzbina> porudzbine;
 
 	public Long getId() {
 		return id;
@@ -103,6 +108,14 @@ public class Rezervacija {
 	public Rezervacija() {
 		super();
 		this.gosti = new ArrayList<Gost>();
+	}
+
+	public List<Porudzbina> getPorudzbine() {
+		return porudzbine;
+	}
+
+	public void setPorudzbine(List<Porudzbina> porudzbine) {
+		this.porudzbine = porudzbine;
 	}
 	
 	

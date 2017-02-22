@@ -29,8 +29,24 @@ services.service('guestService', ['$http', function($http){
 		return $http.get("/restoran/"+id)
 	}
 
-	this.potvrda = function(rezervacija,restoran){
-		return $http.post("/guest/rezervisi/"+restoran.id,rezervacija)
+	this.dodajJelo = function(jelo,por){
+		return $http.get("/guest/porudzbineJelo/"+jelo.id+"/"+por.id)
+	}
+	
+	this.findRez = function(id){
+		return $http.get("/rezervacija/"+id)
+	}
+	
+	this.napraviP = function(jelo){
+		return $http.get("/guest/napraviPJ/"+jelo.id)
+	}
+	
+	this.potvrda = function(por,rezervacija,rest){
+		return $http.post("/guest/rezervisi/"+rest.id+"/"+por.id,rezervacija)
+	}
+	
+	this.potvrda2 = function(rezervacija,rest){
+		return $http.post("/guest/rezervisiBez/"+rest.id,rezervacija)
 	}
 
 }]);
