@@ -111,7 +111,22 @@
 			<tr ng-repeat="hrana in porudzbina.hrana | orderBy:'text'">
 				<td>{{hrana.naziv}}</td>
 				<td>{{hrana.cena}}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+</div>
 
+<div style="position: absolute; top: 80px; left: 950px; width: 200px;">
+	<table class="table table-bordered tableBG" border="1">
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<th>Price</th>
+			</tr>
+			<tr ng-repeat="pice in porudzbina.pice | orderBy:'text'">
+				<td>{{pice.naziv}}</td>
+				<td>{{pice.cena}}</td>
 			</tr>
 		</tbody>
 	</table>

@@ -21,12 +21,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import restoran.model.Jelo;
+import restoran.model.Pice;
 import restoran.model.Porudzbina;
 import restoran.model.Restoran;
 import restoran.model.Rezervacija;
 import restoran.model.osoba.Gost;
 import restoran.servis.GostServis;
 import restoran.servis.JeloServis;
+import restoran.servis.PiceServis;
 import restoran.servis.PorudzbinaServis;
 import restoran.servis.RestoranServis;
 import restoran.servis.RezervacijaServis;
@@ -40,18 +42,20 @@ public class GostController {
 	private final RezervacijaServis rezervacijaServis;
 	private final JeloServis jeloServis;
 	private final PorudzbinaServis porudzbinaServis;
+	private final PiceServis piceServis;
 
 	private HttpSession httpSession;
 
 	@Autowired
 	public GostController(final HttpSession httpSession, final JeloServis jeloServis, final GostServis servis,
-			final RestoranServis restoranServis,final PorudzbinaServis porudzbinaServis, final RezervacijaServis rezervacijaServis) {
+			final RestoranServis restoranServis,final PiceServis piceServis,final PorudzbinaServis porudzbinaServis, final RezervacijaServis rezervacijaServis) {
 		this.gostServis = servis;
 		this.httpSession = httpSession;
 		this.restoranServis = restoranServis;
 		this.rezervacijaServis = rezervacijaServis;
 		this.jeloServis = jeloServis;
 		this.porudzbinaServis = porudzbinaServis;
+		this.piceServis = piceServis;
 
 	}
 
@@ -139,6 +143,16 @@ public class GostController {
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 	
+	@GetMapping("/porudzbinePice/{id}/{id2}")
+	public ResponseEntity<Porudzbina> dodajP(@PathVariable Long id,@PathVariable Long id2) {
+		Pice pice = piceServis.findOne(id);
+		Porudzbina p = porudzbinaServis.findOne(id2);
+		p.getPice().add(pice);
+		porudzbinaServis.save(p);
+		
+		return new ResponseEntity<>(p, HttpStatus.OK);
+	}
+	
 	@GetMapping("/napraviPJ/{id}")
 	public ResponseEntity<Porudzbina> napraviPJ(@PathVariable Long id) {
 		Jelo j = jeloServis.findOne(id);
@@ -149,6 +163,21 @@ public class GostController {
 		
 		p.setGost(gost);
 		p.getHrana().add(j);
+		porudzbinaServis.save(p);
+		
+		return new ResponseEntity<>(p, HttpStatus.OK);
+	}
+	
+	@GetMapping("/napraviPP/{id}")
+	public ResponseEntity<Porudzbina> napraviPP(@PathVariable Long id) {
+		Pice j = piceServis.findOne(id);
+		Porudzbina p = new Porudzbina();
+		
+		Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
+		Gost gost = gostServis.findOne(gostID);
+		
+		p.setGost(gost);
+		p.getPice().add(j);
 		porudzbinaServis.save(p);
 		
 		return new ResponseEntity<>(p, HttpStatus.OK);

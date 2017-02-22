@@ -87,6 +87,20 @@ app.controller('guestController', [
 				}
 
 			}
+			
+			$scope.dodajPice = function(pice) {
+				if ($scope.porudzbina !== undefined) {
+					guestService.dodajPice(pice, $scope.porudzbina).then(
+							function(response) {
+								$scope.porudzbina = response.data;
+							});
+				} else {
+					guestService.napraviP2(pice).then(function(response) {
+						$scope.porudzbina = response.data;
+					});
+				}
+
+			}
 
 			$scope.rezervisi = function(porudzbina) {
 				if (porudzbina !== undefined) {

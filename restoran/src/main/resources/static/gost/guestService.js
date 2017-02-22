@@ -33,12 +33,21 @@ services.service('guestService', ['$http', function($http){
 		return $http.get("/guest/porudzbineJelo/"+jelo.id+"/"+por.id)
 	}
 	
+	this.dodajPice = function(pice,por){
+		return $http.get("/guest/porudzbinePice/"+pice.id+"/"+por.id)
+	}
+	
+	
 	this.findRez = function(id){
 		return $http.get("/rezervacija/"+id)
 	}
 	
 	this.napraviP = function(jelo){
 		return $http.get("/guest/napraviPJ/"+jelo.id)
+	}
+	
+	this.napraviP2 = function(pice){
+		return $http.get("/guest/napraviPP/"+pice.id)
 	}
 	
 	this.potvrda = function(por,rezervacija,rest){
