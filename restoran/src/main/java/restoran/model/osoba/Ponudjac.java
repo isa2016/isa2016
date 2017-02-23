@@ -6,8 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.Data;
 import restoran.logovanje.Korisnik;
 
+@Data
 @Entity
 public class Ponudjac extends Korisnik{
 
@@ -16,4 +18,13 @@ public class Ponudjac extends Korisnik{
 	@Column
 	private Long id;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	
 }

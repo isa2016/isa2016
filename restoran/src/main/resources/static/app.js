@@ -7,7 +7,7 @@ angular.module(
 				'guest.controllers', 'menadzerSistema.services',
 				'menadzerSistema.controllers', 'menadzerRestorana.services',
 				'menadzerRestorana.controllers', 'kon.services',
-				'kon.controllers', 'sank.services', 'sank.controllers', 'kuv.services', 'kuv.controllers' ])
+				'kon.controllers', 'sank.services', 'sank.controllers', 'kuv.services', 'kuv.controllers','ponudjac.controllers','ponudjac.services' ])
 		.config(
 				function($stateProvider, $urlRouterProvider) {
 
@@ -238,7 +238,28 @@ angular.module(
 							}
 						}
 					})
-
+                    
+						.state('ponudjac', {
+						url : '/ponudjac',
+						templateUrl : 'ponudjac/ponudjac.html',
+						controller : 'ponudjacController'
+					})
+			
+					.state('ponudjac.profili', {
+						url : '/profili',
+						templateUrl : 'ponudjac/profilPonudjac.html',
+						controller : 'ponudjacController'
+					})
+			
+			
+					.state('ponudjac.izmene', {
+						url : '/izmene',
+						templateUrl : 'ponudjac/izmenaPonudjac.html',
+						controller : 'ponudjacController'
+					})
+					
+					
+					
 					.state('menadzerRestorana', {
 						url : '/menadzerRestorana',
 						templateUrl : 'menadzerRestorana/navBarMR.html',

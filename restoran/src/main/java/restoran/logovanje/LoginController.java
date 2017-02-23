@@ -24,12 +24,14 @@ import restoran.model.osoba.Konobar;
 import restoran.model.osoba.Kuvar;
 import restoran.model.osoba.MenadzerRestorana;
 import restoran.model.osoba.MenadzerSistema;
+import restoran.model.osoba.Ponudjac;
 import restoran.model.osoba.Sanker;
 import restoran.servis.GostServis;
 import restoran.servis.KonobarServis;
 import restoran.servis.KuvarServis;
 import restoran.servis.MenadzerRestoranaServis;
 import restoran.servis.MenadzerSistemaServis;
+import restoran.servis.PonudjacServis;
 import restoran.servis.SankerServis;
 
 @RestController
@@ -44,12 +46,13 @@ public class LoginController {
 	private KuvarServis kuvarServis;
 	private KonobarServis konobarServis;
 	private SankerServis sankerServis;
+	private PonudjacServis ponudjacServis;
 	private JavaMailSender javaMailSender;
 
 	@Autowired
 	public LoginController(final HttpSession httpSession, final MenadzerSistemaServis mss, final GostServis gostServis,
 			final KuvarServis kuvarServis, final KonobarServis konobarServis, final SankerServis sankerServis,
-			final MenadzerRestoranaServis mrs, final JavaMailSender javaMailSender) {
+			final MenadzerRestoranaServis mrs, final PonudjacServis ponudjacServis, final JavaMailSender javaMailSender) {
 		this.httpSession = httpSession;
 		this.gostServis = gostServis;
 		this.kuvarServis = kuvarServis;
@@ -58,6 +61,7 @@ public class LoginController {
 		this.javaMailSender = javaMailSender;
 		this.mrs = mrs;
 		this.mss = mss;
+		this.ponudjacServis = ponudjacServis;
 	}
 
 	@PostMapping(path = "/logIn")
@@ -65,6 +69,7 @@ public class LoginController {
 		Korisnik k = null;
 		String userType = "";
 		Long id = 0l;
+		System.out.println(userInput.getMail() + "AAAAAAAAAAAAAAAAAAAAAAA" + userInput.getPassword() + "BBBBBBBBBBBBBBBBBBBB");
 		if (gostServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword()) != null) {
 			k = gostServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword());
 			if (k.getRegistrovan().equals("1"))
@@ -94,6 +99,10 @@ public class LoginController {
 			k = mrs.findByMailAndPassword(userInput.getMail(), userInput.getPassword());
 			userType = "menadzerRestorana";
 			id = ((MenadzerRestorana) k).getId();
+		} else if (ponudjacServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword()) != null) {
+			k = ponudjacServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword());
+			userType = "ponudjac";
+			id = ((Ponudjac) k).getId();
 		}
 		if (k != null) {
 			httpSession.setAttribute("korisnik", k);
@@ -139,7 +148,13 @@ public class LoginController {
 			konobar.setRegistrovan("1");
 			konobar.setPassword(userInput.getPassword());
 			konobarServis.save(konobar);
-		}
+		} else  if (ponudjacServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword()) != null) {
+			Ponudjac ponudjac = ponudjacServis.findOne(id);
+			ponudjac.setId(id);
+			ponudjac.setRegistrovan("1");
+			ponudjac.setPassword(userInput.getPassword());
+			ponudjacServis.save(ponudjac);
+		} 
 	}
 
 	@GetMapping(path = "/logOut")
