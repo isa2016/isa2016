@@ -10,4 +10,8 @@ services.service('konService', ['$http', function($http){
 	this.updateKonobarProfile = function(konobar) {
 		return $http.put("/konobar/" + konobar.id, konobar);
 	}
+	
+	this.porudzbineZaRest = function(){
+		return $http.get("/konobar/porudzbine");
+	}
 }]);

@@ -14,6 +14,12 @@ app.controller('konController', [
 						})
 			}
 			
+			$scope.porudzbineZaRest = function() {
+				konService.porudzbineZaRest().then(function(response) {
+					$scope.porudzbine = response.data;
+				});
+			}
+			
 			$scope.update = function() {
 				konService.updateKonobarProfile($scope.loggedUser).then(
 						function(response) {

@@ -1,6 +1,0 @@
-INDEX VERSION 1.3+C:\Users\Stefan\Desktop\ISAP\isa2016\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3617438646.index
-3117562170.index
-56691661.index
-980130747.index
-2512680010.index

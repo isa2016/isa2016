@@ -10,6 +10,6 @@ public interface PorudzbinaServis {
 	Porudzbina findOne(Long id);
 
 	Porudzbina save(Porudzbina g);
-
+	
 	Porudzbina delete(Long id);
 }
