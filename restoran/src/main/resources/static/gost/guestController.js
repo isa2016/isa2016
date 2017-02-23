@@ -12,6 +12,7 @@ app.controller('guestController', [
 					$scope.restorani = response.data;
 				});
 			}
+			
 
 			$scope.getLoggedUser = function() {
 				guestService.getLoggedUser().then(function(response) {
