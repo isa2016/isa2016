@@ -43,6 +43,7 @@ public class MenadzerSistemaController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public void save(@PathVariable Long id,@Valid @RequestBody Restoran rest) {
 		MenadzerRestorana mr = mrs.findOne(id);
+		mr.setRestoranId(rest.getId());
 		mr.setZaposlen(1);
 		rest.getMenadzeriRestorana().add(mr);
 		rs.save(rest);

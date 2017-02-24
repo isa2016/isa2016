@@ -56,17 +56,8 @@ public class KonobarController {
 	
 	@GetMapping("/porudzbine")
 	public ResponseEntity<List<Porudzbina>> findAllPorudzbine() {
-		Long id = ((Konobar) session.getAttribute("korisnik")).getId();
-		List<Restoran> l = rs.findAll();
-		Restoran rest = new Restoran();
-		for (int i = 0; i < l.size(); i++) {
-			Restoran r = l.get(i);
-			for (int j = 0; j < r.getKuvari().size(); j++) {
-				if (id.equals(r.getKuvari().get(j).getId())) {
-					rest = r;
-				}
-			}
-		}
+		Konobar k = ((Konobar) session.getAttribute("korisnik"));
+		Restoran rest = rs.findOne(k.getRestoranId());
 		List<Porudzbina> porudzbine = new ArrayList<Porudzbina>();
 		List<Rezervacija> rezervacije = rezS.findAll();
 		for (int i = 0; i < rezervacije.size(); i++)

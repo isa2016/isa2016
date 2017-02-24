@@ -22,7 +22,6 @@ public class Sanker extends Korisnik {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Sanker_ID")
 	private Long id;
-	
 
 	@Enumerated(EnumType.STRING)
 	@NotNull
@@ -36,6 +35,16 @@ public class Sanker extends Korisnik {
 
 	public Long getId() {
 		return id;
+	}
+
+	private Long restoranId;
+
+	public Long getRestoranId() {
+		return restoranId;
+	}
+
+	public void setRestoranId(Long restoranId) {
+		this.restoranId = restoranId;
 	}
 
 	public void setId(Long id) {
@@ -58,6 +67,4 @@ public class Sanker extends Korisnik {
 		this.velicinaObuce = velicinaObuce;
 	}
 
-
-	
 }

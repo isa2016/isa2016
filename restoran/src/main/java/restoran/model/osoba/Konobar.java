@@ -35,7 +35,16 @@ public class Konobar extends Korisnik{
 	@Column
 	private Obuca velicinaObuce;
 
+	private Long restoranId;
 	
+	public Long getRestoranId() {
+		return restoranId;
+	}
+
+	public void setRestoranId(Long restoranId) {
+		this.restoranId = restoranId;
+	}
+
 	public Long getId() {
 		return id;
 	}

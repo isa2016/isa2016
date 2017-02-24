@@ -11,15 +11,25 @@ import restoran.logovanje.Korisnik;
 
 @Data
 @Entity
-public class MenadzerRestorana extends Korisnik{
+public class MenadzerRestorana extends Korisnik {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Menadzer_restorana_ID")
 	private Long id;
-	
+
 	@Column
 	private int zaposlen;
+
+	private Long restoranId;
+
+	public Long getRestoranId() {
+		return restoranId;
+	}
+
+	public void setRestoranId(Long restoranId) {
+		this.restoranId = restoranId;
+	}
 
 	public Long getId() {
 		return id;
@@ -41,8 +51,5 @@ public class MenadzerRestorana extends Korisnik{
 		super();
 		this.zaposlen = 0;
 	}
-	
-	
-	
-	
+
 }

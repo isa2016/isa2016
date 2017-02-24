@@ -16,13 +16,12 @@ import restoran.logovanje.Korisnik;
 
 @Data
 @Entity
-public class Kuvar extends Korisnik{
+public class Kuvar extends Korisnik {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Kuvar_ID")
 	private Long id;
-
 
 	@Enumerated(EnumType.STRING)
 	@NotNull
@@ -34,7 +33,16 @@ public class Kuvar extends Korisnik{
 	@Column
 	private Obuca velicinaObuce;
 
-	
+	private Long restoranId;
+
+	public Long getRestoranId() {
+		return restoranId;
+	}
+
+	public void setRestoranId(Long restoranId) {
+		this.restoranId = restoranId;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -57,6 +65,6 @@ public class Kuvar extends Korisnik{
 
 	public void setVelicinaObuce(Obuca velicinaObuce) {
 		this.velicinaObuce = velicinaObuce;
-	}	
-	
+	}
+
 }

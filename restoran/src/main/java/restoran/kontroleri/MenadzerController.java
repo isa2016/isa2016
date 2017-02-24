@@ -63,6 +63,8 @@ public class MenadzerController {
 		return null;
 	}
 
+	//JE L' SE OVDE DODAJE KONOBAR ILI RESTORAN?
+	
 	@PostMapping(path = "/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void dodajKonobara(@Valid @RequestBody Kuvar cook, Long id) {
@@ -95,6 +97,7 @@ public class MenadzerController {
 	public void dodajKuvara(@PathVariable Long id,@Valid @RequestBody Kuvar kuvar) {
 		Restoran restaurant = restoranServis.findOne(id);
 		kuvar.setRegistrovan("0");
+		kuvar.setRestoranId(id);
 		restaurant.getKuvari().add(kuvar);
 		restoranServis.save(restaurant);
 	}
@@ -104,6 +107,7 @@ public class MenadzerController {
 	public void dodajKonobara(@PathVariable Long id,@Valid @RequestBody Konobar konobar) {
 		Restoran restaurant = restoranServis.findOne(id);
 		konobar.setRegistrovan("0");
+		konobar.setRestoranId(id);
 		restaurant.getKonobari().add(konobar);
 		restoranServis.save(restaurant);
 	}
@@ -113,6 +117,7 @@ public class MenadzerController {
 	public void dodajSankera(@PathVariable Long id,@Valid @RequestBody Sanker sanker) {
 		Restoran restaurant = restoranServis.findOne(id);
 		sanker.setRegistrovan("0");
+		sanker.setRestoranId(id);
 		restaurant.getSankeri().add(sanker);
 		restoranServis.save(restaurant);
 	}

@@ -28,4 +28,10 @@ app.controller('konController', [
 						});
 			}
 
+			$scope.naruci = function() {
+				konService.naruci().then(function(response) {
+					$scope.porudzbine = response.data;
+				});
+			}
+			
 		} ]);
