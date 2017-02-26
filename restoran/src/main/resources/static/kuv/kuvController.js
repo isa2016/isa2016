@@ -10,6 +10,7 @@ app.controller('kuvController', [
 			$scope.getLoggedUser = function() {
 				kuvService.getLoggedUser().then(function(response) {
 					$scope.loggedUser = response.data;
+					findAll();
 				})
 			}
 
@@ -21,12 +22,32 @@ app.controller('kuvController', [
 						});
 			}
 
-			$scope.porudzbineZaKuvara = function() {
+			function findAll() {
 				kuvService.porudzbineZaKuvara().then(
 						function(response) {
 							$scope.porudzbine = response.data;
 						});
+			
+				kuvService.porudzbinePriprema().then(
+						function(response) {
+							$scope.porudzbinePriprema = response.data;
+						});
 			}
 			
+			$scope.prihvati = function(porudzbina) {
+				kuvService.prihvati(porudzbina).then(function(response) {
+					findAll();
+					$location.path('/kuvar/porudzbine');
+					
+				});
+			}
+			
+			$scope.zavrsi = function(porudzbina) {
+				kuvService.zavrsi(porudzbina).then(function(response) {
+					findAll();
+					$location.path('/kuvar/porudzbine');
+					
+				});
+			}
 			
 		} ]);

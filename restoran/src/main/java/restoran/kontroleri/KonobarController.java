@@ -86,6 +86,20 @@ public class KonobarController {
 		return new ResponseEntity<>(porudzbine, HttpStatus.OK);
 	}
 
+	@GetMapping("/porudzbineGotove")
+	public ResponseEntity<List<Porudzbina>> findFinishedPorudzbine() {
+		Konobar k = ((Konobar) session.getAttribute("korisnik"));
+		List<Porudzbina> porudzbine = new ArrayList<Porudzbina>();
+		for (int i = 0; i < ps.findAll().size(); i++) {
+			Porudzbina por = ps.findAll().get(i);
+			if (por.getRestoranId().equals(k.getRestoranId()) && (por.getHranaStatus().equals(HranaStatus.FINISHED)
+					&& por.getPiceStatus().equals(PiceStatus.FINISHED))) {
+				porudzbine.add(por);
+			}
+		}
+		return new ResponseEntity<>(porudzbine, HttpStatus.OK);
+	}
+
 	@PostMapping(path = "unesi/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void unesiPorudzbinu(@PathVariable Long id) {

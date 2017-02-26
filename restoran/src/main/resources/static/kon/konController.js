@@ -21,6 +21,10 @@ app.controller('konController', [
 				konService.porudzbineNaCekanju().then(function(response) {
 					$scope.porudzbineCekanje = response.data;
 				});
+				konService.porudzbineGotove().then(function(response) {
+					$scope.porudzbineGotove = response.data;
+				});
+				$scope.stanje = "Hrana na cekanju"
 			}
 
 			$scope.unesi = function(porudzbina) {

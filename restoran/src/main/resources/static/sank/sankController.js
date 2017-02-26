@@ -11,6 +11,7 @@ app.controller('sankController', [
 				sankService.getLoggedUser().then(
 						function(response) {
 							$scope.loggedUser = response.data;
+							porudzbineZaSankera();
 						})
 			}
 			
@@ -22,11 +23,18 @@ app.controller('sankController', [
 						});
 			}
 			
-			$scope.porudzbineZaSankera = function() {
+			function porudzbineZaSankera(){
 				sankService.porudzbineZaSankera().then(
 						function(response) {
 							$scope.porudzbine = response.data;
 						});
 			}
 
+			$scope.zavrsi = function(porudzbina) {
+				sankService.zavrsi(porudzbina).then(function(response) {
+					porudzbineZaSankera();
+					$location.path('/sanker/porudzbine');
+				});
+			}
+			
 		} ]);

@@ -14,4 +14,9 @@ services.service('sankService', ['$http', function($http){
 	this.porudzbineZaSankera = function() {
 		return $http.get("/sanker/porudzbine");
 	}
+	
+	this.zavrsi = function(porudzbina){
+		return $http.post("/sanker/zavrsi/" + porudzbina.id);
+	}
+	
 }]);

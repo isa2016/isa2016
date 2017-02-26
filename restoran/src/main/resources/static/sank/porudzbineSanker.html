@@ -1,5 +1,5 @@
 <h1>Orders</h1>
-<div ng-init="porudzbineZaSankera()">
+<div>
 	<table class="table table-bordered tableBG" border="1">
 		<tbody>
 			<tr ng-repeat="porudzbina in porudzbine">
@@ -7,7 +7,7 @@
 				<td><div ng-repeat="h in porudzbina.pice">
 						{{h.naziv}}<br></br>
 					</div></td>
-				<td><a ng-click="unesi()" class="btn btn-small btn-default"></span>Send</a>
+				<td><a ng-click="zavrsi(porudzbina)" class="btn btn-small btn-default"></span>Finish</a>
 				</td>
 			</tr>
 		</tbody>

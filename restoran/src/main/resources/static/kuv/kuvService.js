@@ -14,4 +14,15 @@ services.service('kuvService', ['$http', function($http){
 	this.porudzbineZaKuvara = function() {
 		return $http.get("/kuvar/porudzbine");
 	}
+	this.porudzbinePriprema = function() {
+		return $http.get("/kuvar/porudzbinePriprema");
+	}
+	
+	this.prihvati = function(porudzbina){
+		return $http.post("/kuvar/prihvati/" + porudzbina.id);
+	}
+	
+	this.zavrsi = function(porudzbina){
+		return $http.post("/kuvar/zavrsi/" + porudzbina.id);
+	}
 }]);

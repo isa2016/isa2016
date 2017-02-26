@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import restoran.enumeracije.HranaStatus;
+import restoran.enumeracije.PiceStatus;
 import restoran.model.Porudzbina;
 import restoran.model.osoba.Kuvar;
 import restoran.servis.KuvarServis;
@@ -32,35 +34,66 @@ public class KuvarController {
 	private HttpSession session;
 	private PorudzbinaServis ps;
 	private RestoranServis rs;
-	
+
 	@Autowired
-	public KuvarController(final RestoranServis rs, final PorudzbinaServis ps, final KuvarServis ks, HttpSession session){
+	public KuvarController(final RestoranServis rs, final PorudzbinaServis ps, final KuvarServis ks,
+			HttpSession session) {
 		this.ks = ks;
 		this.rs = rs;
 		this.ps = ps;
 		this.session = session;
 	}
-	
+
 	@PutMapping(path = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Kuvar update(@PathVariable Long id, @RequestBody Kuvar k) {
-		Optional.ofNullable(ks.findOne(id))
-				.orElseThrow(() -> new ResourceNotFoundException("Resource Not Found!"));
+		Optional.ofNullable(ks.findOne(id)).orElseThrow(() -> new ResourceNotFoundException("Resource Not Found!"));
 		k.setId(id);
 		session.setAttribute("korisnik", k);
 		return ks.save(k);
 	}
-	
+
 	@GetMapping("/porudzbine")
 	public ResponseEntity<List<Porudzbina>> findAllPorudzbine() {
 		Kuvar k = ((Kuvar) session.getAttribute("korisnik"));
 		List<Porudzbina> porudzbine = new ArrayList<Porudzbina>();
-		for(int i=0; i<ps.findAll().size();i++){
+		for (int i = 0; i < ps.findAll().size(); i++) {
 			Porudzbina por = ps.findAll().get(i);
-			if(por.getRestoranId().equals(k.getRestoranId()) && por.getHranaStatus().equals(HranaStatus.ONHOLD)){
+			if (por.getRestoranId().equals(k.getRestoranId()) && por.getHranaStatus().equals(HranaStatus.ONHOLD)) {
 				porudzbine.add(por);
 			}
 		}
 		return new ResponseEntity<>(porudzbine, HttpStatus.OK);
+	}
+
+	@GetMapping("/porudzbinePriprema")
+	public ResponseEntity<List<Porudzbina>> findAllPorudzbinePriprema() {
+		Kuvar k = ((Kuvar) session.getAttribute("korisnik"));
+		List<Porudzbina> porudzbine = new ArrayList<Porudzbina>();
+		for (int i = 0; i < ps.findAll().size(); i++) {
+			Porudzbina por = ps.findAll().get(i);
+			if (por.getRestoranId().equals(k.getRestoranId()) && por.getHranaStatus().equals(HranaStatus.PREPARATION)) {
+				porudzbine.add(por);
+			}
+		}
+		return new ResponseEntity<>(porudzbine, HttpStatus.OK);
+	}
+
+	@PostMapping(path = "prihvati/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void prihvatiPorudzbinu(@PathVariable Long id) {
+
+		Porudzbina p = ps.findOne(id);
+		p.setHranaStatus(HranaStatus.PREPARATION);
+		ps.save(p);
+	}
+
+	@PostMapping(path = "zavrsi/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void zavrsiPorudzbinu(@PathVariable Long id) {
+
+		Porudzbina p = ps.findOne(id);
+		p.setHranaStatus(HranaStatus.FINISHED);
+		ps.save(p);
 	}
 }

@@ -24,7 +24,7 @@
 		</tr>
 	</tbody>
 </table>
-<h1>Orders</h1>
+<h1>Orders On Hold</h1>
 <table class="table table-bordered tableBG" border="1">
 	<tbody>
 		<tr ng-repeat = "por in porudzbineCekanje">
@@ -34,17 +34,44 @@
 			<td>
 				{{por.gost.ime}}
 			</td>
-			<td><div ng-repeat = "hr in porudzbineCekanje.hrana">
+			<td><div ng-repeat = "hr in por.hrana">
 				{{hr.naziv}}<br></br>
 				</div>
 			</td>
 			<td>
-				<div ng-repeat = "pi in porudzbineCekanje.pice">
+				<div ng-repeat = "pi in por.pice">
 				{{pi.naziv}}<br></br>
 				</div>
 			</td>
+			<div>
 			<td>
-				<a ng-click = "unesi(porudzbina)" class = "btn btn-small btn-default"></span>Send</a>
+				Food Status: {{por.hranaStatus}}
+			</td>
+			</div>
+		</tr>
+	</tbody>
+</table>
+<h1>Orders Finished</h1>
+<table class="table table-bordered tableBG" border="1">
+	<tbody>
+		<tr ng-repeat = "porG in porudzbineGotove">
+			<td>
+				{{porG.gost.mail}}
+			</td>
+			<td>
+				{{porG.gost.ime}}
+			</td>
+			<td><div ng-repeat = "hra in porG.hrana">
+				{{hra.naziv}}<br></br>
+				</div>
+			</td>
+			<td>
+				<div ng-repeat = "pic in porudzbineGotove.pice">
+				{{pic.naziv}}<br></br>
+				</div>
+			</td>
+			<td>
+				<a ng-click = "zavrsiRacun(porudzbina)" class = "btn btn-small btn-default"></span>Send</a>
 			</td>
 		</tr>
 	</tbody>

@@ -17,6 +17,9 @@ services.service('konService', ['$http', function($http){
 	this.porudzbineNaCekanju = function(){
 		return $http.get("/konobar/porudzbineNaCekanju");
 	}
+	this.porudzbineGotove = function(){
+		return $http.get("/konobar/porudzbineGotove");
+	}
 	
 	this.unesi = function(porudzbina){
 		return $http.post("/konobar/unesi/" + porudzbina.id);
