@@ -161,6 +161,25 @@ public class GostController {
 
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
+	
+
+	@GetMapping("/izbrisiJelo/{id}/{id2}")
+	public ResponseEntity<Porudzbina> izbrisiJelo(@PathVariable Long id, @PathVariable Long id2) {
+		Jelo jelo = jeloServis.findOne(id);
+		Porudzbina p = porudzbinaServis.findOne(id2);
+		p.getHrana().remove(jelo);
+		porudzbinaServis.save(p);
+		return new ResponseEntity<>(p, HttpStatus.OK);
+	}
+	
+	@GetMapping("/izbrisiPice/{id}/{id2}")
+	public ResponseEntity<Porudzbina> izbrisiPice(@PathVariable Long id, @PathVariable Long id2) {
+		Pice pice = piceServis.findOne(id);
+		Porudzbina p = porudzbinaServis.findOne(id2);
+		p.getPice().remove(pice);
+		porudzbinaServis.save(p);
+		return new ResponseEntity<>(p, HttpStatus.OK);
+	}
 
 	@GetMapping("/napraviPJ/{id}")
 	public ResponseEntity<Porudzbina> napraviPJ(@PathVariable Long id) {

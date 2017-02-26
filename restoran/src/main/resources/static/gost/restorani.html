@@ -107,10 +107,12 @@
 			<tr>
 				<th>Name</th>
 				<th>Price</th>
+				<th></th>
 			</tr>
 			<tr ng-repeat="hrana in porudzbina.hrana | orderBy:'text'">
 				<td>{{hrana.naziv}}</td>
 				<td>{{hrana.cena}}</td>
+				<td><button ng-click="izbrisi(hrana, porudzbina)">X</button></td>
 			</tr>
 		</tbody>
 	</table>
@@ -123,10 +125,12 @@
 			<tr>
 				<th>Name</th>
 				<th>Price</th>
+				<th></th>
 			</tr>
 			<tr ng-repeat="pice in porudzbina.pice | orderBy:'text'">
 				<td>{{pice.naziv}}</td>
 				<td>{{pice.cena}}</td>
+				<td><button ng-click="izbrisiPice(pice, porudzbina)">X</button></td>
 			</tr>
 		</tbody>
 	</table>
