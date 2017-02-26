@@ -21,5 +21,12 @@ app.controller('sankController', [
 							$location.path('/sanker/profil');
 						});
 			}
+			
+			$scope.porudzbineZaSankera = function() {
+				sankService.porudzbineZaSankera().then(
+						function(response) {
+							$scope.porudzbine = response.data;
+						});
+			}
 
 		} ]);

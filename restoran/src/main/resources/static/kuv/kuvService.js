@@ -10,4 +10,8 @@ services.service('kuvService', ['$http', function($http){
 	this.updateKuvarProfile = function(konobar) {
 		return $http.put("/kuvar/" + konobar.id, konobar);
 	}
+	
+	this.porudzbineZaKuvara = function() {
+		return $http.get("/kuvar/porudzbine");
+	}
 }]);

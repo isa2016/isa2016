@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import restoran.enumeracije.HranaStatus;
+import restoran.enumeracije.PiceStatus;
 import restoran.model.Jelo;
 import restoran.model.Pice;
 import restoran.model.Porudzbina;
@@ -48,7 +50,8 @@ public class GostController {
 
 	@Autowired
 	public GostController(final HttpSession httpSession, final JeloServis jeloServis, final GostServis servis,
-			final RestoranServis restoranServis,final PiceServis piceServis,final PorudzbinaServis porudzbinaServis, final RezervacijaServis rezervacijaServis) {
+			final RestoranServis restoranServis, final PiceServis piceServis, final PorudzbinaServis porudzbinaServis,
+			final RezervacijaServis rezervacijaServis) {
 		this.gostServis = servis;
 		this.httpSession = httpSession;
 		this.restoranServis = restoranServis;
@@ -103,83 +106,89 @@ public class GostController {
 
 	@PostMapping(path = "/rezervisi/{id}/{id2}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void potvrdaRezervacije(@PathVariable Long id,@PathVariable Long id2, @RequestBody Rezervacija rez) {
+	public void potvrdaRezervacije(@PathVariable Long id, @PathVariable Long id2, @RequestBody Rezervacija rez) {
 		Restoran rest = restoranServis.findOne(id);
 		Porudzbina p = porudzbinaServis.findOne(id2);
-		
+		p.setRestoranId(id);
+		if (p.getHrana().size() == 0)
+			p.setHranaStatus(HranaStatus.FINISHED);
+		else
+			p.setHranaStatus(HranaStatus.ORDERED);
+		if (p.getPice().size() == 0)
+			p.setPiceStatus(PiceStatus.FINISHED);
+		else
+			p.setPiceStatus(PiceStatus.ORDERED);
 		rez.setRestaurant(rest);
 		rez.setPorudzbine(new ArrayList<Porudzbina>());
 		rez.getPorudzbine().add(p);
-		
-		//Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
-		//Gost gost = gostServis.findOne(gostID);
+
 		rez.getGosti().add(p.getGost());
-		
+
 		rezervacijaServis.save(rez);
 	}
-	
+
 	@PostMapping(path = "/rezervisiBez/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void potvrdaRezervacije2(@PathVariable Long id, @RequestBody Rezervacija rez) {
 		Restoran rest = restoranServis.findOne(id);
-		
+
 		rez.setRestaurant(rest);
 		rez.setPorudzbine(new ArrayList<Porudzbina>());
-		
+
 		Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
 		Gost gost = gostServis.findOne(gostID);
 		rez.getGosti().add(gost);
-		
+
 		rezervacijaServis.save(rez);
 	}
-	
+
 	@GetMapping("/porudzbineJelo/{id}/{id2}")
-	public ResponseEntity<Porudzbina> dodajJ(@PathVariable Long id,@PathVariable Long id2) {
+	public ResponseEntity<Porudzbina> dodajJ(@PathVariable Long id, @PathVariable Long id2) {
 		Jelo j = jeloServis.findOne(id);
 		Porudzbina p = porudzbinaServis.findOne(id2);
 		p.getHrana().add(j);
 		porudzbinaServis.save(p);
-		
+
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/porudzbinePice/{id}/{id2}")
-	public ResponseEntity<Porudzbina> dodajP(@PathVariable Long id,@PathVariable Long id2) {
+	public ResponseEntity<Porudzbina> dodajP(@PathVariable Long id, @PathVariable Long id2) {
 		Pice pice = piceServis.findOne(id);
 		Porudzbina p = porudzbinaServis.findOne(id2);
 		p.getPice().add(pice);
 		porudzbinaServis.save(p);
-		
+
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/napraviPJ/{id}")
 	public ResponseEntity<Porudzbina> napraviPJ(@PathVariable Long id) {
 		Jelo j = jeloServis.findOne(id);
 		Porudzbina p = new Porudzbina();
-		
+
 		Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
 		Gost gost = gostServis.findOne(gostID);
-		
+
 		p.setGost(gost);
 		p.getHrana().add(j);
 		porudzbinaServis.save(p);
-		
+
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/napraviPP/{id}")
 	public ResponseEntity<Porudzbina> napraviPP(@PathVariable Long id) {
 		Pice j = piceServis.findOne(id);
 		Porudzbina p = new Porudzbina();
-		
+
 		Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
 		Gost gost = gostServis.findOne(gostID);
-		
+
 		p.setGost(gost);
 		p.getPice().add(j);
 		porudzbinaServis.save(p);
-		
+
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 

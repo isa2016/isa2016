@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,16 +14,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import restoran.enumeracije.HranaStatus;
+import restoran.enumeracije.PiceStatus;
 import restoran.model.osoba.Gost;
 
 @Data
 @Entity
 public class Porudzbina {
-	
-	
-	public Porudzbina(){
+
+	public Porudzbina() {
 		this.pice = new ArrayList<Pice>();
 		this.hrana = new ArrayList<Jelo>();
 	}
@@ -30,11 +34,11 @@ public class Porudzbina {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Porudzbina_ID")
 	private Long id;
-	
+
 	@ManyToOne
 	@JoinTable(name = "Porudzbina_i_gost", joinColumns = @JoinColumn(name = "Porudzbina_ID"), inverseJoinColumns = @JoinColumn(name = "Gost_ID"))
 	private Gost gost;
-	
+
 	@ManyToMany
 	@JoinTable(name = "Porudzbina_pica", joinColumns = @JoinColumn(name = "Porudzbina_ID"), inverseJoinColumns = @JoinColumn(name = "Pice_ID"))
 	private List<Pice> pice;
@@ -42,6 +46,41 @@ public class Porudzbina {
 	@ManyToMany
 	@JoinTable(name = "Porudzbina_hrana", joinColumns = @JoinColumn(name = "Porudzbina_ID"), inverseJoinColumns = @JoinColumn(name = "Jelo_ID"))
 	private List<Jelo> hrana;
+
+	@Enumerated(EnumType.STRING)
+	@Column
+	private HranaStatus hranaStatus;
+
+	@Enumerated(EnumType.STRING)
+	@Column
+	private PiceStatus piceStatus;
+
+	private Long restoranId;
+
+	public Long getRestoranId() {
+		return restoranId;
+	}
+
+	public void setRestoranId(Long restoranId) {
+		this.restoranId = restoranId;
+	}
+	
+	public HranaStatus getHranaStatus() {
+		return hranaStatus;
+	}
+
+	public void setHranaStatus(HranaStatus hranaStatus) {
+		this.hranaStatus = hranaStatus;
+	}
+
+	public PiceStatus getPiceStatus() {
+		return piceStatus;
+	}
+
+	public void setPiceStatus(PiceStatus piceStatus) {
+		this.piceStatus = piceStatus;
+	}
+
 
 	public Long getId() {
 		return id;
@@ -74,7 +113,5 @@ public class Porudzbina {
 	public void setHrana(List<Jelo> hrana) {
 		this.hrana = hrana;
 	}
-	
-	
 
 }

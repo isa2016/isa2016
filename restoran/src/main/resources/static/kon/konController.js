@@ -8,18 +8,28 @@ app.controller('konController', [
 		function($scope, $window, konService, $location) {
 
 			$scope.getLoggedUser = function() {
-				konService.getLoggedUser().then(
-						function(response) {
-							$scope.loggedUser = response.data;
-						})
+				konService.getLoggedUser().then(function(response) {
+					$scope.loggedUser = response.data;
+					findAll();
+				})
 			}
-			
-			$scope.porudzbineZaRest = function() {
+
+			function findAll() {
 				konService.porudzbineZaRest().then(function(response) {
 					$scope.porudzbine = response.data;
 				});
+				konService.porudzbineNaCekanju().then(function(response) {
+					$scope.porudzbineCekanje = response.data;
+				});
 			}
-			
+
+			$scope.unesi = function(porudzbina) {
+				konService.unesi(porudzbina).then(function(response) {
+					findAll();
+					$location.path('/konobar/porudzbine');
+				});
+			}
+
 			$scope.update = function() {
 				konService.updateKonobarProfile($scope.loggedUser).then(
 						function(response) {
@@ -28,10 +38,4 @@ app.controller('konController', [
 						});
 			}
 
-			$scope.naruci = function() {
-				konService.naruci().then(function(response) {
-					$scope.porudzbine = response.data;
-				});
-			}
-			
 		} ]);

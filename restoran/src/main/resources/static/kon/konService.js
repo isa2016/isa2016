@@ -14,4 +14,11 @@ services.service('konService', ['$http', function($http){
 	this.porudzbineZaRest = function(){
 		return $http.get("/konobar/porudzbine");
 	}
+	this.porudzbineNaCekanju = function(){
+		return $http.get("/konobar/porudzbineNaCekanju");
+	}
+	
+	this.unesi = function(porudzbina){
+		return $http.post("/konobar/unesi/" + porudzbina.id);
+	}
 }]);

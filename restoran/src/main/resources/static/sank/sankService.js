@@ -10,4 +10,8 @@ services.service('sankService', ['$http', function($http){
 	this.updateSankerProfile = function(sanker) {
 		return $http.put("/sanker/" + sanker.id, sanker);
 	}
+	
+	this.porudzbineZaSankera = function() {
+		return $http.get("/sanker/porudzbine");
+	}
 }]);

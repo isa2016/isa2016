@@ -21,4 +21,12 @@ app.controller('kuvController', [
 						});
 			}
 
+			$scope.porudzbineZaKuvara = function() {
+				kuvService.porudzbineZaKuvara().then(
+						function(response) {
+							$scope.porudzbine = response.data;
+						});
+			}
+			
+			
 		} ]);

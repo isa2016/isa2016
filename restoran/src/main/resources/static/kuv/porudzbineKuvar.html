@@ -1,0 +1,18 @@
+<h1>Orders</h1>
+<div ng-init="porudzbineZaKuvara()">
+<table class="table table-bordered tableBG" border="1">
+	<tbody>
+		<tr ng-repeat = "porudzbina in porudzbine">
+			<td>
+				{{porudzbina.id}}
+			</td>
+			<td><div ng-repeat = "h in porudzbina.hrana">
+				{{h.naziv}}<br></br>
+				</div>
+			</td>
+			<td>
+				<a ng-click = "unesi()" class = "btn btn-small btn-default"></span>Send</a>
+			</td>
+		</tr>
+	</tbody>
+</table></div>
