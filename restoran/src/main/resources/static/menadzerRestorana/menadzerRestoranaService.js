@@ -59,4 +59,16 @@ services.service('menadzerRestoranaService', ['$http', function($http){
 	this.updateRest = function(rest){
 		return $http.put("/menadzer/updateRest/"+rest.id,rest);
 	}
+	
+	this.sviPonudjaci = function(rest){
+		return $http.get("/restoran/ponudjaci/"+rest.id);
+	}
+	
+	this.sviPonudjaci2 = function(rest){
+		return $http.get("/restoran/ponudjaci2/"+rest.id);
+	}
+	
+	this.registrujPonudjaca = function(rest,pon){
+		return $http.post("menadzer/ponudjac/"+rest.id,pon)
+	}
 }]);

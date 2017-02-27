@@ -1,8 +1,7 @@
 package restoran.kontroleri;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,9 @@ import restoran.model.Pice;
 import restoran.model.Restoran;
 import restoran.model.osoba.Konobar;
 import restoran.model.osoba.Kuvar;
+import restoran.model.osoba.Ponudjac;
 import restoran.model.osoba.Sanker;
+import restoran.servis.PonudjacServis;
 import restoran.servis.RestoranServis;
 
 @RestController
@@ -26,11 +27,13 @@ public class RestoranController {
 
 	
 	private final RestoranServis restoranServis;
+	private final PonudjacServis pServis;
 	//private HttpSession httpSession;
 
 	@Autowired
-	public RestoranController(final HttpSession httpSession, final RestoranServis servis) {
+	public RestoranController(final RestoranServis servis,final PonudjacServis pServis) {
 		this.restoranServis = servis;
+		this.pServis = pServis;
 		//this.httpSession = httpSession;
 
 	}
@@ -75,5 +78,26 @@ public class RestoranController {
 		
 	}
 	
+	@GetMapping("/ponudjaci/{id}")
+	public ResponseEntity<List<Ponudjac>> findPonudjaci(@PathVariable Long id) {
+		Restoran r =  restoranServis.findOne(id);	
+		return new ResponseEntity<>(r.getPonudjaci(), HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/ponudjaci2/{id}")
+	public ResponseEntity<List<Ponudjac>> findPonudjaci2(@PathVariable Long id) {
+		Restoran r =  restoranServis.findOne(id);	
+		
+		List<Ponudjac> lista = new ArrayList<Ponudjac>();
+		for(Ponudjac p : pServis.findAll()){
+			if(!r.getPonudjaci().contains(p)){
+				lista.add(p);
+			}
+		}
+		
+		return new ResponseEntity<>(lista, HttpStatus.OK);
+		
+	}
 	
 }

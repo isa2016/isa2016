@@ -22,6 +22,7 @@ import restoran.model.Pice;
 import restoran.model.Restoran;
 import restoran.model.osoba.Konobar;
 import restoran.model.osoba.Kuvar;
+import restoran.model.osoba.Ponudjac;
 import restoran.model.osoba.Sanker;
 import restoran.servis.RestoranServis;
 
@@ -121,4 +122,13 @@ public class MenadzerController {
 		restaurant.getSankeri().add(sanker);
 		restoranServis.save(restaurant);
 	}
+	
+	@PostMapping(path = "ponudjac/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void registrujPonudjaca(@PathVariable Long id,@Valid @RequestBody Ponudjac ponudjac) {
+		Restoran restaurant = restoranServis.findOne(id);
+		restaurant.getPonudjaci().add(ponudjac);
+		restoranServis.save(restaurant);
+	}
+	
 }

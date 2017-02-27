@@ -1,0 +1,47 @@
+<div data-ng-init="sviPonudjaci()">
+
+<div style="position: absolute; top: 80px; left: 25px; width: 500px;">
+<h2>Registrated bidders:</h2>
+<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>First name</th>
+				<th>Last name</th>
+		
+            </tr>
+			<tr ng-repeat="pon in ponudjaci">
+				<td> 
+					{{pon.ime}}
+				</td>
+				<td> 
+					{{pon.prezime}}
+				</td>
+			</tr>
+		</tbody>
+    </table> 
+    </div>
+    
+    <div style="position: absolute; top: 80px; left: 750px; width: 500px;">
+    <h2>Not registrated bidders:</h2>
+<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>First name</th>
+				<th>Last name</th>
+				<th>Register</th>
+		
+            </tr>
+			<tr ng-repeat="pon in ponudjaci2">
+				<td> 
+					{{pon.ime}}
+				</td>
+				<td> 
+					{{pon.prezime}}
+				</td>
+				<td><input type="submit" value="Register"
+			ng-click="registrujPonudjaca(pon)"></td>
+			</tr>
+		</tbody>
+    </table> 
+    </div>
+   </div>

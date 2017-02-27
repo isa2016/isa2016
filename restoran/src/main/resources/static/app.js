@@ -301,6 +301,18 @@ angular.module(
 						templateUrl : 'menadzerRestorana/sankeri.html',
 						controller : 'menadzerRestoranaController'
 					})
+					
+					.state('menadzerRestorana.ponudjaci', {
+						url : '/ponudjaci',
+						templateUrl : 'menadzerRestorana/ponudjaci.html',
+						controller : 'menadzerRestoranaController'
+					})
+					
+						.state('menadzerRestorana.objava', {
+						url : '/objava',
+						templateUrl : 'menadzerRestorana/objavaPonude.html',
+						controller : 'menadzerRestoranaController'
+					})
 
 					.state('menadzerRestorana.izmeni', {
 						url : '/izmeni',

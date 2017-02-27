@@ -19,3 +19,5 @@ INSERT INTO jelovnik(Restoran_ID,Jelo_ID) VALUES (1,1)
 INSERT INTO jelovnik(Restoran_ID,Jelo_ID) VALUES (1,2)
 INSERT INTO karta_pica(Restoran_ID,Pice_ID) VALUES (1,1)
 INSERT INTO ponudjac(ime,prezime,mail,password,registrovan) values('Petar','Petrovic','pon@pon.com','pon','0')
+INSERT INTO ponudjac(ime,prezime,mail,password,registrovan) values('Jova','Jovic','pon2@pon2.com','pon2','0')
+

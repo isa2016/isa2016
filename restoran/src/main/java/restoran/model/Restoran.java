@@ -10,12 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
 import restoran.model.osoba.Konobar;
 import restoran.model.osoba.Kuvar;
 import restoran.model.osoba.MenadzerRestorana;
+import restoran.model.osoba.Ponudjac;
 import restoran.model.osoba.Sanker;
 
 @Data
@@ -67,7 +69,9 @@ public class Restoran {
 	@JoinTable(name = "Restorani_i_sankeri", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Sanker_ID"))
 	public List<Sanker> sankeri = new ArrayList<>();
 	
-	
+	@ManyToMany
+	@JoinTable(name = "Restorani_i_ponudjaci", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Ponudjac_ID"))
+	private List<Ponudjac> ponudjaci;
 	
 	public List<MenadzerRestorana> getMenadzeriRestorana() {
 		return menadzeriRestorana;
@@ -170,10 +174,12 @@ public class Restoran {
 		this.sankeri = sankeri;
 	}
 
+	public List<Ponudjac> getPonudjaci() {
+		return ponudjaci;
+	}
 
-
-	
-	
-	
+	public void setPonudjaci(List<Ponudjac> ponudjaci) {
+		this.ponudjaci = ponudjaci;
+	}
 
 }

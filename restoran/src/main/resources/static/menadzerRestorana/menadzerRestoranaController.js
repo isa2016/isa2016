@@ -21,6 +21,17 @@ app.controller('menadzerRestoranaController', [
 						});
 			}
 			
+			$scope.sviPonudjaci = function() {
+				menadzerRestoranaService.sviPonudjaci($scope.restoran).then(
+						function(response){
+							$scope.ponudjaci = response.data;
+						});
+				menadzerRestoranaService.sviPonudjaci2($scope.restoran).then(
+						function(response){
+							$scope.ponudjaci2 = response.data;
+						});
+			}
+			
 			$scope.jelovnik = function() {
 				menadzerRestoranaService.jelovnik($scope.restoran).then(
 						function(response) {
@@ -88,6 +99,17 @@ app.controller('menadzerRestoranaController', [
 				menadzerRestoranaService.sviSankeri($scope.restoran).then(
 						function(response) {
 							$scope.sankeri = response.data;
+						});
+			}
+			
+			function sviPonudjaci2() {
+				menadzerRestoranaService.sviPonudjaci($scope.restoran).then(
+						function(response){
+							$scope.ponudjaci = response.data;
+						});
+				menadzerRestoranaService.sviPonudjaci2($scope.restoran).then(
+						function(response){
+							$scope.ponudjaci2 = response.data;
 						});
 			}
 			
@@ -159,6 +181,24 @@ app.controller('menadzerRestoranaController', [
 				);
 			}
 			
-			
+			$scope.registrujPonudjaca = function(pon) {
+				menadzerRestoranaService.registrujPonudjaca($scope.restoran,pon).then(
+					function (response) {
+						sviPonudjaci2();
+	                    $location.path('/menadzerRestorana/ponudjaci');
+					}
+				);
+			}
+		
+			$scope.meni = function(){
+				menadzerRestoranaService.jelovnik($scope.restoran).then(
+						function(response) {
+							$scope.jela = response.data;
+						});
+				menadzerRestoranaService.pica($scope.restoran).then(
+						function(response) {
+							$scope.picaa = response.data;
+						});
+			}
 			
 		} ]);

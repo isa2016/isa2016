@@ -1,0 +1,51 @@
+<div data-ng-init="meni()">
+<div style="position: absolute; left: 25px; width: 500px;height:300px;overflow:auto;">
+<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+		
+            </tr>
+			<tr ng-repeat="jelo in jela">
+				<td> 
+					{{jelo.naziv}}
+				</td>
+				<td> 
+					{{jelo.opis}}
+				</td>
+				<td>
+					{{jelo.cena}}
+				</td>
+
+			</tr>
+		</tbody>
+    </table> 
+    </div>
+    
+    <div style="position: absolute; top: 400px; left: 25px; width: 500px;height:300px;overflow:auto;">
+<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+		
+            </tr>
+			<tr ng-repeat="pice in picaa">
+				<td> 
+					{{pice.naziv}}
+				</td>
+				<td> 
+					{{pice.opis}}
+				</td>
+				<td>
+					{{pice.cena}}
+				</td>
+
+			</tr>
+		</tbody>
+    </table> 
+    </div>
+    </div>
