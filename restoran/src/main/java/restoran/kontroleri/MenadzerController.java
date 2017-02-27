@@ -64,6 +64,39 @@ public class MenadzerController {
 		return null;
 	}
 
+	@GetMapping(path = "nadji/{id}/{ime}")
+	public Jelo jelo(@PathVariable Long id, @PathVariable String ime) {
+		Jelo p = null;
+		Restoran r = restoranServis.findOne(id);
+		
+		System.out.println(ime);
+		
+		List<Jelo> j = r.getJelovnik();
+		for(int i=0;i<j.size();i++){
+			if(ime.equals(j.get(i).getNaziv())){
+				p = j.get(i);
+			}
+		}
+		return p;
+	}
+	
+	@GetMapping(path = "pronadji/{id}/{ime}")
+	public Pice pice(@PathVariable Long id, @PathVariable String ime) {
+		Pice pi = null;
+		Restoran r = restoranServis.findOne(id);
+		
+		System.out.println(ime);
+		
+		List<Pice> pice = r.getKartaPica();
+		for(int i=0;i<pice.size();i++){
+			if(ime.equals(pice.get(i).getNaziv())){
+				pi = pice.get(i);
+			}
+		}
+		return pi;
+	}
+	
+	
 	//JE L' SE OVDE DODAJE KONOBAR ILI RESTORAN?
 	
 	@PostMapping(path = "/{id}")

@@ -1,0 +1,26 @@
+<div data-ng-init="posete()">
+<h3>Your visitation:</h3>
+
+<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>Restaurant</th>
+				<th>Date</th>				
+		
+            </tr>
+			<tr ng-repeat="poseta in posete">
+				<td> 
+					{{poseta.restaurant.naziv}}
+				</td>
+				<td> 
+					{{poseta.date}}
+				</td>
+				<td>
+				  <button ng-click="ocena(poseta)">Oceni</button>
+				</td>				
+			</tr>
+		</tbody>
+    </table> 
+    
+    <div ui-view></div>
+    </div>

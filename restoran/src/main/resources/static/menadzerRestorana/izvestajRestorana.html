@@ -1,0 +1,75 @@
+<div ng-init="list('{{loggedUser.id}}')">
+	<br></br> Ocena restorana : {{restoran.ocena}}
+	
+	<br><br></br><br>
+
+    <form>
+		Naziv jela:<br> <input type="text" name="name" ng-model="$parent.nazivJela"> <br>	
+		<br> <br> <input type="submit" value="Submit"
+			ng-click="pronadjiJelo()"> 
+
+	</form>
+  
+      <table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>Naziv</th>
+				<th>Cena</th>
+				<th>Opis</th>
+				<th>Ocena</th>
+		
+            </tr>
+			<tr>
+				<td> 
+					{{j.naziv}}
+				</td>
+				<td> 
+					{{j.cena}}
+				</td>
+				<td>
+					{{j.opis}}
+				</td>
+				<td>
+					{{j.ocena}}
+				</td>
+
+			</tr>
+		</tbody>
+    </table> 
+     
+      <form>
+		Naziv pica:<br> <input type="text" name="name" ng-model="$parent.nazivPica"> <br>	
+		<br> <br> <input type="submit" value="Submit"
+			ng-click="pronadjiPice()"> 
+
+	</form>
+  
+      <table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>Naziv</th>
+				<th>Cena</th>
+				<th>Opis</th>
+				<th>Ocena</th>
+		
+            </tr>
+			<tr>
+				<td> 
+					{{p.naziv}}
+				</td>
+				<td> 
+					{{p.cena}}
+				</td>
+				<td>
+					{{p.opis}}
+				</td>
+				<td>
+					{{p.ocena}}
+				</td>
+
+			</tr>
+		</tbody>
+    </table>  
+       
+
+</div>

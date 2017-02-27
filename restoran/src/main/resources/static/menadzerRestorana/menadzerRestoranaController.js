@@ -21,6 +21,20 @@ app.controller('menadzerRestoranaController', [
 						});
 			}
 			
+			$scope.pronadjiJelo = function() {
+				menadzerRestoranaService.jelo($scope.restoran,$scope.nazivJela).then(
+						function(response) {
+							$scope.j = response.data;
+						});
+			}
+			
+			$scope.pronadjiPice = function() {
+				menadzerRestoranaService.pice($scope.restoran,$scope.nazivPica).then(
+						function(response) {
+							$scope.p = response.data;
+						});
+			}
+			
 			$scope.sviPonudjaci = function() {
 				menadzerRestoranaService.sviPonudjaci($scope.restoran).then(
 						function(response){
