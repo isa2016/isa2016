@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import restoran.enumeracije.HranaStatus;
 import restoran.enumeracije.PiceStatus;
+import restoran.enumeracije.PorudzbinaStatus;
 import restoran.model.Jelo;
 import restoran.model.Pice;
 import restoran.model.Porudzbina;
@@ -161,7 +162,6 @@ public class GostController {
 
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
-	
 
 	@GetMapping("/izbrisiJelo/{id}/{id2}")
 	public ResponseEntity<Porudzbina> izbrisiJelo(@PathVariable Long id, @PathVariable Long id2) {
@@ -171,7 +171,7 @@ public class GostController {
 		porudzbinaServis.save(p);
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/izbrisiPice/{id}/{id2}")
 	public ResponseEntity<Porudzbina> izbrisiPice(@PathVariable Long id, @PathVariable Long id2) {
 		Pice pice = piceServis.findOne(id);
@@ -185,7 +185,7 @@ public class GostController {
 	public ResponseEntity<Porudzbina> napraviPJ(@PathVariable Long id) {
 		Jelo j = jeloServis.findOne(id);
 		Porudzbina p = new Porudzbina();
-
+		p.setPorudzbinaStatus(PorudzbinaStatus.UNPAID);
 		Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
 		Gost gost = gostServis.findOne(gostID);
 
@@ -200,7 +200,7 @@ public class GostController {
 	public ResponseEntity<Porudzbina> napraviPP(@PathVariable Long id) {
 		Pice j = piceServis.findOne(id);
 		Porudzbina p = new Porudzbina();
-
+		p.setPorudzbinaStatus(PorudzbinaStatus.UNPAID);
 		Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
 		Gost gost = gostServis.findOne(gostID);
 

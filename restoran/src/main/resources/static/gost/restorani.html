@@ -1,9 +1,9 @@
 
 <div ng-show="prikazi">
 
-<table  class="table table-bordered tableBG" border="1">
+	<table class="table table-bordered tableBG" border="1">
 		<tbody>
-	        <tr>
+			<tr>
 				<th>Id</th>
 				<th>Name</th>
 				<th>Description</th>
@@ -12,27 +12,15 @@
 				<th>Street</th>
 				<th>Menu</th>
 				<th>Reservate</th>
-		
-            </tr>
+
+			</tr>
 			<tr ng-repeat="restoran in restorani">
-				<td> 
-					{{restoran.id}}
-				</td>
-				<td> 
-					{{restoran.naziv}}
-				</td>
-				<td>
-					{{restoran.opis}}
-				</td>
-				<td>
-					{{restoran.drzava}}
-				</td>
-				<td>
-					{{restoran.grad}}
-				</td>
-				<td>
-					{{restoran.ulica}}
-				</td>
+				<td>{{restoran.id}}</td>
+				<td>{{restoran.naziv}}</td>
+				<td>{{restoran.opis}}</td>
+				<td>{{restoran.drzava}}</td>
+				<td>{{restoran.grad}}</td>
+				<td>{{restoran.ulica}}</td>
 				<td>
 					<button ng-click="detalji(restoran)">Menu</button>
 				</td>
@@ -41,32 +29,32 @@
 				</td>
 			</tr>
 		</tbody>
-    </table> 
-    <br></br><br></br>
-    <div ui-view ></div>
-    </div>
+	</table>
+	<br></br>
+	<br></br>
+	<div ui-view></div>
+</div>
 
 
 <div ng-show="prikazi2">
- <h3>Make a reservation</h3>
- <form name="rez">
- Restaurant : {{resttt.naziv}}<br></br>
- Date : <input type="date" name="date"
-			ng-model="$parent.rezervacija.date" required> <br></br>
- Hours : <input type="number" min=0 max=24 name="hours"
+	<h3>Make a reservation</h3>
+	<form name="rez">
+		Restaurant : {{resttt.naziv}}<br></br> Date : <input type="date"
+			name="date" ng-model="$parent.rezervacija.date" required> <br></br>
+		Hours : <input type="number" min=0 max=24 name="hours"
 			ng-model="$parent.rezervacija.hours" required> <br></br>
- Minutes : <input type="number" min=0 max=60 name="min"
-			ng-model="$parent.rezervacija.minutes"> <br></br>
- Duration : <input type="number" min=0 max=12 name="dur"
-			ng-model="$parent.rezervacija.duration" required>  <br></br>
- <button ng-click="potvrdaRezervacije()">Next</button>
- 
- </form>
- </div>
+		Minutes : <input type="number" min=0 max=60 name="min"
+			ng-model="$parent.rezervacija.minutes"> <br></br> Duration :
+		<input type="number" min=0 max=12 name="dur"
+			ng-model="$parent.rezervacija.duration" required> <br></br>
+		<button ng-click="potvrdaRezervacije()">Next</button>
+
+	</form>
+</div>
 <div ng-show="prikazi3">
-<div style="position: absolute; top: 80px; left: 25px; width: 500px;">
-<h3>Food</h3>
-	 	<table class="table table-bordered tableBG" border="1">
+	<div style="position: absolute; top: 80px; left: 25px; width: 500px;">
+		<h3>Food</h3>
+		<table class="table table-bordered tableBG" border="1">
 			<tbody>
 				<tr>
 					<th>Name</th>
@@ -77,65 +65,67 @@
 					<td>{{jelo.naziv}}</td>
 					<td>{{jelo.cena}}</td>
 					<td>
-					<button ng-click="dodajJelo(jelo)">Add to order</button>
-				</td>
+						<button ng-click="dodajJelo(jelo)">Add to order</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>
-		
-		<br> <br> <br>
-	<h3>Drinks</h3>
-	<table class="table table-bordered tableBG" border="1">
-		<tbody>
-			<tr>
-				<th>Name</th>
-				<th>Price</th>
-				<th>Order</th>
-			</tr>
-			<tr ng-repeat="pice in resttt.kartaPica | orderBy:'text'">
-				<td>{{pice.naziv}}</td>
-				<td>{{pice.cena}}</td>
-				<td>
-				<button ng-click="dodajPice(pice)">Add to order</button></td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-<div style="position: absolute; top: 80px; left: 750px; width: 200px;">
-	<table class="table table-bordered tableBG" border="1">
-		<tbody>
-			<tr>
-				<th>Name</th>
-				<th>Price</th>
-				<th></th>
-			</tr>
-			<tr ng-repeat="hrana in porudzbina.hrana | orderBy:'text'">
-				<td>{{hrana.naziv}}</td>
-				<td>{{hrana.cena}}</td>
-				<td><button ng-click="izbrisi(hrana, porudzbina)">X</button></td>
-			</tr>
-		</tbody>
-	</table>
-	
-</div>
 
-<div style="position: absolute; top: 80px; left: 950px; width: 200px;">
-	<table class="table table-bordered tableBG" border="1">
-		<tbody>
-			<tr>
-				<th>Name</th>
-				<th>Price</th>
-				<th></th>
-			</tr>
-			<tr ng-repeat="pice in porudzbina.pice | orderBy:'text'">
-				<td>{{pice.naziv}}</td>
-				<td>{{pice.cena}}</td>
-				<td><button ng-click="izbrisiPice(pice, porudzbina)">X</button></td>
-			</tr>
-		</tbody>
-	</table>
-	<button ng-click="rezervisi(porudzbina)">Confirm reservation</button></td>
-</div>
+		<br> <br> <br>
+		<h3>Drinks</h3>
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Order</th>
+				</tr>
+				<tr ng-repeat="pice in resttt.kartaPica | orderBy:'text'">
+					<td>{{pice.naziv}}</td>
+					<td>{{pice.cena}}</td>
+					<td>
+						<button ng-click="dodajPice(pice)">Add to order</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="position: absolute; top: 80px; left: 750px; width: 200px;">
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th></th>
+				</tr>
+				<tr ng-repeat="hrana in porudzbina.hrana | orderBy:'text'">
+					<td>{{hrana.naziv}}</td>
+					<td>{{hrana.cena}}</td>
+					<td><button ng-click="izbrisi(hrana, porudzbina)">X</button></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<div style="position: absolute; top: 80px; left: 950px; width: 200px;">
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th></th>
+				</tr>
+				<tr ng-repeat="pice in porudzbina.pice | orderBy:'text'">
+					<td>{{pice.naziv}}</td>
+					<td>{{pice.cena}}</td>
+					<td><button ng-click="izbrisiPice(pice, porudzbina)">X</button></td>
+				</tr>
+			</tbody>
+		</table>
+		<button ng-click="rezervisi(porudzbina)">Confirm reservation</button>
+		</td>
+	</div>
 
 
 </div>

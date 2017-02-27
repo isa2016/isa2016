@@ -56,11 +56,12 @@ app.controller('guestController', [
 			}
 
 			$scope.izbrisiPice = function(pice, porudzbina) {
-				guestService.izbrisiPice(pice, porudzbina).then(function(response) {
-					$scope.porudzbina = response.data;
-				});
+				guestService.izbrisiPice(pice, porudzbina).then(
+						function(response) {
+							$scope.porudzbina = response.data;
+						});
 			}
-			
+
 			$scope.detaljiRez = function(rez) {
 				guestService.findRez(rez.id).then(function(response) {
 					$scope.porr = response.data;

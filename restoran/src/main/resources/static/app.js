@@ -118,6 +118,12 @@ angular.module(
 						templateUrl : 'kon/porudzbineKonobar.html',
 						controller : 'konController'
 					})
+					
+					.state('konobar.novaPorudzbina', {
+						url : '/novaPorudzbina',
+						templateUrl : 'kon/novaPorudzbina.html',
+						controller : 'konController'
+					})
 
 					.state('konobar.profil', {
 						url : '/profil',
@@ -128,6 +134,12 @@ angular.module(
 					.state('konobar.izmena', {
 						url : '/izmena',
 						templateUrl : 'kon/izmenaKonobar.html',
+						controller : 'konController'
+					})
+					
+					.state('konobar.racun', {
+						url : '/racun',
+						templateUrl : 'kon/racun.html',
 						controller : 'konController'
 					})
 

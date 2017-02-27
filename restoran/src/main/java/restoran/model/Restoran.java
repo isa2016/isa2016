@@ -50,6 +50,10 @@ public class Restoran {
 	private List<MenadzerRestorana> menadzeriRestorana;
 	
 	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "Restoran_i_porudzbine", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Porudzbina_ID"))
+	private List<Porudzbina> porudzbine;
+	
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "Jelovnik", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Jelo_ID"))
 	public List<Jelo> jelovnik = new ArrayList<>();
 	

@@ -1,0 +1,36 @@
+<div>
+	<h3>Food</h3>
+	<table class="table table-bordered tableBG" border="1">
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<th>Price</th>
+			</tr>
+			<tr ng-repeat="jelo in zaRacun.hrana">
+				<td>{{$scope.jelo.naziv}}</td>
+				<td>{{jelo.cena}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br> <br> <br>
+	<h3>Drinks</h3>
+	<table class="table table-bordered tableBG" border="1">
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<th>Price</th>
+			</tr>
+			<tr ng-repeat="pice in zaRacun.pice">
+				<td>{{pice.naziv}}</td>
+				<td>{{pice.cena}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	Total cost: {{total}} </br> Guest: {{zaRacun.gost.mail}} </br> Waiter:
+	{{loggedUser.ime}} </br> <a ng-click="potvrdiRacun(zaRacun)"
+		class="btn btn-small btn-default"></span>Submit</a> <a
+		ui-sref="konobar.porudzbine">Cancel</a>
+
+</div>

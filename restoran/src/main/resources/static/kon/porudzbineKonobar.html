@@ -1,79 +1,100 @@
-<h1>Orders</h1>
-<div>
-<table class="table table-bordered tableBG" border="1">
-	<tbody>
-		<tr ng-repeat = "porudzbina in porudzbine">
-			<td>
-				{{porudzbina.gost.mail}}
-			</td>
-			<td>
-				{{porudzbina.gost.ime}}
-			</td>
-			<td><div ng-repeat = "h in porudzbina.hrana">
-				{{h.naziv}}<br></br>
-				</div>
-			</td>
-			<td>
-				<div ng-repeat = "p in porudzbina.pice">
-				{{p.naziv}}<br></br>
-				</div>
-			</td>
-			<td>
-				<a ng-click = "unesi(porudzbina)" class = "btn btn-small btn-default"></span>Send</a>
-			</td>
-		</tr>
-	</tbody>
-</table>
-<h1>Orders On Hold</h1>
-<table class="table table-bordered tableBG" border="1">
-	<tbody>
-		<tr ng-repeat = "por in porudzbineCekanje">
-			<td>
-				{{por.gost.mail}}
-			</td>
-			<td>
-				{{por.gost.ime}}
-			</td>
-			<td><div ng-repeat = "hr in por.hrana">
-				{{hr.naziv}}<br></br>
-				</div>
-			</td>
-			<td>
-				<div ng-repeat = "pi in por.pice">
-				{{pi.naziv}}<br></br>
-				</div>
-			</td>
-			<div>
-			<td>
-				Food Status: {{por.hranaStatus}}
-			</td>
-			</div>
-		</tr>
-	</tbody>
-</table>
-<h1>Orders Finished</h1>
-<table class="table table-bordered tableBG" border="1">
-	<tbody>
-		<tr ng-repeat = "porG in porudzbineGotove">
-			<td>
-				{{porG.gost.mail}}
-			</td>
-			<td>
-				{{porG.gost.ime}}
-			</td>
-			<td><div ng-repeat = "hra in porG.hrana">
-				{{hra.naziv}}<br></br>
-				</div>
-			</td>
-			<td>
-				<div ng-repeat = "pic in porudzbineGotove.pice">
-				{{pic.naziv}}<br></br>
-				</div>
-			</td>
-			<td>
-				<a ng-click = "zavrsiRacun(porudzbina)" class = "btn btn-small btn-default"></span>Send</a>
-			</td>
-		</tr>
-	</tbody>
-</table>
+<div data-ng-hide="sakrij1" data-ng-init="findAll2()">
+	<h1>Orders</h1>
+	<div>
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr ng-repeat="porudzbina in porudzbine">
+					<td>{{porudzbina.gost.mail}}</td>
+					<td>{{porudzbina.gost.ime}}</td>
+					<td><div ng-repeat="h in porudzbina.hrana">
+							{{h.naziv}}<br></br>
+						</div></td>
+					<td>
+						<div ng-repeat="p in porudzbina.pice">
+							{{p.naziv}}<br></br>
+						</div>
+					</td>
+					<td><a ng-click="unesi(porudzbina)"
+						class="btn btn-small btn-default"></span>Send</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<h1>Orders On Hold</h1>
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr ng-repeat="por in porudzbineCekanje">
+					<td>{{por.gost.mail}}</td>
+					<td>{{por.gost.ime}}</td>
+					<td><div ng-repeat="hr in por.hrana">
+							{{hr.naziv}}<br></br>
+						</div></td>
+					<td>
+						<div ng-repeat="pi in por.pice">
+							{{pi.naziv}}<br></br>
+						</div>
+					</td>
+					<div>
+						<td>Food Status: {{por.hranaStatus}}</td>
+					</div>
+				</tr>
+			</tbody>
+		</table>
+		<h1>Orders Finished</h1>
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr ng-repeat="porG in porudzbineGotove">
+					<td>{{porG.gost.mail}}</td>
+					<td>{{porG.gost.ime}}</td>
+					<td><div ng-repeat="hra in porG.hrana">
+							{{hra.naziv}}<br></br>
+						</div></td>
+					<td>
+						<div ng-repeat="pic in porudzbineGotove.pice">
+							{{pic.naziv}}<br></br>
+						</div>
+					</td>
+					<td><a ng-click="zavrsiRacun(porG)"
+						class="btn btn-small btn-default"></span>Create Bill</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div data-ng-hide="sakrij2">
+	<div>
+		<h3>Food</h3>
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+				</tr>
+				<tr ng-repeat="jelo in zaRacun.hrana">
+					<td>{{jelo.naziv}}</td>
+					<td>{{jelo.cena}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br> <br> <br>
+		<h3>Drinks</h3>
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+				</tr>
+				<tr ng-repeat="pice in zaRacun.pice">
+					<td>{{pice.naziv}}</td>
+					<td>{{pice.cena}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		Total cost: {{total}} </br> Guest: {{zaRacun.gost.mail}} </br> Waiter:
+		{{loggedUser.ime}} </br> <a ng-click="potvrdiRacun(zaRacun)"
+			class="btn btn-small btn-default"></span>Submit</a> <a
+			ui-sref="konobar.porudzbine">Cancel</a>
+
+	</div>
 </div>
