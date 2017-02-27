@@ -29,6 +29,10 @@ public class Jelo {
 	@Column(name = "ocena", nullable = true)
 	private Double ocena;
 
+	@Column
+	public int brojac;
+
+	
 	public Jelo() {
 		super();
 	}
@@ -71,6 +75,14 @@ public class Jelo {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public int getBrojac() {
+		return brojac;
+	}
+
+	public void setBrojac(int brojac) {
+		this.brojac = brojac;
 	}
 
 	

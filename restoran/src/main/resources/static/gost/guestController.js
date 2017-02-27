@@ -81,6 +81,26 @@ app.controller('guestController', [
 				});
 			}
 
+			$scope.posete = function() {
+				guestService.sveRezervacije($scope.loggedUser).then(function(response) {
+					$scope.posete = response.data;
+				});
+			}
+			
+			$scope.ocena = function(rez) {
+				guestService.findRez(rez.id).then(function(response) {
+					$scope.porr = response.data;
+					$location.path('/gost/posete/ocene');
+				})
+			}
+		
+			$scope.ocenaKraj = function(ocena,porr) {
+				guestService.setOcena(ocena, porr.id).then(function(response) {
+					
+					$location.path('/gost/profil');
+				})
+			}
+			
 			$scope.potvrdaRezervacije = function() {
 				$scope.prikazi = "false";
 				$scope.prikazi2 = "false";

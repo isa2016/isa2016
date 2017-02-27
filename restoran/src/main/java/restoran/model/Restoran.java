@@ -44,6 +44,11 @@ public class Restoran {
 	@Column
 	private String ulica;
 	
+	@Column(name="ocena", nullable = true)
+	private int ocena;
+	
+	@Column
+	public int br;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "Restorani_i_menadzeri", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Menadzer_restorana_ID"))
@@ -186,4 +191,21 @@ public class Restoran {
 		this.ponudjaci = ponudjaci;
 	}
 
+	public int getOcena() {
+		return ocena;
+	}
+
+	public void setOcena(int ocena) {
+		this.ocena = ocena;
+	}
+
+	public int getBr() {
+		return br;
+	}
+
+	public void setBr(int br) {
+		this.br = br;
+	}
+
+	
 }

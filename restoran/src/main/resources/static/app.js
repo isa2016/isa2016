@@ -94,7 +94,19 @@ angular.module(
 						templateUrl : 'gost/rezervisi2.html',
 						controller : 'guestController'
 					})
+                    
+					.state('gost.posete', {
+						url : '/posete',
+						templateUrl : 'gost/posete.html',
+						controller : 'guestController'
+					})
 
+					.state('gost.posete.ocene', {
+						url : '/ocene',
+						templateUrl : 'gost/ocene.html',
+						controller : 'guestController'
+					})
+					
 					.state('konobar', {
 						url : '/konobar',
 						templateUrl : 'kon/navBarKonobar.html',
@@ -329,6 +341,12 @@ angular.module(
 					.state('menadzerRestorana.izmeni', {
 						url : '/izmeni',
 						templateUrl : 'menadzerRestorana/izmeniRestoran.html',
+						controller : 'menadzerRestoranaController'
+					})
+					
+					.state('menadzerRestorana.izvestaj', {
+						url : '/izvestaj',
+						templateUrl : 'menadzerRestorana/izvestajRestorana.html',
 						controller : 'menadzerRestoranaController'
 					})
 

@@ -28,6 +28,9 @@ public class Pice {
 	@Column(name="ocena", nullable = true)
 	private Double ocena;
 	
+	@Column
+	private int broj;
+	
 	public Pice() {
 		super();
 	
@@ -66,6 +69,14 @@ public class Pice {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public int getBroj() {
+		return broj;
+	}
+
+	public void setBroj(int broj) {
+		this.broj = broj;
 	}
 	
 	

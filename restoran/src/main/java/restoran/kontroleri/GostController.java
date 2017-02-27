@@ -1,6 +1,10 @@
 package restoran.kontroleri;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -196,6 +200,51 @@ public class GostController {
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 
+	@GetMapping("/posete/{id}")
+	public ResponseEntity<List<Rezervacija>> findAllVisits(@PathVariable Long id) {
+        ArrayList<Rezervacija> po = new ArrayList<Rezervacija>();
+		Gost gost = gostServis.findOne(id);
+		List<Rezervacija> sveRez = rezervacijaServis.findAll();
+		List<Rezervacija> gostoveRez = new ArrayList<Rezervacija>();
+		for (Rezervacija r : sveRez) {
+			for (Gost g : r.getGosti()) {
+				if (g.getId().equals(gost.getId())) {
+					gostoveRez.add(r);
+				}
+			}
+		}
+		
+		
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	    Date today = new Date();	
+		
+	    System.out.println(today);
+		
+		for(int i=0; i<gostoveRez.size(); i++){
+			try {
+				Date date = format.parse(gostoveRez.get(i).getDate());
+				System.out.println(date);
+				if(!date.after(today)){
+					System.out.println("USAIIIIIII");
+					po.add(gostoveRez.get(i));
+				
+				}
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+ 	        
+			
+		}
+		
+		for(int i=0; i<po.size();i++){
+			System.out.println(po.get(i).getRestaurant());
+		}
+		System.out.println("USAOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+		return new ResponseEntity<>(po, HttpStatus.OK);
+	}
+	
+	
 	@GetMapping("/napraviPP/{id}")
 	public ResponseEntity<Porudzbina> napraviPP(@PathVariable Long id) {
 		Pice j = piceServis.findOne(id);

@@ -64,6 +64,7 @@ public class MenadzerController {
 		return null;
 	}
 
+<<<<<<< HEAD
 	// JE L' SE OVDE DODAJE KONOBAR ILI RESTORAN?
 	/*
 	 * @PostMapping(path = "/{id}")
@@ -74,6 +75,51 @@ public class MenadzerController {
 	 * Restoran restaurant = restoranServis.findOne(id); //
 	 * restaurant.getKuvari().add(cook); restoranServis.save(restaurant); }
 	 */
+=======
+	@GetMapping(path = "nadji/{id}/{ime}")
+	public Jelo jelo(@PathVariable Long id, @PathVariable String ime) {
+		Jelo p = null;
+		Restoran r = restoranServis.findOne(id);
+		
+		System.out.println(ime);
+		
+		List<Jelo> j = r.getJelovnik();
+		for(int i=0;i<j.size();i++){
+			if(ime.equals(j.get(i).getNaziv())){
+				p = j.get(i);
+			}
+		}
+		return p;
+	}
+	
+	@GetMapping(path = "pronadji/{id}/{ime}")
+	public Pice pice(@PathVariable Long id, @PathVariable String ime) {
+		Pice pi = null;
+		Restoran r = restoranServis.findOne(id);
+		
+		System.out.println(ime);
+		
+		List<Pice> pice = r.getKartaPica();
+		for(int i=0;i<pice.size();i++){
+			if(ime.equals(pice.get(i).getNaziv())){
+				pi = pice.get(i);
+			}
+		}
+		return pi;
+	}
+	
+	
+	//JE L' SE OVDE DODAJE KONOBAR ILI RESTORAN?
+	
+	@PostMapping(path = "/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void dodajKonobara(@Valid @RequestBody Kuvar cook, Long id) {
+
+		Restoran restaurant = restoranServis.findOne(id);
+		// restaurant.getKuvari().add(cook);
+		restoranServis.save(restaurant);
+	}
+>>>>>>> 039e40fcd7a710e6345edfbfe7605adedb89050c
 
 	@PostMapping(path = "jelo/{id}")
 	@ResponseStatus(HttpStatus.CREATED)

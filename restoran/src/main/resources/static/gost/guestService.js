@@ -25,6 +25,10 @@ services.service('guestService', ['$http', function($http){
 		return $http.get("/guest/rezervacije/"+loggedUser.id);
 	}
 	
+	this.sveRezervacije = function(loggedUser){
+		return $http.get("/guest/posete/"+loggedUser.id);
+	}
+	
 	this.find = function(id){
 		return $http.get("/restoran/"+id)
 	}
@@ -48,6 +52,10 @@ services.service('guestService', ['$http', function($http){
 	
 	this.findRez = function(id){
 		return $http.get("/rezervacija/"+id)
+	}
+	
+	this.setOcena = function(ocena,rezervacija){
+		return $http.post("/rezervacija/"+rezervacija+"/"+ocena)
 	}
 	
 	this.napraviP = function(jelo){

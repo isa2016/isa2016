@@ -20,6 +20,14 @@ services.service('menadzerRestoranaService', ['$http', function($http){
 		return $http.get("restoran/jelovnik/"+rest.id)
 	}
 	
+	this.jelo = function(restoran,jelo){
+		return $http.get("/menadzer/nadji/"+restoran.id+"/"+jelo)
+	}
+	
+	this.pice = function(restoran,pice){
+		return $http.get("/menadzer/pronadji/"+restoran.id+"/"+pice)
+	}
+	
 	this.pica = function(rest){
 		return $http.get("restoran/pice/"+rest.id)
 	}

@@ -1,0 +1,43 @@
+<div data-ng-init="ocena()">
+<h3>Ordered food</h3>
+	 	<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+				</tr>
+				<tr ng-repeat="rez in porr.hrana">
+					<td>{{rez.naziv}}</td>
+					<td>{{rez.cena}}</td>
+			
+				</tr>
+			</tbody>
+		</table>
+		
+		<br> <br> <br>
+	<h3>Ordered drinks</h3>
+	<table class="table table-bordered tableBG" border="1">
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<th>Price</th>
+			</tr>
+			<tr ng-repeat="pice in porr.pice | orderBy:'text'">
+				<td>{{pice.naziv}}</td>
+				<td>{{pice.cena}}</td>				
+			</tr>
+		</tbody>
+	</table>
+
+	<h3>Please rate your visit: </h3>
+			<!-- <input type = "number" ng-model="Ocena" class="form-control"> -->
+				<select class="form-control" ng-model="Ocena">
+				<option value="" selected />
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				</select>
+	<a ng-click = "ocenaKraj(Ocena,porr)" class = "btn btn-small btn-default"><span class="glyphicon glyphicon-star"></span>Oceni</a>
+	
