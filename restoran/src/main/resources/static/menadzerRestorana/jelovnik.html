@@ -1,41 +1,40 @@
 <div data-ng-init="jelovnik()">
-<div style="position: absolute; top: 80px; left: 25px; width: 500px;">
-<table  class="table table-bordered tableBG" border="1">
-		<tbody>
-	        <tr>
-				<th>Name</th>
-				<th>Description</th>
-				<th>Price</th>
-		
-            </tr>
-			<tr ng-repeat="jelo in jela">
-				<td> 
-					{{jelo.naziv}}
-				</td>
-				<td> 
-					{{jelo.opis}}
-				</td>
-				<td>
-					{{jelo.cena}}
-				</td>
+	<div style="position: absolute; top: 80px; left: 25px; width: 500px;">
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Price</th>
 
-			</tr>
-		</tbody>
-    </table> 
-    </div>
-    
-    <div style="position: absolute; top: 80px; left: 750px; width: 50px;">
-    <h4>New: </h4>
-    	<form ng-model="resttt"">  	
-		Name:<br> <input type="text" name="name"
-			ng-model="$parent.jeloo.naziv"> <br>
-		Description:<br> <input type="text" name="lastName"
-			ng-model="$parent.jeloo.opis" ><br>
-		Price:<br> <input type="number" name="password"
-			ng-model="$parent.jeloo.cena" >
-		<br> <br> <input type="submit" value="Submit"
-			ng-click="dodajJelo()"> <a ui-sref="menadzerRestorana.jelovnik">Cancel</a>
+				</tr>
+				<tr ng-repeat="jelo in jela">
+					<td>{{jelo.naziv}}</td>
+					<td>{{jelo.opis}}</td>
+					<td>{{jelo.cena}}</td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div style="position: absolute; top: 80px; left: 750px; width: 50px;">
+		<h4>New:</h4>
+		<form ng-model="resttt"">
+			Name:<br> <input type="text" name="name"
+				ng-model="$parent.jeloo.naziv"> <br> Description:<br>
+			<input type="text" name="lastName" ng-model="$parent.jeloo.opis"><br>
+			Price:<br> <input type="number" name="password"
+				ng-model="$parent.jeloo.cena"> Type: <select
+				data-ng-model="$parent.jeloo.tipJela" class="form-control" required>
+				<option value=>Select type</option>
+				<option value="salad">Salad</option>
+				<option value="baked">Baked</option>
+				<option value="cooked">Cooked</option>
+			</select> <br> <br> <input type="submit" value="Submit"
+				ng-click="dodajJelo()"> <a
+				ui-sref="menadzerRestorana.jelovnik">Cancel</a>
 
 		</form>
-    </div>
-   </div>
+	</div>
+</div>

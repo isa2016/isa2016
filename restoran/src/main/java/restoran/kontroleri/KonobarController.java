@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import restoran.enumeracije.HranaStatus;
 import restoran.enumeracije.PiceStatus;
 import restoran.enumeracije.PorudzbinaStatus;
+import restoran.enumeracije.StatusJela;
 import restoran.model.Jelo;
 import restoran.model.Pice;
 import restoran.model.Porudzbina;
@@ -125,8 +126,12 @@ public class KonobarController {
 	public void unesiPorudzbinu(@PathVariable Long id) {
 
 		Porudzbina p = ps.findOne(id);
-		if (!p.getHranaStatus().equals(HranaStatus.FINISHED))
+		if (!p.getHranaStatus().equals(HranaStatus.FINISHED)){
 			p.setHranaStatus(HranaStatus.ONHOLD);
+			//for(Jelo j : p.getHrana())
+			//	j.setStatusJela(StatusJela.ONHOLD);
+		}
+			
 		if (!p.getPiceStatus().equals(PiceStatus.FINISHED))
 			p.setPiceStatus(PiceStatus.ONHOLD);
 		ps.save(p);
@@ -216,8 +221,11 @@ public class KonobarController {
 		p.setRestoranId(id);
 		if (p.getHrana().size() == 0)
 			p.setHranaStatus(HranaStatus.FINISHED);
-		else
+		else{
 			p.setHranaStatus(HranaStatus.ORDERED);
+			for(Jelo j: p.getHrana())
+				j.setStatusJela(StatusJela.ORDERED);
+		}
 		if (p.getPice().size() == 0)
 			p.setPiceStatus(PiceStatus.FINISHED);
 		else
