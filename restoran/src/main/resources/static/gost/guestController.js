@@ -7,9 +7,15 @@ app.controller('guestController', [
 		'$location',
 		function($scope, $window, guestService, $location) {
 
-			function sviRestorani() {
+			$scope.sviRestorani = function() {
 				guestService.sviRestorani().then(function(response) {
 					$scope.restorani = response.data;
+				});
+			}
+			
+			function brojZahteva(){
+				guestService.brojZahteva().then(function(response){
+					$scope.broj = response.data;
 				});
 			}
 
@@ -17,10 +23,10 @@ app.controller('guestController', [
 				guestService.getLoggedUser().then(function(response) {
 					$scope.loggedUser = response.data;
 				});
+				brojZahteva();
 				$scope.prikazi = "true";
 				$scope.prikazi2 = "false";
 				$scope.prikazi3 = "false";
-				sviRestorani();
 			}
 
 			$scope.update = function() {
@@ -82,25 +88,26 @@ app.controller('guestController', [
 			}
 
 			$scope.posete = function() {
-				guestService.sveRezervacije($scope.loggedUser).then(function(response) {
-					$scope.posete = response.data;
-				});
+				guestService.sveRezervacije($scope.loggedUser).then(
+						function(response) {
+							$scope.posete = response.data;
+						});
 			}
-			
+
 			$scope.ocena = function(rez) {
 				guestService.findRez(rez.id).then(function(response) {
 					$scope.porr = response.data;
 					$location.path('/gost/posete/ocene');
 				})
 			}
-		
-			$scope.ocenaKraj = function(ocena,porr) {
+
+			$scope.ocenaKraj = function(ocena, porr) {
 				guestService.setOcena(ocena, porr.id).then(function(response) {
-					
+
 					$location.path('/gost/profil');
 				})
 			}
-			
+
 			$scope.potvrdaRezervacije = function() {
 				$scope.prikazi = "false";
 				$scope.prikazi2 = "false";
@@ -147,6 +154,80 @@ app.controller('guestController', [
 								$location.path('/gost/rezervacije');
 							});
 				}
+			}
+
+			$scope.zahtevi = function() {
+				guestService.prijatelji().then(function(response) {
+					$scope.prijatelji2 = response.data;
+				});
+				guestService.primljeniZahtevi().then(function(response) {
+					$scope.prijatelji = response.data;
+				});
+				guestService.poslatiZahtevi().then(function(response) {
+					$scope.prijatelji3 = response.data;
+				});
+				
+				brojZahteva();
+
+			}
+
+			function zahtevi2() {
+				guestService.primljeniZahtevi().then(function(response) {
+					$scope.prijatelji = response.data;
+				});
+				guestService.prijatelji().then(function(response) {
+					$scope.prijatelji2 = response.data;
+				});
+				guestService.poslatiZahtevi().then(function(response) {
+					$scope.prijatelji3 = response.data;
+				});
+				
+				brojZahteva();
+			}
+
+			$scope.prihvati = function(prijatelj) {
+				guestService.prihvati(prijatelj).then(function(response) {
+					zahtevi2();
+					$location.path('/gost/prijatelji');
+				});
+			}
+
+			$scope.odbij = function(prijatelj) {
+				guestService.odbij(prijatelj).then(function(response) {
+					zahtevi2();
+				});
+			}
+
+			$scope.obrisi = function(prijatelj) {
+				guestService.obrisi(prijatelj).then(function(response) {
+					zahtevi2();
+				});
+			}
+
+			$scope.pronadjiGosta = function() {
+				if (($scope.firstName !== undefined && $scope.firstName!=="") && ($scope.lastName === undefined || $scope.lastName==="")) {
+					guestService.pronadjiGostaPoImenu($scope.firstName).then(
+							function(response) {
+								$scope.gosttt = response.data;
+							});
+				} else if (($scope.firstName === undefined || $scope.firstName === "") && ($scope.lastName !== undefined && $scope.lastName !== "")) {
+					guestService.pronadjiGostaPoPrezimenu($scope.lastName).then(
+							function(response) {
+								$scope.gosttt = response.data;
+							});
+				} else if ($scope.firstName !== undefined && $scope.firstName !== "" && $scope.lastName !== undefined &&  $scope.lastName !== "") {
+					guestService.pronadjiGosta($scope.firstName,$scope.lastName).then(function(response) {
+						$scope.gosttt = response.data;
+					});
+				}else{
+					$scope.gosttt = undefined;
+				}
+			}
+			
+			$scope.dodaj = function(gost){
+				guestService.dodaj(gost).then(function(response){
+					$location.path('/gost/prijatelji');
+				});
 			}
 
 		} ]);

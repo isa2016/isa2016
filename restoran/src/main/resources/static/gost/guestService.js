@@ -73,5 +73,49 @@ services.service('guestService', ['$http', function($http){
 	this.potvrda2 = function(rezervacija,rest){
 		return $http.post("/guest/rezervisiBez/"+rest.id,rezervacija)
 	}
+	
+	this.primljeniZahtevi = function(){
+		return $http.get("/prijatelji/primljeni")
+	}
+	
+	this.prijatelji = function(){
+		return $http.get("/prijatelji/prihvaceni")
+	}
+	
+	this.poslatiZahtevi = function(){
+		return $http.get("/prijatelji/poslati")
+	}
+	
+	this.prihvati = function(p){
+		return $http.post("prijatelji/prihvati/"+p.id)
+	}
+	
+	this.odbij = function(p){
+		return $http.post("prijatelji/odbij/"+p.id)
+	}
+	
+	this.obrisi = function(p){
+		return $http.post("prijatelji/obrisi/"+p.id)
+	}
+	
+	this.pronadjiGostaPoImenu = function(gost){
+		return $http.get("prijatelji/poImenu/"+gost)
+	}
+	
+	this.pronadjiGostaPoPrezimenu = function(gost){
+		return $http.get("prijatelji/poPrezimenu/"+gost)
+	}
+	
+	this.pronadjiGosta = function(ime,prezime){
+		return $http.get("prijatelji/pronadji/"+ime+"/"+prezime)
+	}
+	
+	this.dodaj = function(gost){
+		return $http.post("prijatelji/dodaj/"+gost.id)
+	}
+	
+	this.brojZahteva = function(){
+		return $http.get("prijatelji/broj")
+	}
 
 }]);

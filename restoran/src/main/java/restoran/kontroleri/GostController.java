@@ -218,14 +218,11 @@ public class GostController {
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 	    Date today = new Date();	
 		
-	    System.out.println(today);
-		
 		for(int i=0; i<gostoveRez.size(); i++){
 			try {
 				Date date = format.parse(gostoveRez.get(i).getDate());
 				System.out.println(date);
 				if(!date.after(today)){
-					System.out.println("USAIIIIIII");
 					po.add(gostoveRez.get(i));
 				
 				}
@@ -240,7 +237,6 @@ public class GostController {
 		for(int i=0; i<po.size();i++){
 			System.out.println(po.get(i).getRestaurant());
 		}
-		System.out.println("USAOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 		return new ResponseEntity<>(po, HttpStatus.OK);
 	}
 	
@@ -259,5 +255,4 @@ public class GostController {
 
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
-
 }

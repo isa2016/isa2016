@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import restoran.model.osoba.Gost;
 import restoran.model.osoba.Ponudjac;
 import restoran.repozitorijum.PonudjacRep;
 import restoran.servis.PonudjacServis;

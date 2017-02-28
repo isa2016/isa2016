@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import restoran.model.osoba.Ponudjac;
 import restoran.servis.PonudjacServis;
-import restoran.servis.RestoranServis;
 
 
 @RestController
@@ -27,13 +26,13 @@ public class PonudjacController {
 
 	private final PonudjacServis ponudjacServis;
 	private HttpSession httpSession;
-    private RestoranServis restoranServis;   
+    //private RestoranServis restoranServis;   
 	
 	@Autowired
-	public PonudjacController(final HttpSession httpSession, final PonudjacServis servis, final RestoranServis restServis) {
+	public PonudjacController(final HttpSession httpSession, final PonudjacServis servis) {
 		this.ponudjacServis = servis;
 		this.httpSession = httpSession;
-		this.restoranServis = restServis;	
+		//this.restoranServis = restServis;	
 	}
      
 	
@@ -41,7 +40,6 @@ public class PonudjacController {
 	@ResponseStatus(HttpStatus.OK)
 	public Ponudjac update(@PathVariable Long id, @Valid @RequestBody Ponudjac ponudjac) {
 	 	
-		System.out.println("AJDEEEEEEEEEEEEEEEEEEE");
 		Optional.ofNullable(ponudjacServis.findOne(id))
 				.orElseThrow(() -> new ResourceNotFoundException("Resource Not Found!"));
 		ponudjac.setId(id);

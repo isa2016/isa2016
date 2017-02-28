@@ -15,6 +15,12 @@ public interface GostServis {
 	Gost delete(Long id);
 
 	Gost findByMailAndPassword(String usn, String pass);
+	
+	List<Gost> findByIme(String ime);
+	
+	List<Gost> findByPrezime(String prezime);
+	
+	List<Gost> findByImeAndPrezime(String ime,String prezime);
 
 	void aktiviraj(String broj);
 }

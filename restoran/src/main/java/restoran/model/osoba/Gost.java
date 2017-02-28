@@ -17,6 +17,7 @@ public class Gost extends Korisnik {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Gost_ID")
 	private Long id;
+	
 
 	public Long getId() {
 		return id;

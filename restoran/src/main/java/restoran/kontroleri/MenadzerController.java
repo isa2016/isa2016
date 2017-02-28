@@ -64,18 +64,7 @@ public class MenadzerController {
 		return null;
 	}
 
-<<<<<<< HEAD
-	// JE L' SE OVDE DODAJE KONOBAR ILI RESTORAN?
-	/*
-	 * @PostMapping(path = "/{id}")
-	 * 
-	 * @ResponseStatus(HttpStatus.CREATED) public void
-	 * dodajKuvar(@Valid @RequestBody Kuvar cook, Long id) {
-	 * 
-	 * Restoran restaurant = restoranServis.findOne(id); //
-	 * restaurant.getKuvari().add(cook); restoranServis.save(restaurant); }
-	 */
-=======
+
 	@GetMapping(path = "nadji/{id}/{ime}")
 	public Jelo jelo(@PathVariable Long id, @PathVariable String ime) {
 		Jelo p = null;
@@ -108,18 +97,6 @@ public class MenadzerController {
 		return pi;
 	}
 	
-	
-	//JE L' SE OVDE DODAJE KONOBAR ILI RESTORAN?
-	
-	@PostMapping(path = "/{id}")
-	@ResponseStatus(HttpStatus.CREATED)
-	public void dodajKonobara(@Valid @RequestBody Kuvar cook, Long id) {
-
-		Restoran restaurant = restoranServis.findOne(id);
-		// restaurant.getKuvari().add(cook);
-		restoranServis.save(restaurant);
-	}
->>>>>>> 039e40fcd7a710e6345edfbfe7605adedb89050c
 
 	@PostMapping(path = "jelo/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
