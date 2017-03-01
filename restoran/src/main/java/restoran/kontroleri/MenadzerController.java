@@ -49,25 +49,20 @@ public class MenadzerController {
 	private RestoranServis restoranServis;
 	private final PonudaPServis ponudaPServis;
 	private final PonudjacServis ponudjacServis;
-<<<<<<< HEAD
+
     private final StoServis stoServis;
-	
-    @Autowired
-	public MenadzerController(final RestoranServis restServis, final MenadzerRestoranaServis servis,
-			final PonudaPServis pservis, final PonudjacServis ponServis,final StoServis sservis) {
-=======
 	private final PorudzbinaServis porudzbinaServis;
 
 	@Autowired
 	public MenadzerController(final RestoranServis restServis, final MenadzerRestoranaServis servis,
-			final PonudaPServis pservis, final PonudjacServis ponServis, final PorudzbinaServis porudzbinaServis) {
->>>>>>> c05aa77158f6c7ba890da8d9a3905321a1416c45
+			final PonudaPServis pservis,final StoServis stoservis, final PonudjacServis ponServis, final PorudzbinaServis porudzbinaServis) {
+
 		this.menadzerRestServis = servis;
 		this.restoranServis = restServis;
 		this.ponudaPServis = pservis;
 		this.porudzbinaServis = porudzbinaServis;
 		this.ponudjacServis = ponServis;
-		this.stoServis = sservis;
+		this.stoServis = stoservis;
 	}
 
 	@PutMapping(path = "/updateRest/{id}")
