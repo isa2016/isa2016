@@ -115,4 +115,7 @@ services.service('menadzerRestoranaService', ['$http', function($http){
 		return $http.get("/menadzer/menadzerPonude/"+menadzer.id);
 	}
 	
+	this.totalIncome = function(oddo, restoran){
+		return $http.get("/menadzer/prihodi/"+restoran.id+"/"+oddo.od+"/"+oddo.do)
+	}
 }]);
