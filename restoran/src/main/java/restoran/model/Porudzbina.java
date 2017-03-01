@@ -43,6 +43,17 @@ public class Porudzbina {
 	@JoinTable(name = "Porudzbina_pica", joinColumns = @JoinColumn(name = "Porudzbina_ID"), inverseJoinColumns = @JoinColumn(name = "Pice_ID"))
 	private List<Pice> pice;
 
+	@Column
+	private double ukupnaCena;
+
+	public double getUkupnaCena() {
+		return ukupnaCena;
+	}
+
+	public void setUkupnaCena(double ukupnaCena) {
+		this.ukupnaCena = ukupnaCena;
+	}
+
 	@ManyToMany
 	@JoinTable(name = "Porudzbina_hrana", joinColumns = @JoinColumn(name = "Porudzbina_ID"), inverseJoinColumns = @JoinColumn(name = "Jelo_ID"))
 	private List<Jelo> hrana;
@@ -60,6 +71,17 @@ public class Porudzbina {
 	private PiceStatus piceStatus;
 
 	private Long restoranId;
+
+	@Column
+	private String datum;
+
+	public String getDatum() {
+		return datum;
+	}
+
+	public void setDatum(String datum) {
+		this.datum = datum;
+	}
 
 	public PorudzbinaStatus getPorudzbinaStatus() {
 		return porudzbinaStatus;

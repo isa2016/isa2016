@@ -61,11 +61,7 @@ app.controller('konController', [
 					$scope.sakrij1 = true;
 					$scope.sakrij2 = false;
 					$scope.zaRacun = response.data;
-					$scope.total = 0;
-					for (var i = 0; i < $scope.zaRacun.hrana.length; i++)
-						$scope.total += $scope.zaRacun.hrana[i].cena;
-					for (var j = 0; j < $scope.zaRacun.pice.length; j++)
-						$scope.total += $scope.zaRacun.pice[j].cena;
+					$scope.total = $scope.zaRacun.ukupnaCena;
 				});
 			}
 
