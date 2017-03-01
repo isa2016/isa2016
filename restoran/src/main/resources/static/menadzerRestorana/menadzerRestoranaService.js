@@ -79,4 +79,8 @@ services.service('menadzerRestoranaService', ['$http', function($http){
 	this.registrujPonudjaca = function(rest,pon){
 		return $http.post("menadzer/ponudjac/"+rest.id,pon)
 	}
+	
+	this.ucitajStolove = function(rest){
+		return $http.get("restoran/stolovi/"+rest.id)
+	}
 }]);

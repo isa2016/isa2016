@@ -215,4 +215,11 @@ app.controller('menadzerRestoranaController', [
 						});
 			}
 			
+			$scope.ucitajStolove = function() {
+				menadzerRestoranaService.ucitajStolove($scope.restoran).then(
+						function(response){
+							$scope.stolovi = response.data;
+						});
+			}
+			
 		} ]);

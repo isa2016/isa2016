@@ -39,6 +39,9 @@ public class Rezervacija {
 	private int minutes;
 	
 	@Column
+	private Long sto;
+	
+	@Column
 	private Double duration;
 	
 	@ManyToMany
@@ -128,6 +131,14 @@ public class Rezervacija {
 
 	public void setPozvani(List<Gost> pozvani) {
 		this.pozvani = pozvani;
+	}
+
+	public Long getSto() {
+		return sto;
+	}
+
+	public void setSto(Long sto) {
+		this.sto = sto;
 	}
 	
 	

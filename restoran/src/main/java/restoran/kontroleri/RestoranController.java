@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import restoran.model.Jelo;
 import restoran.model.Pice;
 import restoran.model.Restoran;
+import restoran.model.Sto;
 import restoran.model.osoba.Konobar;
 import restoran.model.osoba.Kuvar;
 import restoran.model.osoba.Ponudjac;
@@ -97,6 +98,13 @@ public class RestoranController {
 		}
 		
 		return new ResponseEntity<>(lista, HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/stolovi/{id}")
+	public ResponseEntity<List<Sto>> nadjiStolove(@PathVariable Long id) {
+		Restoran r =  restoranServis.findOne(id);	
+		return new ResponseEntity<>(r.getStolovi(), HttpStatus.OK);
 		
 	}
 	

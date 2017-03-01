@@ -82,6 +82,12 @@ public class Restoran {
 	@JoinTable(name = "Restorani_i_ponudjaci", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Ponudjac_ID"))
 	private List<Ponudjac> ponudjaci;
 	
+	public ArrayList<Rejon> rejoni = new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "Restorani_i_stolovi", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Sto_ID"))
+	private List<Sto> stolovi;
+	
 	public List<MenadzerRestorana> getMenadzeriRestorana() {
 		return menadzeriRestorana;
 	}
@@ -93,6 +99,11 @@ public class Restoran {
 	public Restoran() {
 		super();
 		this.menadzeriRestorana = new ArrayList<MenadzerRestorana>();
+		this.rejoni = new ArrayList<Rejon>();
+		for(int i = 0; i < 4; i++){
+			Rejon r = new Rejon(Integer.toString(i+1));
+			this.rejoni.add(r);
+		}
 	}
 
 	public String getNaziv() {
@@ -213,6 +224,22 @@ public class Restoran {
 
 	public void setPorudzbine(List<Porudzbina> porudzbine) {
 		this.porudzbine = porudzbine;
+	}
+
+	public List<Sto> getStolovi() {
+		return stolovi;
+	}
+
+	public void setStolovi(List<Sto> stolovi) {
+		this.stolovi = stolovi;
+	}
+
+	public List<Rejon> getRejoni() {
+		return rejoni;
+	}
+
+	public void setRejoni(ArrayList<Rejon> rejoni) {
+		this.rejoni = rejoni;
 	}
 
 	

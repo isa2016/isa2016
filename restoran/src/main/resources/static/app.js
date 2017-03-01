@@ -365,6 +365,12 @@ angular.module(
 						templateUrl : 'menadzerRestorana/izvestajRestorana.html',
 						controller : 'menadzerRestoranaController'
 					})
+					
+					.state('menadzerRestorana.stolovi', {
+						url : '/stolovi',
+						templateUrl : 'menadzerRestorana/stolovi.html',
+						controller : 'menadzerRestoranaController'
+					})
 
 					.state(
 							'activation/:reg',
