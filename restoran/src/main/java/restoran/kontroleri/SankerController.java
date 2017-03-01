@@ -33,19 +33,18 @@ public class SankerController {
 	private final SankerServis ss;
 	private HttpSession session;
 	private final PorudzbinaServis ps;
-	
+
 	@Autowired
-	public SankerController(final PorudzbinaServis ps, final SankerServis ss, HttpSession session){
+	public SankerController(final PorudzbinaServis ps, final SankerServis ss, HttpSession session) {
 		this.ss = ss;
 		this.session = session;
 		this.ps = ps;
 	}
-	
+
 	@PutMapping(path = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Sanker update(@PathVariable Long id, @RequestBody Sanker s) {
-		Optional.ofNullable(ss.findOne(id))
-				.orElseThrow(() -> new ResourceNotFoundException("Resource Not Found!"));
+		Optional.ofNullable(ss.findOne(id)).orElseThrow(() -> new ResourceNotFoundException("Resource Not Found!"));
 		s.setId(id);
 		session.setAttribute("korisnik", s);
 		return ss.save(s);
@@ -55,15 +54,21 @@ public class SankerController {
 	public ResponseEntity<List<Porudzbina>> findAllPorudzbine() {
 		Sanker s = ((Sanker) session.getAttribute("korisnik"));
 		List<Porudzbina> porudzbine = new ArrayList<Porudzbina>();
-		for(int i=0; i<ps.findAll().size();i++){
+		for (int i = 0; i < ps.findAll().size(); i++) {
 			Porudzbina por = ps.findAll().get(i);
-			if(por.getRestoranId().equals(s.getRestoranId()) && por.getPiceStatus().equals(PiceStatus.ONHOLD)){
+			if (por.getRestoranId().equals(s.getRestoranId()) && por.getPiceStatus().equals(PiceStatus.ONHOLD)) {
 				porudzbine.add(por);
+			}
+		}
+		for (int j = porudzbine.size() - 1; j >= 0; j--) {
+			if (porudzbine.get(j).getPice().size() == 0) {
+				porudzbine.get(j).setPiceStatus(PiceStatus.FINISHED);
+				porudzbine.remove(j);
 			}
 		}
 		return new ResponseEntity<>(porudzbine, HttpStatus.OK);
 	}
-	
+
 	@PostMapping(path = "zavrsi/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void zavrsiPorudzbinu(@PathVariable Long id) {

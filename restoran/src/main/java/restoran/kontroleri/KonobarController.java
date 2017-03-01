@@ -87,6 +87,17 @@ public class KonobarController {
 				porudzbine.add(por);
 			}
 		}
+		for (int j = porudzbine.size() - 1; j >= 0; j--) {
+			if (porudzbine.get(j).getHrana().size() == 0) {
+				porudzbine.get(j).setHranaStatus(HranaStatus.FINISHED);
+			}
+			if (porudzbine.get(j).getPice().size() == 0) {
+				porudzbine.get(j).setPiceStatus(PiceStatus.FINISHED);
+			}
+			if (porudzbine.get(j).getPiceStatus().equals(PiceStatus.FINISHED)
+					&& porudzbine.get(j).getHranaStatus().equals(HranaStatus.FINISHED))
+				porudzbine.remove(j);
+		}
 		return new ResponseEntity<>(porudzbine, HttpStatus.OK);
 	}
 
@@ -101,6 +112,17 @@ public class KonobarController {
 					|| por.getPiceStatus().equals(PiceStatus.ONHOLD))) {
 				porudzbine.add(por);
 			}
+		}
+		for (int j = porudzbine.size() - 1; j >= 0; j--) {
+			if (porudzbine.get(j).getHrana().size() == 0) {
+				porudzbine.get(j).setHranaStatus(HranaStatus.FINISHED);
+			}
+			if (porudzbine.get(j).getPice().size() == 0) {
+				porudzbine.get(j).setPiceStatus(PiceStatus.FINISHED);
+			}
+			if (porudzbine.get(j).getPiceStatus().equals(PiceStatus.FINISHED)
+					&& porudzbine.get(j).getHranaStatus().equals(HranaStatus.FINISHED))
+				porudzbine.remove(j);
 		}
 		return new ResponseEntity<>(porudzbine, HttpStatus.OK);
 	}
@@ -118,6 +140,7 @@ public class KonobarController {
 				porudzbine.add(por);
 			}
 		}
+
 		return new ResponseEntity<>(porudzbine, HttpStatus.OK);
 	}
 
@@ -126,12 +149,12 @@ public class KonobarController {
 	public void unesiPorudzbinu(@PathVariable Long id) {
 
 		Porudzbina p = ps.findOne(id);
-		if (!p.getHranaStatus().equals(HranaStatus.FINISHED)){
+		if (!p.getHranaStatus().equals(HranaStatus.FINISHED)) {
 			p.setHranaStatus(HranaStatus.ONHOLD);
-			//for(Jelo j : p.getHrana())
-			//	j.setStatusJela(StatusJela.ONHOLD);
+			// for(Jelo j : p.getHrana())
+			// j.setStatusJela(StatusJela.ONHOLD);
 		}
-			
+
 		if (!p.getPiceStatus().equals(PiceStatus.FINISHED))
 			p.setPiceStatus(PiceStatus.ONHOLD);
 		ps.save(p);
@@ -178,7 +201,10 @@ public class KonobarController {
 		Jelo jelo = jeloServis.findOne(id);
 		Porudzbina p = ps.findOne(id2);
 		p.getHrana().remove(jelo);
-		ps.save(p);
+		if (p.getHrana().size() == 0 && p.getPice().size() == 0)
+			ps.delete(id2);
+		else
+			ps.save(p);
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 
@@ -187,7 +213,10 @@ public class KonobarController {
 		Pice pice = piceServis.findOne(id);
 		Porudzbina p = ps.findOne(id2);
 		p.getPice().remove(pice);
-		ps.save(p);
+		if (p.getHrana().size() == 0 && p.getPice().size() == 0)
+			ps.delete(id2);
+		else
+			ps.save(p);
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 
@@ -221,9 +250,9 @@ public class KonobarController {
 		p.setRestoranId(id);
 		if (p.getHrana().size() == 0)
 			p.setHranaStatus(HranaStatus.FINISHED);
-		else{
+		else {
 			p.setHranaStatus(HranaStatus.ORDERED);
-			for(Jelo j: p.getHrana())
+			for (Jelo j : p.getHrana())
 				j.setStatusJela(StatusJela.ORDERED);
 		}
 		if (p.getPice().size() == 0)
