@@ -28,6 +28,26 @@ services.service('menadzerRestoranaService', ['$http', function($http){
 		return $http.get("/menadzer/pronadji/"+restoran.id+"/"+pice)
 	}
 	
+	this.dodajNam = function(restoran,jelo){
+		return $http.get("/restoran/"+restoran.id+"/"+jelo.id)
+	}
+	
+	this.napraviO = function(jelo){
+		return $http.get("/restoran/napraviO/"+jelo.id)
+	}
+	
+	this.napraviOb = function(pice){
+		return $http.get("/restoran/napraviOb/"+pice.id)
+	}
+	
+	this.dodajJeloObjava = function(jelo,por){
+		return $http.get("/restoran/objavaJelo/"+jelo.id+"/"+por.id)
+	}
+	
+	this.dodajPiceObjava = function(pice,por){
+		return $http.get("/restoran/objavaPice/"+pice.id+"/"+por.id)
+	}
+	
 	this.pica = function(rest){
 		return $http.get("restoran/pice/"+rest.id)
 	}
@@ -80,7 +100,23 @@ services.service('menadzerRestoranaService', ['$http', function($http){
 		return $http.post("menadzer/ponudjac/"+rest.id,pon)
 	}
 	
+<<<<<<< HEAD
 	this.ucitajStolove = function(rest){
 		return $http.get("restoran/stolovi/"+rest.id)
 	}
+=======
+	this.posaljiObjavu = function(objava,pocetak,kraj,resto){
+		return $http.post("/restoran/restoranii/objavaPosalji/"+objava.id+"/"+pocetak+"/"+kraj+"/"+resto.id)
+	}
+	
+	this.prihvatiPonudu = function(porudzbina,menadzer){
+		return $http.post("/menadzer/prihvatiPonudu/"+porudzbina.id+"/"+menadzer.id+"/"+porudzbina.objava_ponude_Id)
+	}
+	
+	
+	this.svePonudee = function(menadzer){
+		return $http.get("/menadzer/menadzerPonude/"+menadzer.id);
+	}
+	
+>>>>>>> cf6049e450f0535ada95edf6420e09e9173c1847
 }]);

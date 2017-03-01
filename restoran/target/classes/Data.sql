@@ -27,8 +27,13 @@ INSERT INTO jelovnik(Restoran_ID,Jelo_ID) VALUES (1,1)
 INSERT INTO jelovnik(Restoran_ID,Jelo_ID) VALUES (1,2)
 INSERT INTO jelovnik(Restoran_ID,Jelo_ID) VALUES (1,3)
 INSERT INTO karta_pica(Restoran_ID,Pice_ID) VALUES (1,1)
-INSERT INTO ponudjac(ime,prezime,mail,password,registrovan) values('Petar','Petrovic','pon@pon.com','pon','0')
+INSERT INTO ponudjac(ime,prezime,mail,password,registrovan) values('Petar','Petrovic','pon@pon.com','pon','1')
 INSERT INTO ponudjac(ime,prezime,mail,password,registrovan) values('Jova','Jovic','pon2@pon2.com','pon2','0')
+<<<<<<< HEAD
+INSERT INTO restorani_i_ponudjaci(Restoran_ID,Ponudjac_ID) VALUES (1,1)
+INSERT INTO restorani_i_ponudjaci(Restoran_ID,Ponudjac_ID) VALUES (1,2)
+=======
 INSERT INTO prijatelji(poslao_zahtev,primio_zahtev,status) values (2,1,'naCekanju')
 INSERT INTO prijatelji(poslao_zahtev,primio_zahtev,status) values (3,1,'prihvacen')
 
+>>>>>>> ab6e575e3ce1d5670974339ad3ed4a375cb6be38

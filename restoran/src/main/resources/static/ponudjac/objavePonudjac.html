@@ -1,0 +1,68 @@
+<div ng-init="getLoggedUser()">
+
+	<div style="position: absolute; top: 80px; left: 25px; width: 500px;"">
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Restoran ID</th>
+					<th>Pocetak</th>
+					<th>Kraj</th>
+				</tr>
+
+				<tr ng-repeat="porudzba in list">
+
+					<td>{{porudzba.restoranID}}</td>
+					<td>{{porudzba.pocetakVazenja}}</td>
+					<td>{{porudzba.krajaVazenja}}</td>
+					<td><button class="btn btn-default"
+							ng-click="detaljiPonudu(porudzba)">Details</button></td>
+					<td><button class="btn btn-default"
+							ng-click="izaberiPonudu(porudzba)">Pick</button></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div ng-hide="sakrijDetalje"
+			style="position: absolute; top: 80px; left: 750px; width: 200px;">
+			<table class="table table-bordered tableBG" border="1">
+				<tbody>
+					<tr>
+						<th>Hrana</th>
+						<th>Pica</th>
+					</tr>
+
+					<tr>
+
+						<td><div ng-repeat="jelo in listing.hrana">
+								{{jelo.naziv}}<br>
+							</div></td>
+						<td><div ng-repeat="pice in listing.pica">
+								{{pice.naziv}}<br>
+							</div></td>
+					</tr>
+				</tbody>
+			</table>
+
+
+		</div>
+		<form>
+			<div ng-hide="sakrij">
+				<label>Cena</label><br /> <input name="cena" type="text"
+					ng-model="$parent.cena" class="form-control"  required><br />
+
+				<label>Garancija</label><br /> <input name="garancija" type="text"
+					ng-model="$parent.garancija" class="form-control"  required></br>
+				<br /> Rok isporuke : <input type="date" name="isporuka"
+					ng-model="$parent.isporuka" required>
+
+                <button class="btn btn-default"	ng-click="posaljiPonudu(porudzba)">Send</button>
+ 
+			</div>
+		</form>
+	</div>
+
+
+
+
+
+</div>

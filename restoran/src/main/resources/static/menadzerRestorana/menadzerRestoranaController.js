@@ -11,6 +11,7 @@ app.controller('menadzerRestoranaController', [
 						function(response) {
 							$scope.loggedUser = response.data;
 							findRest($scope.loggedUser);
+							svePonude($scope.loggedUser);
 						})
 			}
 
@@ -32,6 +33,13 @@ app.controller('menadzerRestoranaController', [
 				menadzerRestoranaService.pice($scope.restoran,$scope.nazivPica).then(
 						function(response) {
 							$scope.p = response.data;
+						});
+			}
+			
+			$scope.dodajNamirnicu = function() {
+				menadzerRestoranaService.dodajNam($scope.restoran,jelo).then(
+						function(response) {
+							$scope.o = response.data;
 						});
 			}
 			
@@ -177,6 +185,35 @@ app.controller('menadzerRestoranaController', [
 				);
 			}
 			
+			$scope.dodajJeloUObjavu = function(jelo) {
+				if ($scope.objava !== undefined) {
+					menadzerRestoranaService.dodajJeloObjava(jelo, $scope.objava).then(
+							function(response) {
+								$scope.objava = response.data;
+							});
+				} else {
+					menadzerRestoranaService.napraviO(jelo).then(function(response) {
+						$scope.objava = response.data;
+					});
+				}
+
+			}
+			
+			$scope.dodajPiceUObjavu = function(pice) {
+				if ($scope.objava !== undefined) {
+					menadzerRestoranaService.dodajPiceObjava(pice, $scope.objava).then(
+							function(response) {
+								$scope.objava = response.data;
+							});
+				} else {
+					menadzerRestoranaService.napraviOb(pice).then(function(response) {
+						$scope.objava = response.data;
+					});
+				}
+
+			}
+			
+			
 			$scope.dodajKonobara = function() {
 				menadzerRestoranaService.dodajKonobara($scope.restoran,$scope.kon).then(
 					function (response) {
@@ -204,6 +241,17 @@ app.controller('menadzerRestoranaController', [
 				);
 			}
 		
+			$scope.posaljiPonudjacima = function() {
+				menadzerRestoranaService.posaljiObjavu($scope.objava,$scope.pocetak,$scope.kraj,$scope.restoran).then(
+					function (response) {
+						
+	                    $location.path('/menadzerRestorana');
+					}
+				);
+			}
+			
+			
+			
 			$scope.meni = function(){
 				menadzerRestoranaService.jelovnik($scope.restoran).then(
 						function(response) {
@@ -215,11 +263,30 @@ app.controller('menadzerRestoranaController', [
 						});
 			}
 			
+<<<<<<< HEAD
 			$scope.ucitajStolove = function() {
 				menadzerRestoranaService.ucitajStolove($scope.restoran).then(
 						function(response){
 							$scope.stolovi = response.data;
 						});
+=======
+			$scope.prihvati = function(ponuda){
+				menadzerRestoranaService.prihvatiPonudu(ponuda, $scope.loggedUser).then(
+						function(response) {
+		                       svePonude($scope.loggedUser);
+							 $location.path('/menadzerRestorana/ponude');	
+						});
+		
+			}
+			
+			function svePonude(loggedUser){
+				menadzerRestoranaService.svePonudee($scope.loggedUser).then(
+						function (response) {
+		                    $scope.lista = response.data;
+		                    
+						}
+					);
+>>>>>>> cf6049e450f0535ada95edf6420e09e9173c1847
 			}
 			
 		} ]);

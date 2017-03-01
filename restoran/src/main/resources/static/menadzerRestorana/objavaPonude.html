@@ -18,11 +18,59 @@
 				<td>
 					{{jelo.cena}}
 				</td>
-
+                <td>
+                   <button class="btn btn-default" ng-click="dodajJeloUObjavu(jelo)">Dodaj </button>
+                </td>
 			</tr>
 		</tbody>
     </table> 
     </div>
+
+<div style="position: absolute;top: 80px; left: 750px; width: 50px;">
+<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+		
+            </tr>
+			<tr ng-repeat="jelo in objava.hrana">
+				<td> 
+					{{jelo.naziv}}
+				</td>
+				<td> 
+					{{jelo.opis}}
+				</td>
+				<td>
+					{{jelo.cena}}
+				</td>
+  			</tr>
+  			<tr ng-repeat="pice in objava.pice">
+				<td> 
+					{{pice.naziv}}
+				</td>
+				<td> 
+					{{pice.opis}}
+				</td>
+				<td>
+					{{pice.cena}}
+				</td>
+  			</tr>
+  		
+		</tbody>
+    </table> 
+    	
+  	 Pocetak vazenja : <input type="date" name="pocetak"		
+  	 ng-model="$parent.pocetak" required> <br></br>
+			
+	  Kraj vazenja : <input type="date" name="kraj"
+	ng-model="$parent.kraj" required> <br></br>
+			
+ 	     <button class="btn btn-default" ng-click="posaljiPonudjacima()">Posalji</button>
+  			
+    </div>
+
     
     <div style="position: absolute; top: 400px; left: 25px; width: 500px;height:300px;overflow:auto;">
 <table  class="table table-bordered tableBG" border="1">
@@ -43,7 +91,9 @@
 				<td>
 					{{pice.cena}}
 				</td>
-
+                <td>
+                   <button class="btn btn-default" ng-click="dodajPiceUObjavu(pice)">Dodaj</button>
+                </td>
 			</tr>
 		</tbody>
     </table> 

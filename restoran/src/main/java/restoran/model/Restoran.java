@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import restoran.model.osoba.Konobar;
 import restoran.model.osoba.Kuvar;
@@ -67,6 +69,11 @@ public class Restoran {
 	public List<Pice> kartaPica = new ArrayList<>();
 	
 	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "Objave", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Objava_ponude_ID"))
+	public List<ObjavaPonude> objave = new ArrayList<>();
+	
+	
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "Restorani_i_konobari", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Konobar_ID"))
 	public List<Konobar> konobari = new ArrayList<>();
 	
@@ -78,6 +85,7 @@ public class Restoran {
 	@JoinTable(name = "Restorani_i_sankeri", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Sanker_ID"))
 	public List<Sanker> sankeri = new ArrayList<>();
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "Restorani_i_ponudjaci", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Ponudjac_ID"))
 	private List<Ponudjac> ponudjaci;
@@ -218,12 +226,21 @@ public class Restoran {
 		this.br = br;
 	}
 
+<<<<<<< HEAD
+	public List<ObjavaPonude> getObjave() {
+		return objave;
+	}
+
+	public void setObjave(List<ObjavaPonude> objave) {
+		this.objave = objave;
+=======
 	public List<Porudzbina> getPorudzbine() {
 		return porudzbine;
 	}
 
 	public void setPorudzbine(List<Porudzbina> porudzbine) {
 		this.porudzbine = porudzbine;
+>>>>>>> ab6e575e3ce1d5670974339ad3ed4a375cb6be38
 	}
 
 	public List<Sto> getStolovi() {

@@ -1,0 +1,19 @@
+<div class="center">
+ 
+ <form  name = "loginForm">
+
+	
+	
+<label>Cena</label><br/>
+<input name = "cena" type="text" ng-model = "$parent.cena" class="form-control"  required><br/>  
+
+ <label>Garancija</label><br/>
+ <input name = "garancija" type="text" ng-model = "$parent.garancija" class="form-control"  required></br><br/>
+
+  Rok isporuke : <input type="date" name="isporuka"		
+  ng-model="$parent.isporuka" required>
+
+ <button class="btn btn-default" ng-click="posaljiPonudu()">Posalji </button>
+
+</form>
+</div>

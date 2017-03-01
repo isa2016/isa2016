@@ -1,0 +1,29 @@
+<div data-ng-init="getLoggedUser()">
+<div style="position: absolute; left: 25px; width: 500px;height:300px;overflow:auto;">
+<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>Cena</th>
+				<th>Garancija</th>
+				<th>Rok isporuke</th>
+		        <th>Id objave</th>
+            </tr>
+			<tr ng-repeat="jelo in lista">
+				<td> 
+					{{jelo.cena}}
+				</td>
+				<td> 
+					{{jelo.garancija}}
+				</td>
+				<td>
+					{{jelo.rokIsporuke}}
+				</td>
+				<td>
+				    {{jelo.objava_ponude_Id}}
+				</td>
+                <td>
+                   <button class="btn btn-default" ng-click="prihvati(jelo)">Prihvati</button>
+                </td>
+			</tr>
+		</tbody>
+    </table> 

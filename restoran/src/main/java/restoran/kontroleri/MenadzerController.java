@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,11 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import restoran.model.Jelo;
 import restoran.model.Pice;
+import restoran.model.PonudaP;
 import restoran.model.Restoran;
 import restoran.model.osoba.Konobar;
 import restoran.model.osoba.Kuvar;
+import restoran.model.osoba.MenadzerRestorana;
 import restoran.model.osoba.Ponudjac;
 import restoran.model.osoba.Sanker;
+import restoran.servis.MenadzerRestoranaServis;
+import restoran.servis.PonudaPServis;
+import restoran.servis.PonudjacServis;
 import restoran.servis.RestoranServis;
 import scala.annotation.meta.setter;
 
@@ -31,15 +37,20 @@ import scala.annotation.meta.setter;
 @RequestMapping("/menadzer")
 public class MenadzerController {
 
-	// private final MenadzerRestoranaServis menadzerRestServis;
+	 private final MenadzerRestoranaServis menadzerRestServis;
 	// private HttpSession httpSession;
 	private RestoranServis restoranServis;
-
+    private final PonudaPServis ponudaPServis;
+    private final PonudjacServis ponudjacServis;
+	
+	
 	@Autowired
-	public MenadzerController(final RestoranServis restServis) {
-		// this.menadzerRestServis = servis;
+	public MenadzerController(final RestoranServis restServis,final MenadzerRestoranaServis servis, final PonudaPServis pservis,final PonudjacServis ponServis) {
+	   this.menadzerRestServis = servis;
 		// this.httpSession = httpSession;
 		this.restoranServis = restServis;
+		this.ponudaPServis = pservis;
+		this.ponudjacServis = ponServis;
 	}
 
 	@PutMapping(path = "/updateRest/{id}")
@@ -155,4 +166,60 @@ public class MenadzerController {
 		restoranServis.save(restaurant);
 	}
 
+<<<<<<< HEAD
+	@GetMapping("/menadzerPonude/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<List<PonudaP>> sveObjave(@PathVariable Long id) {
+	    
+		MenadzerRestorana mr = menadzerRestServis.findOne(id);
+	    List<PonudaP> pp = mr.getPonudaP();
+	
+	    return new ResponseEntity<>(pp, HttpStatus.OK);
+	}
+	
+	@PostMapping(path = "prihvatiPonudu/{id}/{id2}/{id3}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void prihvatiPonudu(@PathVariable Long id,@PathVariable Long id2,@PathVariable Long id3) {
+		MenadzerRestorana mr = menadzerRestServis.findOne(id2);
+		PonudaP pp = ponudaPServis.findOne(id);
+		Long ponudjacid = pp.getPonudjac_Id();
+	    Ponudjac p = ponudjacServis.findOne(ponudjacid);	
+	    
+	    List<PonudaP> ponude = mr.getPonudaP();
+	    List<PonudaP> pravep = null;
+	    
+	    for(int i=0;i<mr.getPonudaP().size();i++){
+	    	if(id3.equals(mr.getPonudaP().get(i).getObjava_ponude_Id())){
+	    		if(pp.equals(mr.getPonudaP().get(i))){
+	    			mr.getPonudaP().get(i).setPrihvati("prihvaceno");
+	    			mr.getPonudaP().remove(i);
+	    		}else{
+	    			mr.getPonudaP().get(i).setPrihvati("nije prihvaceno");
+	    			mr.getPonudaP().remove(i);
+	    		}
+	    	}
+	    }
+	    
+	    
+	    
+	    List<PonudaP> ponudepon = p.getPonuda();
+	    
+	    for(int i=0; i<p.getPonuda().size();i++){
+	    	if(pp.getId().equals(p.getPonuda().get(i).getId())){
+	    		p.getPonuda().get(i).setPrihvati("prihvaceno");
+	    	
+	    	}else{
+	    		System.out.println(pp.getId()+ "drugiiiiiiiiiiii");
+	    		System.out.println(p.getPonuda().get(i).getId()+ "prviiiiiiiiiii");
+	    		p.getPonuda().get(i).setPrihvati("nije prihvaceno");
+	     
+	    	}
+	    }
+	    menadzerRestServis.save(mr);
+	    ponudjacServis.save(p);
+	    
+	}
+	
+=======
+>>>>>>> ab6e575e3ce1d5670974339ad3ed4a375cb6be38
 }

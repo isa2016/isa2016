@@ -291,6 +291,11 @@ angular.module(
 						controller : 'ponudjacController'
 					})
 			
+					.state('ponudjac.objave', {
+						url : '/objave',
+						templateUrl : 'ponudjac/objavePonudjac.html',
+						controller : 'ponudjacController'
+					})
 			
 					.state('ponudjac.izmene', {
 						url : '/izmene',
@@ -298,7 +303,17 @@ angular.module(
 						controller : 'ponudjacController'
 					})
 					
+					.state('ponudjac.ponuda', {
+						url : '/ponuda',
+						templateUrl : 'ponudjac/ponudaPonudjac.html',
+						controller : 'ponudjacController'
+					})
 					
+					.state('ponudjac.ponude', {
+						url : '/ponude',
+						templateUrl : 'ponudjac/poslatePonudePonudjac.html',
+						controller : 'ponudjacController'
+					})
 					
 					.state('menadzerRestorana', {
 						url : '/menadzerRestorana',
@@ -372,6 +387,13 @@ angular.module(
 						controller : 'menadzerRestoranaController'
 					})
 
+					.state('menadzerRestorana.ponude', {
+						url : '/ponude',
+						templateUrl : 'menadzerRestorana/menadzerRestoranaPonude.html',
+						controller : 'menadzerRestoranaController'
+					})
+					
+					
 					.state(
 							'activation/:reg',
 							{
