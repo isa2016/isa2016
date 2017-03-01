@@ -226,21 +226,22 @@ public class Restoran {
 		this.br = br;
 	}
 
-<<<<<<< HEAD
+
 	public List<ObjavaPonude> getObjave() {
 		return objave;
 	}
 
 	public void setObjave(List<ObjavaPonude> objave) {
 		this.objave = objave;
-=======
+	}
+	
 	public List<Porudzbina> getPorudzbine() {
 		return porudzbine;
 	}
 
 	public void setPorudzbine(List<Porudzbina> porudzbine) {
 		this.porudzbine = porudzbine;
->>>>>>> ab6e575e3ce1d5670974339ad3ed4a375cb6be38
+
 	}
 
 	public List<Sto> getStolovi() {

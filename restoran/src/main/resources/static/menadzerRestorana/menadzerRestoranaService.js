@@ -100,11 +100,9 @@ services.service('menadzerRestoranaService', ['$http', function($http){
 		return $http.post("menadzer/ponudjac/"+rest.id,pon)
 	}
 	
-<<<<<<< HEAD
 	this.ucitajStolove = function(rest){
 		return $http.get("restoran/stolovi/"+rest.id)
 	}
-=======
 	this.posaljiObjavu = function(objava,pocetak,kraj,resto){
 		return $http.post("/restoran/restoranii/objavaPosalji/"+objava.id+"/"+pocetak+"/"+kraj+"/"+resto.id)
 	}
@@ -112,11 +110,9 @@ services.service('menadzerRestoranaService', ['$http', function($http){
 	this.prihvatiPonudu = function(porudzbina,menadzer){
 		return $http.post("/menadzer/prihvatiPonudu/"+porudzbina.id+"/"+menadzer.id+"/"+porudzbina.objava_ponude_Id)
 	}
-	
-	
+		
 	this.svePonudee = function(menadzer){
 		return $http.get("/menadzer/menadzerPonude/"+menadzer.id);
 	}
 	
->>>>>>> cf6049e450f0535ada95edf6420e09e9173c1847
 }]);

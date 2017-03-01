@@ -117,7 +117,7 @@ public class RestoranController {
 		
 	}
 	
-<<<<<<< HEAD
+
 	@GetMapping("/stolovi/{id}")
 	public ResponseEntity<List<Sto>> nadjiStolove(@PathVariable Long id) {
 		Restoran r =  restoranServis.findOne(id);	
@@ -125,7 +125,6 @@ public class RestoranController {
 		
 	}
 	
-=======
 	@GetMapping("/napraviO/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<ObjavaPonude> dodavanjeObjave(@PathVariable Long id) {
@@ -213,5 +212,5 @@ public class RestoranController {
 	    
 	    
 	}
->>>>>>> cf6049e450f0535ada95edf6420e09e9173c1847
+
 }

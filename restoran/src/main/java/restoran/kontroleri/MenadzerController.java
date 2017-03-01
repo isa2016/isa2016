@@ -166,7 +166,7 @@ public class MenadzerController {
 		restoranServis.save(restaurant);
 	}
 
-<<<<<<< HEAD
+
 	@GetMapping("/menadzerPonude/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<List<PonudaP>> sveObjave(@PathVariable Long id) {
@@ -220,6 +220,4 @@ public class MenadzerController {
 	    
 	}
 	
-=======
->>>>>>> ab6e575e3ce1d5670974339ad3ed4a375cb6be38
 }
