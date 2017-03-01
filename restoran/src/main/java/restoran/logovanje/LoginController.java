@@ -69,7 +69,6 @@ public class LoginController {
 		Korisnik k = null;
 		String userType = "";
 		Long id = 0l;
-		System.out.println(userInput.getMail() + "AAAAAAAAAAAAAAAAAAAAAAA" + userInput.getPassword() + "BBBBBBBBBBBBBBBBBBBB");
 		if (gostServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword()) != null) {
 			k = gostServis.findByMailAndPassword(userInput.getMail(), userInput.getPassword());
 			if (k.getRegistrovan().equals("1"))

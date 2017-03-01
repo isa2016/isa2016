@@ -2,6 +2,7 @@ package restoran.kontroleri;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpSession;
 
@@ -112,8 +113,8 @@ public class PrijateljiController {
 		Gost gost2 = gostServis.findOne(id);
 
 		Prijatelji p = prijateljiServis.findByPrimioZahtevAndPoslaoZahtev(gost, gost2);
-		p.setStatus(PrijateljstvoStatus.odbijen);
-		prijateljiServis.save(p);
+		// p.setStatus(PrijateljstvoStatus.odbijen);
+		prijateljiServis.delete(p.getId());
 	}
 
 	@PostMapping(path = "obrisi/{id}")
@@ -123,9 +124,12 @@ public class PrijateljiController {
 		Gost gost2 = gostServis.findOne(id);
 
 		Prijatelji p = prijateljiServis.findByPrimioZahtevAndPoslaoZahtev(gost, gost2);
-		// p.setStatus(PrijateljstvoStatus.odbijen);
-		// prijateljiServis.save(p);
-		prijateljiServis.delete(p.getId());
+		Prijatelji p2 = prijateljiServis.findByPrimioZahtevAndPoslaoZahtev(gost2, gost);
+		try {
+			prijateljiServis.delete(p.getId());
+		} catch (Exception e) {
+			prijateljiServis.delete(p2.getId());
+		}
 	}
 
 	@PostMapping(path = "dodaj/{id}")
@@ -140,20 +144,101 @@ public class PrijateljiController {
 
 	@GetMapping("/poImenu/{ime}")
 	public ResponseEntity<List<Gost>> pronadjiPoImenu(@PathVariable String ime) {
+		Gost gost = ((Gost) httpSession.getAttribute("korisnik"));
+		List<Gost> list = gostServis.findByIme(ime);
+		List<Gost> list2 = list;
 
-		return new ResponseEntity<>(gostServis.findByIme(ime), HttpStatus.OK);
+		for (Gost g : list) {
+			Prijatelji p = prijateljiServis.findByPrimioZahtevAndPoslaoZahtev(g, gost);
+			if (p != null) {
+				list2.remove(g);
+			}
+		}
+
+		for (Gost g : list) {
+			Prijatelji p = prijateljiServis.findByPrimioZahtevAndPoslaoZahtev(gost, g);
+			if (p != null) {
+				list2.remove(g);
+			}
+		}
+		if (list2.size() > 0) {
+			return new ResponseEntity<>(list2, HttpStatus.OK);
+		} else
+			throw new NoSuchElementException("Ne postoji");
 	}
 
 	@GetMapping("/poPrezimenu/{prezime}")
 	public ResponseEntity<List<Gost>> pronadjiPoPrezimenu(@PathVariable String prezime) {
 
-		return new ResponseEntity<>(gostServis.findByPrezime(prezime), HttpStatus.OK);
+		Gost gost = ((Gost) httpSession.getAttribute("korisnik"));
+		List<Gost> list = gostServis.findByPrezime(prezime);
+		List<Gost> list2 = list;
+
+		for (Gost g : list) {
+			Prijatelji p = prijateljiServis.findByPrimioZahtevAndPoslaoZahtev(g, gost);
+			if (p != null) {
+				list2.remove(g);
+			}
+		}
+
+		for (Gost g : list) {
+			Prijatelji p = prijateljiServis.findByPrimioZahtevAndPoslaoZahtev(gost, g);
+			if (p != null) {
+				list2.remove(g);
+			}
+		}
+		if (list2.size() > 0) {
+			return new ResponseEntity<>(list2, HttpStatus.OK);
+		} else
+			throw new NoSuchElementException("Ne postoji");
 	}
 
 	@GetMapping("/pronadji/{ime}/{prezime}")
 	public ResponseEntity<List<Gost>> pronadji(@PathVariable String ime, @PathVariable String prezime) {
 
-		return new ResponseEntity<>(gostServis.findByImeAndPrezime(ime, prezime), HttpStatus.OK);
+		Gost gost = ((Gost) httpSession.getAttribute("korisnik"));
+		List<Gost> list = gostServis.findByImeAndPrezime(ime, prezime);
+		List<Gost> list2 = list;
+
+		for (Gost g : list) {
+			Prijatelji p = prijateljiServis.findByPrimioZahtevAndPoslaoZahtev(g, gost);
+			if (p != null) {
+				list2.remove(g);
+			}
+		}
+
+		for (Gost g : list) {
+			Prijatelji p = prijateljiServis.findByPrimioZahtevAndPoslaoZahtev(gost, g);
+			if (p != null) {
+				list2.remove(g);
+			}
+		}
+		if (list2.size() > 0) {
+			return new ResponseEntity<>(list2, HttpStatus.OK);
+		} else
+			throw new NoSuchElementException("Ne postoji");
+	}
+
+	@GetMapping("/prijatelji")
+	public ResponseEntity<List<Gost>> sviPrijatelji() {
+		List<Gost> lista = new ArrayList<>();
+		Gost g = ((Gost) httpSession.getAttribute("korisnik"));
+		List<Prijatelji> p = prijateljiServis.findByPoslaoZahtev(g);
+		List<Prijatelji> p2 = prijateljiServis.findByPrimioZahtev(g);
+
+		for (Prijatelji pp : p) {
+			if (pp.getStatus() == PrijateljstvoStatus.prihvacen) {
+				lista.add(pp.getPrimioZahtev());
+			}
+		}
+
+		for (Prijatelji pp : p2) {
+			if (pp.getStatus() == PrijateljstvoStatus.prihvacen) {
+				lista.add(pp.getPoslaoZahtev());
+			}
+		}
+
+		return new ResponseEntity<>(lista, HttpStatus.OK);
 	}
 
 	@GetMapping("/broj")
@@ -161,9 +246,9 @@ public class PrijateljiController {
 
 		Gost g = ((Gost) httpSession.getAttribute("korisnik"));
 		int x = 0;
-		
-		for(Prijatelji p : prijateljiServis.findByPrimioZahtev(g)){
-			if(p.getStatus().equals(PrijateljstvoStatus.naCekanju)){
+
+		for (Prijatelji p : prijateljiServis.findByPrimioZahtev(g)) {
+			if (p.getStatus().equals(PrijateljstvoStatus.naCekanju)) {
 				x++;
 			}
 		}

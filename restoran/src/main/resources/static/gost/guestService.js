@@ -25,6 +25,10 @@ services.service('guestService', ['$http', function($http){
 		return $http.get("/guest/rezervacije/"+loggedUser.id);
 	}
 	
+	this.sveRez3 = function(loggedUser){
+		return $http.get("/guest/rezervacijee/"+loggedUser.id);
+	}
+	
 	this.sveRezervacije = function(loggedUser){
 		return $http.get("/guest/posete/"+loggedUser.id);
 	}
@@ -116,6 +120,22 @@ services.service('guestService', ['$http', function($http){
 	
 	this.brojZahteva = function(){
 		return $http.get("prijatelji/broj")
+	}
+	
+	this.sviPrijatelji = function(){
+		return $http.get("prijatelji/prijatelji")
+	}
+	
+	this.pozovii = function(rez) {
+		return $http.post("guest/pozovi",rez)
+	}
+	
+	this.prihvatiPoziv = function(rez,por) {
+		return $http.post("guest/prihvatiPoziv/"+rez.id+"/"+por.id)
+	}
+	
+	this.odbijPoziv = function(rez) {
+		return $http.post("guest/odbijPoziv/"+rez.id)
 	}
 
 }]);

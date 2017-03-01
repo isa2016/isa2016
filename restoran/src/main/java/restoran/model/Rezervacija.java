@@ -41,9 +41,13 @@ public class Rezervacija {
 	@Column
 	private Double duration;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(name = "Rezervacije", joinColumns = @JoinColumn(name = "Rezervacija_ID"), inverseJoinColumns = @JoinColumn(name = "Gost_ID"))
 	private List<Gost> gosti;
+	
+	@ManyToMany
+	@JoinTable(name = "Pozvani", joinColumns = @JoinColumn(name = "Rezervacija_ID"), inverseJoinColumns = @JoinColumn(name = "Gost_ID"))
+	private List<Gost> pozvani;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "Rezervacija_porudzbina", joinColumns = @JoinColumn(name = "Rezervacija_ID"), inverseJoinColumns = @JoinColumn(name = "Porudzbina_ID"))
@@ -116,6 +120,14 @@ public class Rezervacija {
 
 	public void setPorudzbine(List<Porudzbina> porudzbine) {
 		this.porudzbine = porudzbine;
+	}
+
+	public List<Gost> getPozvani() {
+		return pozvani;
+	}
+
+	public void setPozvani(List<Gost> pozvani) {
+		this.pozvani = pozvani;
 	}
 	
 	

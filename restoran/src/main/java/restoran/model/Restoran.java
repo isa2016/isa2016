@@ -207,5 +207,13 @@ public class Restoran {
 		this.br = br;
 	}
 
+	public List<Porudzbina> getPorudzbine() {
+		return porudzbine;
+	}
+
+	public void setPorudzbine(List<Porudzbina> porudzbine) {
+		this.porudzbine = porudzbine;
+	}
+
 	
 }

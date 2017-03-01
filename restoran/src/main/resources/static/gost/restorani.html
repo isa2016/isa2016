@@ -37,6 +37,7 @@
 
 
 <div ng-show="prikazi2">
+	<div style="position: absolute; top: 80px; left: 25px; width: 500px;">
 	<h3>Make a reservation</h3>
 	<form name="rez">
 		Restaurant : {{resttt.naziv}}<br></br> Date : <input type="date"
@@ -50,6 +51,42 @@
 		<button ng-click="potvrdaRezervacije()">Next</button>
 
 	</form>
+	</div>
+	
+	<div data-ng-init="sviPrijatelji()" style="position: absolute; top: 80px; left: 750px; width: 200px;">
+		<h3>Invite friends:</h3>
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Invite</th>
+				</tr>
+				<tr ng-repeat="p in ppp">
+					<td>{{p.ime}} {{p.prezime}}</td>
+					<td>
+						<button ng-click="pozoviPrijatelja(p)">Invite</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+	
+	<div data-ng-init="pozvaniF()" style="position: absolute; top: 80px; left: 970px; width: 200px;">
+		<h3>Invited:</h3>
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Name</th>
+				</tr>
+				<tr ng-repeat="p in pozvanii">
+					<td>{{p.ime}} {{p.prezime}}</td>
+
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
 </div>
 <div ng-show="prikazi3">
 	<div style="position: absolute; top: 80px; left: 25px; width: 500px;">
@@ -103,28 +140,15 @@
 					<td>{{hrana.cena}}</td>
 					<td><button ng-click="izbrisi(hrana, porudzbina)">X</button></td>
 				</tr>
-			</tbody>
-		</table>
-
-	</div>
-
-	<div style="position: absolute; top: 80px; left: 950px; width: 200px;">
-		<table class="table table-bordered tableBG" border="1">
-			<tbody>
-				<tr>
-					<th>Name</th>
-					<th>Price</th>
-					<th></th>
-				</tr>
 				<tr ng-repeat="pice in porudzbina.pice | orderBy:'text'">
 					<td>{{pice.naziv}}</td>
 					<td>{{pice.cena}}</td>
 					<td><button ng-click="izbrisiPice(pice, porudzbina)">X</button></td>
 				</tr>
+				
 			</tbody>
 		</table>
-		<button ng-click="rezervisi(porudzbina)">Confirm reservation</button>
-		</td>
+<button data-ng-click="rezervisi(porudzbina)">Confirm reservation</button>
 	</div>
 
 

@@ -83,6 +83,18 @@ angular.module(
 						controller : 'guestController'
 					})
 					
+					.state('gost.pozivi', {
+						url : '/pozivi',
+						templateUrl : 'gost/pozivi.html',
+						controller : 'guestController'
+					})
+					
+						.state('gost.naruci', {
+						url : '/naruci',
+						templateUrl : 'gost/naruci.html',
+						controller : 'guestController'
+					})
+					
 					.state('gost.rezervacije.detalji', {
 						url : '/detalji',
 						templateUrl : 'gost/detaljiRez.html',

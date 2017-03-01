@@ -1,6 +1,6 @@
 INSERT INTO gost(ime,prezime,mail,password,registrovan) VALUES ('Milos','Nisic','gost@gost.com','gost','1')
 INSERT INTO gost(ime,prezime,mail,password,registrovan) VALUES ('Djura','Djuric','gost2@gost2.com','gost2','1')
-INSERT INTO gost(ime,prezime,mail,password,registrovan) VALUES ('Nemam','Ideju','gost3@gost3.com','gost3','1')
+INSERT INTO gost(ime,prezime,mail,password,registrovan) VALUES ('Nemam','Ideju','mgvero94@gmail.com','gost3','1')
 INSERT INTO gost(ime,prezime,mail,password,registrovan) VALUES ('Nemam','Pojma','gost4@gost4.com','gost4','1')
 INSERT INTO restoran(naziv,opis,drzava,grad,ulica,ocena,br) VALUES('restoran1', 'opis', 'drzava', 'grad', 'ulica',0,0)
 INSERT INTO restoran(naziv,opis,drzava,grad,ulica,ocena,br) VALUES('restoran2', 'opis', 'drzava', 'grad', 'ulica',0,0)
