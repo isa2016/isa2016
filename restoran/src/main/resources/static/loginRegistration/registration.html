@@ -4,23 +4,23 @@
 <form  name = "registrationForm">
 
 <label>Firstname</label><br/>
-<input name = "name" type="text" class="form-control" ng-model = "$parent.gost.ime"  required><br/>
+<input name = "name" type="text" class="form-control" data-ng-model = "$parent.gost.ime"  required><br/>
 
 <label>Lastname</label><br/>
-<input type="text" class="form-control" ng-model = "$parent.gost.prezime"  required><br/> 
+<input type="text" class="form-control" data-ng-model = "$parent.gost.prezime"  required><br/> 
 
 <label>Email</label><br/>
-<input type="mail" class="form-control" ng-model = "$parent.gost.mail"  required><br/> 
+<input type="email" class="form-control" data-ng-model = "$parent.gost.mail"  required><br/> 
 
 <label>Password</label><br/>
-<input id="pass" type="password" class="form-control" ng-model = "$parent.gost.password" required></br>
+<input id="pass" type="password" class="form-control" data-ng-model = "$parent.gost.password" required><br/>
  
 <label>Repeat password</label><br/>
-<input id="passRepeat" type="password" class="form-control"  required></br><br/>
+<input id="passRepeat" type="password" class="form-control"  required><br><br/>
 
 
-<button class="btn btn-default" ng-click= "submitRegistration()" >Sign up </button>
-<button class="btn btn-default" ui-sref="login" >Cancel </button>
+<button class="btn btn-default" data-ng-click= "submitRegistration()" >Sign up </button>
+<button class="btn btn-default" data-ui-sref="login" >Cancel </button>
 
 </form>
 </div>

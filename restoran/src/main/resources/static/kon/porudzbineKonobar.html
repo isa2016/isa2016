@@ -26,7 +26,7 @@
 					<td>{{por.gost.mail}}</td>
 					<td>{{por.gost.ime}}</td>
 					<td><div ng-repeat="hr in por.hrana">
-							{{hr.naziv}}<div ng-hide="por.hranaStatus==='PREPARATION'"> <button ng-click="izbrisi(hr, por)">X</button></div><br>
+							{{hr.naziv}}<div ng-hide="por.hranaStatus==='PREPARATION' || por.hranaStatus==='FINISHED'"> <button ng-click="izbrisi(hr, por)">X</button></div><br>
 						</div></td>
 					<td>
 						<div ng-repeat="pi in por.pice">

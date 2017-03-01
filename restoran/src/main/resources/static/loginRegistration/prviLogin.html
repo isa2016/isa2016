@@ -1,15 +1,15 @@
  <form  name = "loginForm">
 
 <label>Email</label><br/>
-<input name = "email" type="mail" ng-model = "$parent.korisnik.mail" class="form-control"  required><br/>  
+<input name = "email" type="email" data-ng-model = "$parent.korisnik.mail" class="form-control"  required><br/>  
 
  <label>Password</label><br/>
- <input name = "password" type="password" ng-model = "$parent.korisnik.password" class="form-control"  required></br><br/>
+ <input name = "password" type="password" data-ng-model = "$parent.korisnik.password" class="form-control"  required><br><br/>
 
  <label>Repeat password</label><br/>
- <input name = "passwordRepeat" type="password"class="form-control"  required></br><br/>
+ <input name = "passwordRepeat" type="password"class="form-control"  required><br><br/>
 
-<button class="btn btn-default" ng-click="firstLogin()">Confirm </button>
+<button class="btn btn-default" data-ng-click="firstLogin()">Confirm </button>
 </form>
 
 
