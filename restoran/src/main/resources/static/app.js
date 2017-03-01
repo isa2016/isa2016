@@ -56,8 +56,6 @@ angular.module(
 						templateUrl : 'gost/prijatelji.html',
 						controller : 'guestController'
 					})
-					
-					
 
 					.state('gost.restorani', {
 						url : '/restorani',

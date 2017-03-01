@@ -53,6 +53,55 @@ app.controller('guestController', [
 				})
 
 			}
+			
+			$scope.findR = function(restaurant){
+				guestService.find(restaurant.id).then(
+					function(response){
+						myMap(restaurant);
+						if(restaurant.id != $scope.restaurantt.id){
+							$scope.restaurantt = [];
+							$location.path('/gost/mapa');
+						}
+						
+					},
+					function(response){
+						alert("Error while signal");
+					}
+					
+				);
+			}
+			
+			function myMap(restaurant) {
+				var mapProp= {
+				    zoom:15,
+				    mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				
+				var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+				pos = [];
+							
+				geocoder = new google.maps.Geocoder();
+				address = restaurant.ulica + " " + restaurant.grad + " , " + restaurant.drzava; 
+				geocoder.geocode( { 'address': address}, function(results, status) {
+				      if (status == 'OK') {
+				        map.setCenter(results[0].geometry.location);
+				        var marker = new google.maps.Marker({
+				            map: map,
+				            position: results[0].geometry.location
+				        });
+				        
+				        var flightPath = new google.maps.Polyline({
+						    path: [results[0].geometry.location, pos],
+						    strokeColor: "#0000FF",
+						    strokeOpacity: 0.8,
+						    strokeWeight: 2
+						  });
+				        flightPath.setMap(map);
+				      } else {
+				        alert('Lokacija nije pronadjena!');
+				      }
+				    });
+			}	
 
 			$scope.detalji = function(restoran) {
 				guestService.find(restoran.id).then(function(response) {
