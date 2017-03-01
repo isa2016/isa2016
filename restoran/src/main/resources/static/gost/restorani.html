@@ -5,16 +5,16 @@
 		<tbody>
 			<tr>
 				<th>Id</th>
-				<th>Name</th>
+				<th><a href ng-click="sortiraj='naziv'">Name</a></th>
 				<th>Description</th>
-				<th>Country</th>
+				<th><a href ng-click="sortiraj='drzava'">Country</a></th>
 				<th>City</th>
 				<th>Street</th>
 				<th>Menu</th>
 				<th>Reservate</th>
 
 			</tr>
-			<tr ng-repeat="restoran in restorani">
+			<tr ng-repeat="restoran in restorani|orderBy:sortiraj">
 				<td>{{restoran.id}}</td>
 				<td>{{restoran.naziv}}</td>
 				<td>{{restoran.opis}}</td>
