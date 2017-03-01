@@ -1,0 +1,100 @@
+<div data-ng-init="sveRez3()">
+<div data-ng-show="prikaz">
+<h3>Invitations:</h3>
+
+<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+	        <tr>
+				<th>Restaurant</th>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Duration</th>
+				<th>Accept</th>
+				<th>Decline</th>
+            </tr>
+			<tr data-ng-repeat="rezervacija in rezervacijee">
+				<td> 
+					{{rezervacija.restaurant.naziv}}
+				</td>
+				<td> 
+					{{rezervacija.date}}
+				</td>
+				<td>
+					{{rezervacija.hours}}:{{rezervacija.minutes}}
+				</td>
+				<td>
+					{{rezervacija.duration}}
+				</td>
+				<td>
+					<button data-ng-click="prihvatiPoziv(rezervacija)">Accept</button>
+				</td>
+				<td>
+					<button data-ng-click="odbijPoziv(rezervacija)">Decline</button>
+				</td>
+			</tr>
+		</tbody>
+    </table> 
+    </div>
+    <div data-ng-show="prikaz2">>
+    <div style="position: absolute; top: 80px; left: 25px; width: 500px;">
+		<h3>Food</h3>
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Order</th>
+				</tr>
+				<tr data-ng-repeat="jelo in restaurant.jelovnik">
+					<td>{{jelo.naziv}}</td>
+					<td>{{jelo.cena}}</td>
+					<td>
+						<button data-ng-click="dodajJelo(jelo)">Add to order</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br> <br> <br>
+		<h3>Drinks</h3>
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Order</th>
+				</tr>
+				<tr data-ng-repeat="pice in restaurant.kartaPica | orderBy:'text'">
+					<td>{{pice.naziv}}</td>
+					<td>{{pice.cena}}</td>
+					<td>
+						<button data-ng-click="dodajPice(pice)">Add to order</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="position: absolute; top: 80px; left: 750px; width: 200px;">
+		<table class="table table-bordered tableBG" border="1">
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th></th>
+				</tr>
+				<tr data-ng-repeat="hrana in porudzbina.hrana | orderBy:'text'">
+					<td>{{hrana.naziv}}</td>
+					<td>{{hrana.cena}}</td>
+					<td><button data-ng-click="izbrisi(hrana, porudzbina)">X</button></td>
+				</tr>
+				<tr data-ng-repeat="pice in porudzbina.pice | orderBy:'text'">
+					<td>{{pice.naziv}}</td>
+					<td>{{pice.cena}}</td>
+					<td><button data-ng-click="izbrisiPice(pice, porudzbina)">X</button></td>
+				</tr>
+				
+			</tbody>
+		</table><button data-ng-click="prihvatiPoziv2(porudzbina)">Confirm</button>
+	</div>
+    </div>
+    </div>

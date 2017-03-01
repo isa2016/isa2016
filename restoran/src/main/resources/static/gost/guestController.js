@@ -7,9 +7,21 @@ app.controller('guestController', [
 		'$location',
 		function($scope, $window, guestService, $location) {
 
-			function sviRestorani() {
+			$scope.sviRestorani = function() {
 				guestService.sviRestorani().then(function(response) {
 					$scope.restorani = response.data;
+				});
+			}
+			
+			$scope.sviPrijatelji = function() {
+				guestService.sviPrijatelji().then(function(response) {
+					$scope.ppp = response.data;
+				});
+			}
+			
+			function brojZahteva(){
+				guestService.brojZahteva().then(function(response){
+					$scope.broj = response.data;
 				});
 			}
 
@@ -17,10 +29,10 @@ app.controller('guestController', [
 				guestService.getLoggedUser().then(function(response) {
 					$scope.loggedUser = response.data;
 				});
+				brojZahteva();
 				$scope.prikazi = "true";
 				$scope.prikazi2 = "false";
 				$scope.prikazi3 = "false";
-				sviRestorani();
 			}
 
 			$scope.update = function() {
@@ -41,6 +53,55 @@ app.controller('guestController', [
 				})
 
 			}
+			
+			$scope.findR = function(restaurant){
+				guestService.find(restaurant.id).then(
+					function(response){
+						myMap(restaurant);
+						if(restaurant.id != $scope.restaurantt.id){
+							$scope.restaurantt = [];
+							$location.path('/gost/mapa');
+						}
+						
+					},
+					function(response){
+						alert("Error while signal");
+					}
+					
+				);
+			}
+			
+			function myMap(restaurant) {
+				var mapProp= {
+				    zoom:15,
+				    mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				
+				var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+				pos = [];
+							
+				geocoder = new google.maps.Geocoder();
+				address = restaurant.ulica + " " + restaurant.grad + " , " + restaurant.drzava; 
+				geocoder.geocode( { 'address': address}, function(results, status) {
+				      if (status == 'OK') {
+				        map.setCenter(results[0].geometry.location);
+				        var marker = new google.maps.Marker({
+				            map: map,
+				            position: results[0].geometry.location
+				        });
+				        
+				        var flightPath = new google.maps.Polyline({
+						    path: [results[0].geometry.location, pos],
+						    strokeColor: "#0000FF",
+						    strokeOpacity: 0.8,
+						    strokeWeight: 2
+						  });
+				        flightPath.setMap(map);
+				      } else {
+				        alert('Lokacija nije pronadjena!');
+				      }
+				    });
+			}	
 
 			$scope.detalji = function(restoran) {
 				guestService.find(restoran.id).then(function(response) {
@@ -56,11 +117,12 @@ app.controller('guestController', [
 			}
 
 			$scope.izbrisiPice = function(pice, porudzbina) {
-				guestService.izbrisiPice(pice, porudzbina).then(function(response) {
-					$scope.porudzbina = response.data;
-				});
+				guestService.izbrisiPice(pice, porudzbina).then(
+						function(response) {
+							$scope.porudzbina = response.data;
+						});
 			}
-			
+
 			$scope.detaljiRez = function(rez) {
 				guestService.findRez(rez.id).then(function(response) {
 					$scope.porr = response.data;
@@ -79,27 +141,44 @@ app.controller('guestController', [
 					$scope.rezervacije = response.data;
 				});
 			}
-
-			$scope.posete = function() {
-				guestService.sveRezervacije($scope.loggedUser).then(function(response) {
-					$scope.posete = response.data;
+			
+			$scope.sveRez3 = function() {
+				guestService.sveRez3($scope.loggedUser).then(function(response) {
+					$scope.rezervacijee = response.data;
+					$scope.prikaz = "true";
+					$scope.prikaz2 = "false";
 				});
 			}
 			
+			function sveRez4() {
+				guestService.sveRez3($scope.loggedUser).then(function(response) {
+					$scope.rezervacijee = response.data;
+					$scope.prikaz = "true";
+					$scope.prikaz2 = "false";
+				});
+			}
+
+			$scope.posete = function() {
+				guestService.sveRezervacije($scope.loggedUser).then(
+						function(response) {
+							$scope.posete = response.data;
+						});
+			}
+
 			$scope.ocena = function(rez) {
 				guestService.findRez(rez.id).then(function(response) {
 					$scope.porr = response.data;
 					$location.path('/gost/posete/ocene');
 				})
 			}
-		
-			$scope.ocenaKraj = function(ocena,porr) {
+
+			$scope.ocenaKraj = function(ocena, porr) {
 				guestService.setOcena(ocena, porr.id).then(function(response) {
-					
+
 					$location.path('/gost/profil');
 				})
 			}
-			
+
 			$scope.potvrdaRezervacije = function() {
 				$scope.prikazi = "false";
 				$scope.prikazi2 = "false";
@@ -133,19 +212,139 @@ app.controller('guestController', [
 				}
 
 			}
+			
+			var pozvani = [];
+			$scope.pozoviPrijatelja = function(prijatelj) {
+				pozvani.push(prijatelj);
+			}
+			
+			$scope.pozvaniF = function() {
+				$scope.pozvanii = pozvani;
+			}
 
 			$scope.rezervisi = function(porudzbina) {
 				if (porudzbina !== undefined) {
+					$scope.rezervacija.pozvani = pozvani;
+					$scope.rezervacija.restaurant = $scope.resttt;
+					guestService.pozovii($scope.rezervacija);
 					guestService.potvrda(porudzbina, $scope.rezervacija,
 							$scope.resttt).then(function(response) {
 						$location.path('/gost/rezervacije');
 					});
+					
 				} else {
+					$scope.rezervacija.pozvani = pozvani;
+					$scope.rezervacija.restaurant = $scope.resttt;
+					guestService.pozovii($scope.rezervacija);
 					guestService.potvrda2($scope.rezervacija, $scope.resttt)
 							.then(function(response) {
 								$location.path('/gost/rezervacije');
 							});
 				}
+			}
+
+			$scope.zahtevi = function() {
+				guestService.prijatelji().then(function(response) {
+					$scope.prijatelji2 = response.data;
+				});
+				guestService.primljeniZahtevi().then(function(response) {
+					$scope.prijatelji = response.data;
+				});
+				guestService.poslatiZahtevi().then(function(response) {
+					$scope.prijatelji3 = response.data;
+				});
+				
+				brojZahteva();
+
+			}
+
+			function zahtevi2() {
+				guestService.primljeniZahtevi().then(function(response) {
+					$scope.prijatelji = response.data;
+				});
+				guestService.prijatelji().then(function(response) {
+					$scope.prijatelji2 = response.data;
+				});
+				guestService.poslatiZahtevi().then(function(response) {
+					$scope.prijatelji3 = response.data;
+				});
+				
+				brojZahteva();
+			}
+
+			$scope.prihvati = function(prijatelj) {
+				guestService.prihvati(prijatelj).then(function(response) {
+					zahtevi2();
+					$location.path('/gost/prijatelji');
+				});
+			}
+
+			$scope.odbij = function(prijatelj) {
+				guestService.odbij(prijatelj).then(function(response) {
+					zahtevi2();
+				});
+			}
+
+			$scope.obrisi = function(prijatelj) {
+				guestService.obrisi(prijatelj).then(function(response) {
+					zahtevi2();
+				});
+			}
+
+			$scope.pronadjiGosta = function() {
+				if (($scope.firstName !== undefined && $scope.firstName!=="") && ($scope.lastName === undefined || $scope.lastName==="")) {
+					guestService.pronadjiGostaPoImenu($scope.firstName).then(
+							function(response) {
+								$scope.gosttt = response.data;
+							},function(response) {
+								alert("Ne postoji korisnik sa tim parametrima.");
+							});
+				} else if (($scope.firstName === undefined || $scope.firstName === "") && ($scope.lastName !== undefined && $scope.lastName !== "")) {
+					guestService.pronadjiGostaPoPrezimenu($scope.lastName).then(
+							function(response) {
+								$scope.gosttt = response.data;
+							},function(response) {
+								alert("Ne postoji korisnik sa tim parametrima.");
+							});
+				} else if ($scope.firstName !== undefined && $scope.firstName !== "" && $scope.lastName !== undefined &&  $scope.lastName !== "") {
+					guestService.pronadjiGosta($scope.firstName,$scope.lastName).then(function(response) {
+						$scope.gosttt = response.data;
+					},function(response) {
+						alert("Ne postoji korisnik sa tim parametrima.");
+					});
+				}else{
+					$scope.gosttt = undefined;
+				}
+			}
+			
+			$scope.dodaj = function(gost){
+				guestService.dodaj(gost).then(function(response){
+					$location.path('/gost/prijatelji');
+				});
+			}
+			
+			
+			$scope.prihvatiPoziv = function(rez){
+				guestService.find(rez.restaurant.id).then(function(response){
+					$scope.restaurant = response.data;
+					$scope.rezer = rez;
+					$scope.prikaz = "false";
+					$scope.prikaz2 = "true";
+				});
+			}
+			
+			$scope.prihvatiPoziv2 = function(por){
+				guestService.prihvatiPoziv($scope.rezer,por).then(function(response){
+					$scope.prikaz = "true";
+					$scope.prikaz2 = "false";
+					$location.path('/gost/rezervacije');
+				});
+			}
+			
+			$scope.odbijPoziv = function(rez){
+				guestService.odbijPoziv(rez).then(function(response){
+					sveRez4();
+				});
 			}
 
 		} ]);

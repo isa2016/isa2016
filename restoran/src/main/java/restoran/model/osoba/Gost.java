@@ -18,6 +18,7 @@ public class Gost extends Korisnik {
 	@Column(name = "Gost_ID")
 	private Long id;
 
+
 	public Long getId() {
 		return id;
 	}
@@ -26,4 +27,10 @@ public class Gost extends Korisnik {
 		this.id = id;
 	}
 
+	public Gost() {
+		super();
+	}
+
+
+	
 }

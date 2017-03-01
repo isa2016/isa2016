@@ -56,8 +56,6 @@ angular.module(
 						templateUrl : 'gost/prijatelji.html',
 						controller : 'guestController'
 					})
-					
-					
 
 					.state('gost.restorani', {
 						url : '/restorani',
@@ -80,6 +78,18 @@ angular.module(
 					.state('gost.rezervacije', {
 						url : '/rezervacije',
 						templateUrl : 'gost/rezervacije.html',
+						controller : 'guestController'
+					})
+					
+					.state('gost.pozivi', {
+						url : '/pozivi',
+						templateUrl : 'gost/pozivi.html',
+						controller : 'guestController'
+					})
+					
+						.state('gost.naruci', {
+						url : '/naruci',
+						templateUrl : 'gost/naruci.html',
 						controller : 'guestController'
 					})
 					
@@ -130,6 +140,18 @@ angular.module(
 						templateUrl : 'kon/porudzbineKonobar.html',
 						controller : 'konController'
 					})
+					
+					.state('konobar.novaPorudzbina', {
+						url : '/novaPorudzbina',
+						templateUrl : 'kon/novaPorudzbina.html',
+						controller : 'konController'
+					})
+					
+					.state('konobar.izmenaPorudzbina', {
+						url : '/izmenaPorudzbina',
+						templateUrl : 'kon/izmenaPorudzbina.html',
+						controller : 'konController'
+					})
 
 					.state('konobar.profil', {
 						url : '/profil',
@@ -140,6 +162,12 @@ angular.module(
 					.state('konobar.izmena', {
 						url : '/izmena',
 						templateUrl : 'kon/izmenaKonobar.html',
+						controller : 'konController'
+					})
+					
+					.state('konobar.racun', {
+						url : '/racun',
+						templateUrl : 'kon/racun.html',
 						controller : 'konController'
 					})
 

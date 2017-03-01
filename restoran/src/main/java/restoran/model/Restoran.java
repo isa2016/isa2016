@@ -57,6 +57,10 @@ public class Restoran {
 	private List<MenadzerRestorana> menadzeriRestorana;
 	
 	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "Restoran_i_porudzbine", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Porudzbina_ID"))
+	private List<Porudzbina> porudzbine;
+	
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "Jelovnik", joinColumns = @JoinColumn(name = "Restoran_ID"), inverseJoinColumns = @JoinColumn(name = "Jelo_ID"))
 	public List<Jelo> jelovnik = new ArrayList<>();
 	
@@ -211,12 +215,21 @@ public class Restoran {
 		this.br = br;
 	}
 
+<<<<<<< HEAD
 	public List<ObjavaPonude> getObjave() {
 		return objave;
 	}
 
 	public void setObjave(List<ObjavaPonude> objave) {
 		this.objave = objave;
+=======
+	public List<Porudzbina> getPorudzbine() {
+		return porudzbine;
+	}
+
+	public void setPorudzbine(List<Porudzbina> porudzbine) {
+		this.porudzbine = porudzbine;
+>>>>>>> ab6e575e3ce1d5670974339ad3ed4a375cb6be38
 	}
 
 	

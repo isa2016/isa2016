@@ -28,7 +28,6 @@ import restoran.servis.MenadzerRestoranaServis;
 import restoran.servis.ObjavaPonudeServis;
 import restoran.servis.PonudaPServis;
 import restoran.servis.PonudjacServis;
-import restoran.servis.RestoranServis;
 
 
 @RestController
@@ -38,6 +37,7 @@ public class PonudjacController {
 
 	private final PonudjacServis ponudjacServis;
 	private HttpSession httpSession;
+<<<<<<< HEAD
     private RestoranServis restoranServis;   
     private final MenadzerRestoranaServis mrServis;
 	private final PonudaPServis ponudaPServis;
@@ -51,6 +51,15 @@ public class PonudjacController {
 		this.mrServis = mRServis;
 		this.ponudaPServis = pServis;
 		this.objavaPonudeServis = ops;
+=======
+    //private RestoranServis restoranServis;   
+	
+	@Autowired
+	public PonudjacController(final HttpSession httpSession, final PonudjacServis servis) {
+		this.ponudjacServis = servis;
+		this.httpSession = httpSession;
+		//this.restoranServis = restServis;	
+>>>>>>> ab6e575e3ce1d5670974339ad3ed4a375cb6be38
 	}
      
 	
@@ -58,7 +67,6 @@ public class PonudjacController {
 	@ResponseStatus(HttpStatus.OK)
 	public Ponudjac update(@PathVariable Long id, @Valid @RequestBody Ponudjac ponudjac) {
 	 	
-		System.out.println("AJDEEEEEEEEEEEEEEEEEEE");
 		Optional.ofNullable(ponudjacServis.findOne(id))
 				.orElseThrow(() -> new ResourceNotFoundException("Resource Not Found!"));
 		ponudjac.setId(id);

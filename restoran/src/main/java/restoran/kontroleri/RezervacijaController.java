@@ -60,9 +60,7 @@ public class RezervacijaController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public void setOcena(@PathVariable Long id,@PathVariable String ocenee) {
 		
-		System.out.println(ocenee);
 		int ocena = Integer.parseInt(ocenee);
-		System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCC");
 		
 		
 		Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
@@ -75,10 +73,7 @@ public class RezervacijaController {
 				p1=p;
 			}
 		}
-		
-		
-		
-	    
+    
 		
 		for(int i=0; i<p1.getHrana().size();i++){
 		  Long je = p1.getHrana().get(i).getId();
@@ -111,8 +106,6 @@ public class RezervacijaController {
 		    double ocen = ((r.getRestaurant().getOcena() * r.getRestaurant().getBr()) + ocena) / (r.getRestaurant().getBr()+1);
 		    r.getRestaurant().setBr(r.getRestaurant().getBr()+1);
 		    r.getRestaurant().setOcena((int) ocen);
-		    
-		    System.out.println(r.getRestaurant().getOcena());
 		    
 		    restoranServis.save(r.getRestaurant());
 	}

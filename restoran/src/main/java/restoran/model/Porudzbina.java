@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 import restoran.enumeracije.HranaStatus;
 import restoran.enumeracije.PiceStatus;
+import restoran.enumeracije.PorudzbinaStatus;
 import restoran.model.osoba.Gost;
 
 @Data
@@ -53,9 +54,21 @@ public class Porudzbina {
 
 	@Enumerated(EnumType.STRING)
 	@Column
+	private PorudzbinaStatus porudzbinaStatus;
+
+	@Enumerated(EnumType.STRING)
+	@Column
 	private PiceStatus piceStatus;
 
 	private Long restoranId;
+
+	public PorudzbinaStatus getPorudzbinaStatus() {
+		return porudzbinaStatus;
+	}
+
+	public void setPorudzbinaStatus(PorudzbinaStatus porudzbinaStatus) {
+		this.porudzbinaStatus = porudzbinaStatus;
+	}
 
 	public Long getRestoranId() {
 		return restoranId;
@@ -64,7 +77,7 @@ public class Porudzbina {
 	public void setRestoranId(Long restoranId) {
 		this.restoranId = restoranId;
 	}
-	
+
 	public HranaStatus getHranaStatus() {
 		return hranaStatus;
 	}
@@ -80,7 +93,6 @@ public class Porudzbina {
 	public void setPiceStatus(PiceStatus piceStatus) {
 		this.piceStatus = piceStatus;
 	}
-
 
 	public Long getId() {
 		return id;

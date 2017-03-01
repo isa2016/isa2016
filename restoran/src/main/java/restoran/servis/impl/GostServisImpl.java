@@ -63,4 +63,22 @@ public class GostServisImpl implements GostServis {
 		gost.setRegistrovan("1");
 	}
 
+	@Override
+	public List<Gost> findByIme(String ime) {
+		// TODO Auto-generated method stub
+		return gostRep.findByIme(ime);
+	}
+
+	@Override
+	public List<Gost> findByPrezime(String prezime) {
+		// TODO Auto-generated method stub
+		return gostRep.findByPrezime(prezime);
+	}
+
+	@Override
+	public List<Gost> findByImeAndPrezime(String ime, String prezime) {
+		// TODO Auto-generated method stub
+		return gostRep.findByImeAndPrezime(ime, prezime);
+	}
+
 }

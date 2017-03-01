@@ -5,5 +5,30 @@ Surname: {{loggedUser.prezime}} <br></br>
 Email: {{loggedUser.mail}} <br></br>
 
 <a ui-sref="gost.izmena">Modify</a>
-
 </div>
+
+<div style="position: absolute; top: 80px; left: 500px; width: 300px;">
+<h3>Find:</h3>
+ <form>
+		<input type="text" name="name" data-ng-model="$parent.firstName" placeholder="First name">
+		<input type="text" name="name" data-ng-model="$parent.lastName" placeholder="Last name"> 
+		<br> <br> <input type="submit" value="Find"
+			data-ng-click="pronadjiGosta()"> 
+
+	</form>
+	<br></br>
+	<table  class="table table-bordered tableBG" border="1">
+		<tbody>
+			<tr data-ng-repeat="g in gosttt">
+				<td> 
+					{{g.ime}} {{g.prezime}}
+				</td>
+				<td><input type="submit" value="Add friend"
+				data-ng-click="dodaj(g)"></td>
+
+			</tr>
+		</tbody>
+    </table> 
+</div>
+
+

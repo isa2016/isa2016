@@ -31,6 +31,7 @@ import restoran.servis.MenadzerRestoranaServis;
 import restoran.servis.PonudaPServis;
 import restoran.servis.PonudjacServis;
 import restoran.servis.RestoranServis;
+import scala.annotation.meta.setter;
 
 @RestController
 @RequestMapping("/menadzer")
@@ -75,6 +76,7 @@ public class MenadzerController {
 		return null;
 	}
 
+
 	@GetMapping(path = "nadji/{id}/{ime}")
 	public Jelo jelo(@PathVariable Long id, @PathVariable String ime) {
 		Jelo p = null;
@@ -107,74 +109,64 @@ public class MenadzerController {
 		return pi;
 	}
 	
-	
-	//JE L' SE OVDE DODAJE KONOBAR ILI RESTORAN?
-	
-	@PostMapping(path = "/{id}")
-	@ResponseStatus(HttpStatus.CREATED)
-	public void dodajKonobara(@Valid @RequestBody Kuvar cook, Long id) {
 
-		Restoran restaurant = restoranServis.findOne(id);
-		// restaurant.getKuvari().add(cook);
-		restoranServis.save(restaurant);
-	}
-
-	
 	@PostMapping(path = "jelo/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void dodajJelo(@PathVariable Long id,@Valid @RequestBody Jelo jelo) {
+	public void dodajJelo(@PathVariable Long id, @Valid @RequestBody Jelo jelo) {
 
 		Restoran restaurant = restoranServis.findOne(id);
+		
 		restaurant.getJelovnik().add(jelo);
 		restoranServis.save(restaurant);
 	}
-	
+
 	@PostMapping(path = "pice/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void dodajPice(@PathVariable Long id,@Valid @RequestBody Pice pice) {
+	public void dodajPice(@PathVariable Long id, @Valid @RequestBody Pice pice) {
 		Restoran restaurant = restoranServis.findOne(id);
 		restaurant.getKartaPica().add(pice);
 		restoranServis.save(restaurant);
 	}
-	
+
 	@PostMapping(path = "kuvar/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void dodajKuvara(@PathVariable Long id,@Valid @RequestBody Kuvar kuvar) {
+	public void dodajKuvara(@PathVariable Long id, @Valid @RequestBody Kuvar kuvar) {
 		Restoran restaurant = restoranServis.findOne(id);
 		kuvar.setRegistrovan("0");
 		kuvar.setRestoranId(id);
 		restaurant.getKuvari().add(kuvar);
 		restoranServis.save(restaurant);
 	}
-	
+
 	@PostMapping(path = "konobar/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void dodajKonobara(@PathVariable Long id,@Valid @RequestBody Konobar konobar) {
+	public void dodajKonobara(@PathVariable Long id, @Valid @RequestBody Konobar konobar) {
 		Restoran restaurant = restoranServis.findOne(id);
 		konobar.setRegistrovan("0");
 		konobar.setRestoranId(id);
 		restaurant.getKonobari().add(konobar);
 		restoranServis.save(restaurant);
 	}
-	
+
 	@PostMapping(path = "sanker/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void dodajSankera(@PathVariable Long id,@Valid @RequestBody Sanker sanker) {
+	public void dodajSankera(@PathVariable Long id, @Valid @RequestBody Sanker sanker) {
 		Restoran restaurant = restoranServis.findOne(id);
 		sanker.setRegistrovan("0");
 		sanker.setRestoranId(id);
 		restaurant.getSankeri().add(sanker);
 		restoranServis.save(restaurant);
 	}
-	
+
 	@PostMapping(path = "ponudjac/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void registrujPonudjaca(@PathVariable Long id,@Valid @RequestBody Ponudjac ponudjac) {
+	public void registrujPonudjaca(@PathVariable Long id, @Valid @RequestBody Ponudjac ponudjac) {
 		Restoran restaurant = restoranServis.findOne(id);
 		restaurant.getPonudjaci().add(ponudjac);
 		restoranServis.save(restaurant);
 	}
 
+<<<<<<< HEAD
 	@GetMapping("/menadzerPonude/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<List<PonudaP>> sveObjave(@PathVariable Long id) {
@@ -228,4 +220,6 @@ public class MenadzerController {
 	    
 	}
 	
+=======
+>>>>>>> ab6e575e3ce1d5670974339ad3ed4a375cb6be38
 }

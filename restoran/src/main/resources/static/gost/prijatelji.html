@@ -1,0 +1,61 @@
+<div data-ng-init="zahtevi()">
+
+<div style="position: absolute; top: 80px; left: 25px; width: 300px;">
+<h2>Friends: </h2>
+<table class="table table-bordered tableBG" border="1">
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<th>Delete</th>
+			</tr>
+			<tr data-ng-repeat="prijatelj2 in prijatelji2">
+				<td>{{prijatelj2.ime}} {{prijatelj2.prezime}}</td>
+
+				<td>
+					<button ng-click="obrisi(prijatelj2)">Delete</button>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		</div>
+
+<div style="position: absolute; top: 80px; left: 400px; width: 300px;">
+<h2>Requests: </h2>
+<table class="table table-bordered tableBG" border="1">
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<th>Accept</th>
+				<th>Decline</th>
+
+			</tr>
+			<tr data-ng-repeat="prijatelj in prijatelji">
+				<td>{{prijatelj.ime}} {{prijatelj.prezime}}</td>
+
+				<td>
+					<button ng-click="prihvati(prijatelj)">Accept</button>
+				</td>
+				<td>
+					<button ng-click="odbij(prijatelj)">Decline</button>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		</div>
+		
+<div style="position: absolute; top: 80px; left: 800px; width: 220px;">
+<h2>Sent requests: </h2>
+<table class="table table-bordered tableBG" border="1">
+		<tbody>
+			<tr>
+				<th>Name</th>
+			</tr>
+			<tr data-ng-repeat="prijatelj3 in prijatelji3">
+				<td>{{prijatelj3.ime}} {{prijatelj3.prezime}}</td>
+
+			</tr>
+		</tbody>
+		</table>
+		</div>
+
+</div>

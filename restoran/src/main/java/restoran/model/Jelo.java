@@ -1,12 +1,16 @@
 package restoran.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import restoran.enumeracije.StatusJela;
+import restoran.enumeracije.TipJela;
 
 @Data
 @Entity
@@ -26,15 +30,38 @@ public class Jelo {
 	@Column(name = "cena", nullable = false)
 	private Double cena;
 
+	@Enumerated(EnumType.STRING)
+	@NotNull
+	@Column
+	private TipJela tipJela;
+
+	@Enumerated(EnumType.STRING)
+	private StatusJela statusJela;
+	
+	public StatusJela getStatusJela() {
+		return statusJela;
+	}
+
+	public void setStatusJela(StatusJela statusJela) {
+		this.statusJela = statusJela;
+	}
+
 	@Column(name = "ocena", nullable = true)
 	private Double ocena;
 
 	@Column
 	public int brojac;
 
-	
 	public Jelo() {
 		super();
+	}
+
+	public TipJela getTipJela() {
+		return tipJela;
+	}
+
+	public void setTipJela(TipJela tipJela) {
+		this.tipJela = tipJela;
 	}
 
 	public String getNaziv() {
@@ -85,5 +112,4 @@ public class Jelo {
 		this.brojac = brojac;
 	}
 
-	
 }
