@@ -37,7 +37,7 @@ public class Jelo {
 
 	@Enumerated(EnumType.STRING)
 	private StatusJela statusJela;
-	
+
 	public StatusJela getStatusJela() {
 		return statusJela;
 	}

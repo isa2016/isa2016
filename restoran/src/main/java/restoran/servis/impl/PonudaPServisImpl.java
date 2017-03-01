@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import restoran.model.PonudaP;
-import restoran.model.Porudzbina;
 import restoran.repozitorijum.PonudaPRep;
 import restoran.servis.PonudaPServis;
 

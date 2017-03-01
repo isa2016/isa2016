@@ -18,12 +18,11 @@ import lombok.Data;
 @Entity
 public class ObjavaPonude {
 
-	
 	@Id
 	@GeneratedValue
 	@Column(name = "Objava_ponude_ID")
 	private Long id;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "Objava_ponude_pica", joinColumns = @JoinColumn(name = "Objava_ponude_ID"), inverseJoinColumns = @JoinColumn(name = "Pice_ID"))
 	private List<Pice> pice;
@@ -34,14 +33,12 @@ public class ObjavaPonude {
 
 	@Column
 	private String pocetakVazenja;
-	
+
 	@Column
 	private String krajaVazenja;
-	
+
 	private Long restoranID;
-	
-	
-	
+
 	public Long getRestoranID() {
 		return restoranID;
 	}
@@ -78,7 +75,7 @@ public class ObjavaPonude {
 		super();
 		// TODO Auto-generated constructor stub
 		this.hrana = new ArrayList<Jelo>();
-        this.pice = new ArrayList<Pice>();	
+		this.pice = new ArrayList<Pice>();
 	}
 
 	public String getPocetakVazenja() {
@@ -96,7 +93,5 @@ public class ObjavaPonude {
 	public void setKrajaVazenja(String krajaVazenja) {
 		this.krajaVazenja = krajaVazenja;
 	}
-	
-	
-	
+
 }

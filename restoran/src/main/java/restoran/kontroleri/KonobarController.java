@@ -27,15 +27,12 @@ import restoran.model.Jelo;
 import restoran.model.Pice;
 import restoran.model.Porudzbina;
 import restoran.model.Restoran;
-import restoran.model.Rezervacija;
-import restoran.model.osoba.Gost;
 import restoran.model.osoba.Konobar;
 import restoran.servis.JeloServis;
 import restoran.servis.KonobarServis;
 import restoran.servis.PiceServis;
 import restoran.servis.PorudzbinaServis;
 import restoran.servis.RestoranServis;
-import restoran.servis.RezervacijaServis;
 
 @RestController
 @RequestMapping("/konobar")
@@ -44,18 +41,16 @@ public class KonobarController {
 	private final KonobarServis ks;
 	private HttpSession session;
 	private final RestoranServis rs;
-	private final RezervacijaServis rezS;
 	private final PorudzbinaServis ps;
 	private final PiceServis piceServis;
 	private final JeloServis jeloServis;
 
 	@Autowired
-	public KonobarController(final PiceServis piceServis, final JeloServis jeloServis, final RezervacijaServis rezS,
-			final KonobarServis ks, HttpSession session, final RestoranServis rs, final PorudzbinaServis ps) {
+	public KonobarController(final PiceServis piceServis, final JeloServis jeloServis, final KonobarServis ks,
+			HttpSession session, final RestoranServis rs, final PorudzbinaServis ps) {
 		this.ks = ks;
 		this.session = session;
 		this.rs = rs;
-		this.rezS = rezS;
 		this.ps = ps;
 		this.piceServis = piceServis;
 		this.jeloServis = jeloServis;
@@ -183,7 +178,7 @@ public class KonobarController {
 		System.out.println("djesuuu?");
 		return p;
 	}
-	
+
 	@GetMapping("/porudzbineJelo/{id}/{id2}")
 	public ResponseEntity<Porudzbina> dodajJ(@PathVariable Long id, @PathVariable Long id2) {
 		Jelo j = jeloServis.findOne(id);

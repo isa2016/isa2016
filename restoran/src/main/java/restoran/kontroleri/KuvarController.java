@@ -20,12 +20,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import restoran.enumeracije.HranaStatus;
-import restoran.enumeracije.PiceStatus;
 import restoran.model.Porudzbina;
 import restoran.model.osoba.Kuvar;
 import restoran.servis.KuvarServis;
 import restoran.servis.PorudzbinaServis;
-import restoran.servis.RestoranServis;
 
 @RestController
 @RequestMapping("/kuvar")
@@ -33,13 +31,10 @@ public class KuvarController {
 	private final KuvarServis ks;
 	private HttpSession session;
 	private PorudzbinaServis ps;
-	private RestoranServis rs;
 
 	@Autowired
-	public KuvarController(final RestoranServis rs, final PorudzbinaServis ps, final KuvarServis ks,
-			HttpSession session) {
+	public KuvarController(final PorudzbinaServis ps, final KuvarServis ks, HttpSession session) {
 		this.ks = ks;
-		this.rs = rs;
 		this.ps = ps;
 		this.session = session;
 	}

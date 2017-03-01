@@ -31,23 +31,20 @@ import restoran.servis.MenadzerRestoranaServis;
 import restoran.servis.PonudaPServis;
 import restoran.servis.PonudjacServis;
 import restoran.servis.RestoranServis;
-import scala.annotation.meta.setter;
 
 @RestController
 @RequestMapping("/menadzer")
 public class MenadzerController {
 
-	 private final MenadzerRestoranaServis menadzerRestServis;
-	// private HttpSession httpSession;
+	private final MenadzerRestoranaServis menadzerRestServis;
 	private RestoranServis restoranServis;
-    private final PonudaPServis ponudaPServis;
-    private final PonudjacServis ponudjacServis;
-	
-	
+	private final PonudaPServis ponudaPServis;
+	private final PonudjacServis ponudjacServis;
+
 	@Autowired
-	public MenadzerController(final RestoranServis restServis,final MenadzerRestoranaServis servis, final PonudaPServis pservis,final PonudjacServis ponServis) {
-	   this.menadzerRestServis = servis;
-		// this.httpSession = httpSession;
+	public MenadzerController(final RestoranServis restServis, final MenadzerRestoranaServis servis,
+			final PonudaPServis pservis, final PonudjacServis ponServis) {
+		this.menadzerRestServis = servis;
 		this.restoranServis = restServis;
 		this.ponudaPServis = pservis;
 		this.ponudjacServis = ponServis;
@@ -76,46 +73,40 @@ public class MenadzerController {
 		return null;
 	}
 
-
 	@GetMapping(path = "nadji/{id}/{ime}")
 	public Jelo jelo(@PathVariable Long id, @PathVariable String ime) {
 		Jelo p = null;
 		Restoran r = restoranServis.findOne(id);
-		
-		System.out.println(ime);
-		
+
 		List<Jelo> j = r.getJelovnik();
-		for(int i=0;i<j.size();i++){
-			if(ime.equals(j.get(i).getNaziv())){
+		for (int i = 0; i < j.size(); i++) {
+			if (ime.equals(j.get(i).getNaziv())) {
 				p = j.get(i);
 			}
 		}
 		return p;
 	}
-	
+
 	@GetMapping(path = "pronadji/{id}/{ime}")
 	public Pice pice(@PathVariable Long id, @PathVariable String ime) {
 		Pice pi = null;
 		Restoran r = restoranServis.findOne(id);
-		
-		System.out.println(ime);
-		
+
 		List<Pice> pice = r.getKartaPica();
-		for(int i=0;i<pice.size();i++){
-			if(ime.equals(pice.get(i).getNaziv())){
+		for (int i = 0; i < pice.size(); i++) {
+			if (ime.equals(pice.get(i).getNaziv())) {
 				pi = pice.get(i);
 			}
 		}
 		return pi;
 	}
-	
 
 	@PostMapping(path = "jelo/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void dodajJelo(@PathVariable Long id, @Valid @RequestBody Jelo jelo) {
 
 		Restoran restaurant = restoranServis.findOne(id);
-		
+
 		restaurant.getJelovnik().add(jelo);
 		restoranServis.save(restaurant);
 	}
@@ -166,58 +157,48 @@ public class MenadzerController {
 		restoranServis.save(restaurant);
 	}
 
-
 	@GetMapping("/menadzerPonude/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<List<PonudaP>> sveObjave(@PathVariable Long id) {
-	    
+
 		MenadzerRestorana mr = menadzerRestServis.findOne(id);
-	    List<PonudaP> pp = mr.getPonudaP();
-	
-	    return new ResponseEntity<>(pp, HttpStatus.OK);
+		List<PonudaP> pp = mr.getPonudaP();
+
+		return new ResponseEntity<>(pp, HttpStatus.OK);
 	}
-	
+
 	@PostMapping(path = "prihvatiPonudu/{id}/{id2}/{id3}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void prihvatiPonudu(@PathVariable Long id,@PathVariable Long id2,@PathVariable Long id3) {
+	public void prihvatiPonudu(@PathVariable Long id, @PathVariable Long id2, @PathVariable Long id3) {
 		MenadzerRestorana mr = menadzerRestServis.findOne(id2);
 		PonudaP pp = ponudaPServis.findOne(id);
 		Long ponudjacid = pp.getPonudjac_Id();
-	    Ponudjac p = ponudjacServis.findOne(ponudjacid);	
-	    
-	    List<PonudaP> ponude = mr.getPonudaP();
-	    List<PonudaP> pravep = null;
-	    
-	    for(int i=0;i<mr.getPonudaP().size();i++){
-	    	if(id3.equals(mr.getPonudaP().get(i).getObjava_ponude_Id())){
-	    		if(pp.equals(mr.getPonudaP().get(i))){
-	    			mr.getPonudaP().get(i).setPrihvati("prihvaceno");
-	    			mr.getPonudaP().remove(i);
-	    		}else{
-	    			mr.getPonudaP().get(i).setPrihvati("nije prihvaceno");
-	    			mr.getPonudaP().remove(i);
-	    		}
-	    	}
-	    }
-	    
-	    
-	    
-	    List<PonudaP> ponudepon = p.getPonuda();
-	    
-	    for(int i=0; i<p.getPonuda().size();i++){
-	    	if(pp.getId().equals(p.getPonuda().get(i).getId())){
-	    		p.getPonuda().get(i).setPrihvati("prihvaceno");
-	    	
-	    	}else{
-	    		System.out.println(pp.getId()+ "drugiiiiiiiiiiii");
-	    		System.out.println(p.getPonuda().get(i).getId()+ "prviiiiiiiiiii");
-	    		p.getPonuda().get(i).setPrihvati("nije prihvaceno");
-	     
-	    	}
-	    }
-	    menadzerRestServis.save(mr);
-	    ponudjacServis.save(p);
-	    
+		Ponudjac p = ponudjacServis.findOne(ponudjacid);
+
+		for (int i = 0; i < mr.getPonudaP().size(); i++) {
+			if (id3.equals(mr.getPonudaP().get(i).getObjava_ponude_Id())) {
+				if (pp.equals(mr.getPonudaP().get(i))) {
+					mr.getPonudaP().get(i).setPrihvati("prihvaceno");
+					mr.getPonudaP().remove(i);
+				} else {
+					mr.getPonudaP().get(i).setPrihvati("nije prihvaceno");
+					mr.getPonudaP().remove(i);
+				}
+			}
+		}
+
+		for (int i = 0; i < p.getPonuda().size(); i++) {
+			if (pp.getId().equals(p.getPonuda().get(i).getId())) {
+				p.getPonuda().get(i).setPrihvati("prihvaceno");
+
+			} else {
+				p.getPonuda().get(i).setPrihvati("nije prihvaceno");
+
+			}
+		}
+		menadzerRestServis.save(mr);
+		ponudjacServis.save(p);
+
 	}
-	
+
 }
