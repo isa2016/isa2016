@@ -61,13 +61,13 @@
 		</tbody>
     </table> 
     	
-  	 Pocetak vazenja : <input type="date" name="pocetak"		
+  	From : <input type="date" name="pocetak"		
   	 ng-model="$parent.pocetak" required> <br></br>
 			
-	  Kraj vazenja : <input type="date" name="kraj"
+	 Until : <input type="date" name="kraj"
 	ng-model="$parent.kraj" required> <br></br>
 			
- 	     <button class="btn btn-default" ng-click="posaljiPonudjacima()">Posalji</button>
+ 	     <button class="btn btn-default" ng-click="posaljiPonudjacima()">Send</button>
   			
     </div>
 
@@ -92,7 +92,7 @@
 					{{pice.cena}}
 				</td>
                 <td>
-                   <button class="btn btn-default" ng-click="dodajPiceUObjavu(pice)">Dodaj</button>
+                   <button class="btn btn-default" ng-click="dodajPiceUObjavu(pice)">Add</button>
                 </td>
 			</tr>
 		</tbody>

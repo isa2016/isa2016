@@ -4,9 +4,9 @@
 		<table class="table table-bordered tableBG" border="1">
 			<tbody>
 				<tr>
-					<th>Restoran ID</th>
-					<th>Pocetak</th>
-					<th>Kraj</th>
+					<th>Restaurant</th>
+					<th>From</th>
+					<th>Until</th>
 				</tr>
 
 				<tr ng-repeat="porudzba in list">
@@ -27,8 +27,8 @@
 			<table class="table table-bordered tableBG" border="1">
 				<tbody>
 					<tr>
-						<th>Hrana</th>
-						<th>Pica</th>
+						<th>Food</th>
+						<th>Drinks</th>
 					</tr>
 
 					<tr>
@@ -47,12 +47,12 @@
 		</div>
 		<form>
 			<div ng-hide="sakrij">
-				<label>Cena</label><br /> <input name="cena" type="text"
+				<label>Price</label><br /> <input name="cena" type="text"
 					ng-model="$parent.cena" class="form-control"  required><br />
 
-				<label>Garancija</label><br /> <input name="garancija" type="text"
+				<label>Varranty</label><br /> <input name="garancija" type="text"
 					ng-model="$parent.garancija" class="form-control"  required></br>
-				<br /> Rok isporuke : <input type="date" name="isporuka"
+				<br /> Delivery time : <input type="date" name="isporuka"
 					ng-model="$parent.isporuka" required>
 
                 <button class="btn btn-default"	ng-click="posaljiPonudu(porudzba)">Send</button>

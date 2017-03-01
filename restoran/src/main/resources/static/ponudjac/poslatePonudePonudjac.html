@@ -3,11 +3,11 @@
 <table  class="table table-bordered tableBG" border="1">
 		<tbody>
 	        <tr>
-				<th>Cena</th>
-				<th>Garancija</th>
-				<th>Rok isporuke</th>
-		        <th>Id objave</th>
-		        <th>Prihvaceno</th>
+				<th>Price</th>
+				<th>Varranty</th>
+				<th>Delivery time</th>
+		        <th>Offer id</th>
+		        <th>Accepted</th>
             </tr>
 			<tr ng-repeat="jelo in liste">
 				<td> 
@@ -34,12 +34,12 @@
     	
     	<form>
 			<div ng-hide="sakrij">
-				<label>Cena</label><br /> <input name="cena" type="text"
+				<label>Price</label><br /> <input name="cena" type="text"
 					ng-model="$parent.cena" class="form-control" value={{jelo.cena}} required><br />
 
-				<label>Garancija</label><br /> <input name="garancija" type="text"
+				<label>Varranty</label><br /> <input name="garancija" type="text"
 					ng-model="$parent.garancija" class="form-control" value={{jelo.garancija}} required></br>
-				<br /> Rok isporuke : <input type="date" name="isporuka"
+				<br /> Delivery time : <input type="date" name="isporuka"
 					ng-model="$parent.isporuka" required>
 
                 <button class="btn btn-default"	ng-click="menjanjePonude(jelo)">Send</button>

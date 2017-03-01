@@ -1,5 +1,9 @@
 package restoran.kontroleri;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,11 +80,33 @@ public class PonudjacController {
 
 	@GetMapping("/ponudjacObjave/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<List<ObjavaPonude>> sveObjave(@PathVariable Long id) {
+	public ResponseEntity<List<ObjavaPonude>> sveObjave(@PathVariable Long id)  {
 		System.out.println("Ponudjaciiiiiiiiiiiiiii");
 		Ponudjac p = ponudjacServis.findOne(id);
-		List<ObjavaPonude> op = p.getObjave();
+		
+		
+		
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date today = new Date();
 
+		
+				
+		
+		
+		
+        for(int i = 0; i<p.getObjave().size(); i++){
+        	try {
+				Date date = format.parse(p.getObjave().get(i).getKrajaVazenja());
+				if(!date.after(today)){
+					p.getObjave().remove(i);
+				}
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+        ponudjacServis.save(p);
+        List<ObjavaPonude> op = p.getObjave();
 		return new ResponseEntity<>(op, HttpStatus.OK);
 	}
 

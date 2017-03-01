@@ -18,10 +18,24 @@ app.controller('ponudjacController', ['$scope','$window','ponudjacService', '$lo
 			
 		}
 		
+		function update2(){
+			ponudjacService.getLoggedUser().then(
+					function (response) {
+						$scope.loggedUser = response.data;
+						sveObjave2();
+						svePonude2($scope.loggedUser);
+						$scope.sakrijDetalje = true;
+						$scope.sakrij = true;
+		            }	
+					
+					
+				);
+		}
 		$scope.update = function() {
 			ponudjacService.updatePonudjacProfile($scope.loggedUser).then(
 				function (response) {
                     $scope.state = undefined;
+                    update2();
                     $location.path('/ponudjac/profili');
 				}
 			);
