@@ -1,5 +1,9 @@
 package restoran.kontroleri;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,9 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import restoran.enumeracije.PorudzbinaStatus;
 import restoran.model.Jelo;
 import restoran.model.Pice;
 import restoran.model.PonudaP;
+import restoran.model.Porudzbina;
 import restoran.model.Restoran;
 import restoran.model.Sto;
 import restoran.model.osoba.Konobar;
@@ -31,6 +37,7 @@ import restoran.model.osoba.Sanker;
 import restoran.servis.MenadzerRestoranaServis;
 import restoran.servis.PonudaPServis;
 import restoran.servis.PonudjacServis;
+import restoran.servis.PorudzbinaServis;
 import restoran.servis.RestoranServis;
 import restoran.servis.StoServis;
 
@@ -42,14 +49,23 @@ public class MenadzerController {
 	private RestoranServis restoranServis;
 	private final PonudaPServis ponudaPServis;
 	private final PonudjacServis ponudjacServis;
+<<<<<<< HEAD
     private final StoServis stoServis;
 	
     @Autowired
 	public MenadzerController(final RestoranServis restServis, final MenadzerRestoranaServis servis,
 			final PonudaPServis pservis, final PonudjacServis ponServis,final StoServis sservis) {
+=======
+	private final PorudzbinaServis porudzbinaServis;
+
+	@Autowired
+	public MenadzerController(final RestoranServis restServis, final MenadzerRestoranaServis servis,
+			final PonudaPServis pservis, final PonudjacServis ponServis, final PorudzbinaServis porudzbinaServis) {
+>>>>>>> c05aa77158f6c7ba890da8d9a3905321a1416c45
 		this.menadzerRestServis = servis;
 		this.restoranServis = restServis;
 		this.ponudaPServis = pservis;
+		this.porudzbinaServis = porudzbinaServis;
 		this.ponudjacServis = ponServis;
 		this.stoServis = sservis;
 	}
@@ -219,6 +235,40 @@ public class MenadzerController {
 		}
 		menadzerRestServis.save(mr);
 		ponudjacServis.save(p);
+
+	}
+
+	@GetMapping(path = "prihodi/{id}/{od}/{doo}")
+	public double list(@PathVariable Long id, @PathVariable String od, @PathVariable String doo) {
+		List<Porudzbina> porudzbine = porudzbinaServis.findAll();
+		double total = 0;
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		// int count = 0;
+		Date odKad = new Date();
+		Date doKad = new Date();
+		try {
+			odKad = format.parse(od);
+			doKad = format.parse(doo);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (int i = porudzbine.size()-1; i >= 0; i--) {
+			if (porudzbine.get(i).getRestoranId().equals(id)
+					&& porudzbine.get(i).getPorudzbinaStatus().equals(PorudzbinaStatus.PAID)) {
+
+				Date porudzbinaDatum = new Date();
+				try {
+					porudzbinaDatum = format.parse(porudzbine.get(i).getDatum());
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if (porudzbinaDatum.before(doKad) && porudzbinaDatum.after(odKad))
+					total += porudzbine.get(i).getUkupnaCena();
+			}
+		}
+		return total;
 
 	}
 

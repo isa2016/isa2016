@@ -1,9 +1,15 @@
 Manifest-Version: 1.0
 Implementation-Title: Restoran
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: ja
+<<<<<<< HEAD
+Built-By: Stefan
 Implementation-Vendor-Id: restoran
-Build-Jdk: 1.8.0_65
+Build-Jdk: 1.8.0_73
+=======
+Built-By: Milos
+Implementation-Vendor-Id: restoran
+Build-Jdk: 1.8.0_121
+>>>>>>> 7ffadb46415e45bd370facae30b4f1574593d110
 Implementation-URL: http://projects.spring.io/spring-boot/restoran/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.

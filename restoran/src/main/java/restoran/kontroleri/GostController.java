@@ -111,7 +111,7 @@ public class GostController {
 		}
 		return new ResponseEntity<>(gostoveRez, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/rezervacijee/{id}")
 	public ResponseEntity<List<Rezervacija>> findAllRezz(@PathVariable Long id) {
 
@@ -135,6 +135,7 @@ public class GostController {
 		Porudzbina p = porudzbinaServis.findOne(id2);
 
 		p.setRestoranId(id);
+		p.setDatum(rez.getDate());
 		if (p.getHrana().size() == 0)
 			p.setHranaStatus(HranaStatus.FINISHED);
 		else
@@ -148,7 +149,6 @@ public class GostController {
 		rez.getPorudzbine().add(p);
 
 		rez.getGosti().add(p.getGost());
-
 
 		rezervacijaServis.save(rez);
 	}
@@ -237,7 +237,6 @@ public class GostController {
 
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date today = new Date();
-
 		for (int i = 0; i < gostoveRez.size(); i++) {
 			try {
 				Date date = format.parse(gostoveRez.get(i).getDate());
@@ -280,8 +279,7 @@ public class GostController {
 		Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
 		Gost gost = gostServis.findOne(gostID);
 
-
-		for (Gost g : rez.getPozvani()) {			
+		for (Gost g : rez.getPozvani()) {
 			try {
 				SimpleMailMessage mail = new SimpleMailMessage();
 				mail.setTo(g.getMail());
@@ -297,20 +295,18 @@ public class GostController {
 			}
 		}
 	}
-	
-	
+
 	@PostMapping(path = "/prihvatiPoziv/{id}/{id2}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void prihvatiPoziv(@PathVariable Long id,@PathVariable Long id2) {
-		
+	public void prihvatiPoziv(@PathVariable Long id, @PathVariable Long id2) {
+
 		Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
 		Gost gost = gostServis.findOne(gostID);
 		Rezervacija r = rezervacijaServis.findOne(id);
 		Porudzbina p = porudzbinaServis.findOne(id2);
 		p.setRestoranId(r.getRestaurant().getId());
 		p.setGost(gost);
-		
-		
+
 		if (p.getHrana().size() == 0)
 			p.setHranaStatus(HranaStatus.FINISHED);
 		else
@@ -319,28 +315,28 @@ public class GostController {
 			p.setPiceStatus(PiceStatus.FINISHED);
 		else
 			p.setPiceStatus(PiceStatus.ORDERED);
-		
+
 		r.getPorudzbine().add(p);
 		Restoran rest = r.getRestaurant();
 		rest.getPorudzbine().add(p);
-		
+
 		r.getPozvani().remove(gost);
-		r.getGosti().add(gost);	
+		r.getGosti().add(gost);
 		rezervacijaServis.save(r);
-		restoranServis.save(rest);		
+		restoranServis.save(rest);
 	}
-	
+
 	@PostMapping(path = "/odbijPoziv/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void odbijPoziv(@PathVariable Long id) {
-		
+
 		Long gostID = ((Gost) httpSession.getAttribute("korisnik")).getId();
 		Gost gost = gostServis.findOne(gostID);
-		Rezervacija r = rezervacijaServis.findOne(id);		
-		
+		Rezervacija r = rezervacijaServis.findOne(id);
+
 		r.getPozvani().remove(gost);
 		rezervacijaServis.save(r);
-				
+
 	}
 
 }

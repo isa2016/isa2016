@@ -71,5 +71,17 @@
 		</tbody>
     </table>  
        
+<br />
+<br />
+	Restaurant income for period
+	<label>from:</label> <input name="od" type="date"
+		data-ng-model="$parent.oddo.od" class="form-control" required><br />
+
+	<label>to:</label> <input name="do" type="date"
+		data-ng-model="$parent.oddo.do" class="form-control"
+		required><br>
+	<br />
+	<button data-ng-click="totalIncome()">Calculate</button><br/><br/>
+	Total income: {{total}}
 
 </div>

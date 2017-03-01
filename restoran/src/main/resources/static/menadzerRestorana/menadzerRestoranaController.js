@@ -293,4 +293,12 @@ app.controller('menadzerRestoranaController', [
 
 			}
 
+			$scope.totalIncome = function(){
+				menadzerRestoranaService.totalIncome($scope.oddo,$scope.restoran).then(
+						function (response) {
+							$scope.total = response.data;
+						}
+					);
+			}
+			
 		} ]);

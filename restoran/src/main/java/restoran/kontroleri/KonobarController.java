@@ -1,6 +1,10 @@
 package restoran.kontroleri;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -167,15 +171,21 @@ public class KonobarController {
 	@GetMapping("/racun/{id}")
 	public Porudzbina zavrsiRacun(@PathVariable Long id) {
 		Porudzbina p = ps.findOne(id);
-		// p.setPorudzbinaStatus(PorudzbinaStatus.PAID);
+		double cena = 0;
+		for (int i = 0; i < p.getHrana().size(); i++) {
+			cena+=p.getHrana().get(i).getCena();
+		}
+		for (int i = 0; i < p.getPice().size(); i++) {
+			cena+=p.getPice().get(i).getCena();
+		}
+		p.setUkupnaCena(cena);
+		ps.save(p);
 		return p;
 	}
 
 	@GetMapping("/izmeni/{id}")
 	public Porudzbina izmeniPorudzbinu(@PathVariable Long id) {
 		Porudzbina p = ps.findOne(id);
-		// p.setPorudzbinaStatus(PorudzbinaStatus.PAID);
-		System.out.println("djesuuu?");
 		return p;
 	}
 
@@ -251,6 +261,10 @@ public class KonobarController {
 	public void poruci(@PathVariable Long id, @PathVariable Long id2) {
 		Porudzbina p = ps.findOne(id2);
 		p.setRestoranId(id);
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date today = new Date();
+		String reportDate = df.format(today);
+		p.setDatum(reportDate);
 		if (p.getHrana().size() == 0)
 			p.setHranaStatus(HranaStatus.FINISHED);
 		else {
