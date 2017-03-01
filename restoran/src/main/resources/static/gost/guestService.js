@@ -37,6 +37,8 @@ services.service('guestService', ['$http', function($http){
 		return $http.get("/restoran/"+id)
 	}
 
+	
+	
 	this.dodajJelo = function(jelo,por){
 		return $http.get("/guest/porudzbineJelo/"+jelo.id+"/"+por.id)
 	}

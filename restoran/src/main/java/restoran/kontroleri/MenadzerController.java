@@ -22,6 +22,7 @@ import restoran.model.Jelo;
 import restoran.model.Pice;
 import restoran.model.PonudaP;
 import restoran.model.Restoran;
+import restoran.model.Sto;
 import restoran.model.osoba.Konobar;
 import restoran.model.osoba.Kuvar;
 import restoran.model.osoba.MenadzerRestorana;
@@ -31,6 +32,7 @@ import restoran.servis.MenadzerRestoranaServis;
 import restoran.servis.PonudaPServis;
 import restoran.servis.PonudjacServis;
 import restoran.servis.RestoranServis;
+import restoran.servis.StoServis;
 
 @RestController
 @RequestMapping("/menadzer")
@@ -40,14 +42,16 @@ public class MenadzerController {
 	private RestoranServis restoranServis;
 	private final PonudaPServis ponudaPServis;
 	private final PonudjacServis ponudjacServis;
-
-	@Autowired
+    private final StoServis stoServis;
+	
+    @Autowired
 	public MenadzerController(final RestoranServis restServis, final MenadzerRestoranaServis servis,
-			final PonudaPServis pservis, final PonudjacServis ponServis) {
+			final PonudaPServis pservis, final PonudjacServis ponServis,final StoServis sservis) {
 		this.menadzerRestServis = servis;
 		this.restoranServis = restServis;
 		this.ponudaPServis = pservis;
 		this.ponudjacServis = ponServis;
+		this.stoServis = sservis;
 	}
 
 	@PutMapping(path = "/updateRest/{id}")
@@ -119,6 +123,23 @@ public class MenadzerController {
 		restoranServis.save(restaurant);
 	}
 
+	@PostMapping(path = "rejon/{rejon}/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void dodajPice(@PathVariable String rejon,@PathVariable Long id) {
+		
+		System.out.println(rejon);
+		Long idi = Long.parseLong(rejon);
+		System.out.println(idi);
+		Sto s = new Sto();
+		s.setRejon(idi);
+		
+		Restoran r = restoranServis.findOne(id);
+		r.getStolovi().add(s);
+		stoServis.save(s);
+		restoranServis.save(r);
+	}
+
+	
 	@PostMapping(path = "kuvar/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void dodajKuvara(@PathVariable Long id, @Valid @RequestBody Kuvar kuvar) {

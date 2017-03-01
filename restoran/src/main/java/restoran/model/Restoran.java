@@ -109,7 +109,7 @@ public class Restoran {
 		this.menadzeriRestorana = new ArrayList<MenadzerRestorana>();
 		this.rejoni = new ArrayList<Rejon>();
 		for(int i = 0; i < 4; i++){
-			Rejon r = new Rejon(Integer.toString(i+1));
+			Rejon r = new Rejon(i+1);
 			this.rejoni.add(r);
 		}
 	}

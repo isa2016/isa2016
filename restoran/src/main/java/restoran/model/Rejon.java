@@ -18,7 +18,7 @@ public class Rejon {
 	private Long id;
 	
 	@Column
-	private String naziv;
+	private int broj;
 
 	public Long getId() {
 		return id;
@@ -28,18 +28,20 @@ public class Rejon {
 		this.id = id;
 	}
 	
+    
+	
 
-	public String getNaziv() {
-		return naziv;
+	public int getBroj() {
+		return broj;
 	}
 
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
+	public void setBroj(int broj) {
+		this.broj = broj;
 	}
 
-	public Rejon(String naziv) {
+	public Rejon(int broj) {
 		super();
-		this.naziv = naziv;
+		this.broj = broj;
 		// TODO Auto-generated constructor stub
 	}
 	

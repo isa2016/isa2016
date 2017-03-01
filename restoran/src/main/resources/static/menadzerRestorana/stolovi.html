@@ -1,9 +1,31 @@
 <div data-ng-init="ucitajStolove()">
+<table class="table table-bordered tableBG" border="1">
+ <tbody>
+   <tr>
+   <th>Table ID</th>
+   <th>Area</th>
+   </tr>
 
-<div ng-repeat ="sto in stolovi">
-	{{sto.id}}<br></br>
-	
+<tr ng-repeat ="sto in stolovi">
+	<td>{{sto.id}}
+	</td>
+	<td>{{sto.rejon}}</td>
+	</tr>
+	</tbody>
+   </table>
+
 
 </div>
 
+<h3>Please select area for new table: </h3>
+			<!-- <input type = "number" ng-model="Rejon" class="form-control"> -->
+				<select class="form-control" ng-model="Rejon">
+				<option value="" selected />
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				</select>
+	<a ng-click = "rejon(Rejon)" class = "btn btn-small btn-default"><span class="glyphicon glyphicon-star"></span>Add</a>
+   
 </div>

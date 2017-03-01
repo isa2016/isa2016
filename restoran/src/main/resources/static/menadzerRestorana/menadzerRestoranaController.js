@@ -12,8 +12,9 @@ app.controller('menadzerRestoranaController', [
 							$scope.loggedUser = response.data;
 							findRest($scope.loggedUser);
 							svePonude($scope.loggedUser);
-						})
+						});
 			}
+		
 
 			function findRest(loggedUser) {
 				menadzerRestoranaService.list($scope.loggedUser).then(
@@ -45,6 +46,19 @@ app.controller('menadzerRestoranaController', [
 						});
 			}
 
+			$scope.dodajNamirnicu = function() {
+				menadzerRestoranaService.dodajNam($scope.restoran, jelo).then(
+						function(response) {
+							$scope.o = response.data;
+						});
+			}
+			
+			$scope.rejon = function(rejon) {
+				menadzerRestoranaService.dodajRejon(rejon,$scope.restoran).then(
+						function(response) {
+						});
+			}
+			
 			$scope.sviPonudjaci = function() {
 				menadzerRestoranaService.sviPonudjaci($scope.restoran).then(
 						function(response) {

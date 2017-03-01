@@ -32,6 +32,10 @@ services.service('menadzerRestoranaService', ['$http', function($http){
 		return $http.get("/restoran/"+restoran.id+"/"+jelo.id)
 	}
 	
+	this.dodajRejon = function(rejon,restoran){
+		return $http.post("/menadzer/rejon/"+rejon+"/"+restoran.id)
+	}
+	
 	this.napraviO = function(jelo){
 		return $http.get("/restoran/napraviO/"+jelo.id)
 	}
