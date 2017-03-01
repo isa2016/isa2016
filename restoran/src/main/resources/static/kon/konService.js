@@ -64,4 +64,12 @@ services.service('konService', ['$http', function($http){
 	this.naruci = function(por,rest){
 		return $http.post("/konobar/naruci/"+rest.id+"/"+por.id)
 	}
+	
+	this.izbrisi = function(jelo,por){
+		return $http.get("/konobar/izbrisiJelo/"+jelo.id+"/"+por.id)
+	}
+	
+	this.izbrisiPice = function(pice,por){
+		return $http.get("/konobar/izbrisiPice/"+pice.id+"/"+por.id)
+	}
 }]);

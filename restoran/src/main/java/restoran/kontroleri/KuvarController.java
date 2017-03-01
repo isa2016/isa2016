@@ -63,6 +63,12 @@ public class KuvarController {
 				porudzbine.add(por);
 			}
 		}
+		for (int j = porudzbine.size() - 1; j >= 0; j--) {
+			if (porudzbine.get(j).getHrana().size() == 0) {
+				porudzbine.get(j).setHranaStatus(HranaStatus.FINISHED);
+				porudzbine.remove(j);
+			}
+		}
 		return new ResponseEntity<>(porudzbine, HttpStatus.OK);
 	}
 
@@ -76,6 +82,7 @@ public class KuvarController {
 				porudzbine.add(por);
 			}
 		}
+
 		return new ResponseEntity<>(porudzbine, HttpStatus.OK);
 	}
 
@@ -96,4 +103,48 @@ public class KuvarController {
 		p.setHranaStatus(HranaStatus.FINISHED);
 		ps.save(p);
 	}
+
+	/*
+	 * @GetMapping("/porudzbine") public ResponseEntity<List<Porudzbina>>
+	 * findAllPorudzbine() { Kuvar k = ((Kuvar)
+	 * session.getAttribute("korisnik")); List<Porudzbina> porudzbine = new
+	 * ArrayList<Porudzbina>(); for (int i = 0; i < ps.findAll().size(); i++) {
+	 * Porudzbina por = ps.findAll().get(i); if
+	 * (por.getRestoranId().equals(k.getRestoranId())) { porudzbine.add(por); }
+	 * } for (int j = 0; j < porudzbine.size(); j++) for (int n =
+	 * porudzbine.get(j).getHrana().size() - 1; n >= 0; n--) { if
+	 * (!(porudzbine.get(j).getHrana().get(n).getTipJela().toString().equals(k.
+	 * getTipKuvara().toString())) ||
+	 * !(porudzbine.get(j).getHrana().get(n).getStatusJela().equals(StatusJela.
+	 * ONHOLD))) porudzbine.get(j).getHrana().remove(n); } for (int n =
+	 * porudzbine.size() - 1; n >= 0; n--) { if
+	 * (porudzbine.get(n).getHrana().size() == 0) porudzbine.remove(n); } return
+	 * new ResponseEntity<>(porudzbine, HttpStatus.OK); }
+	 * 
+	 * @GetMapping("/porudzbinePriprema") public
+	 * ResponseEntity<List<Porudzbina>> findAllPorudzbinePriprema() { Kuvar k =
+	 * ((Kuvar) session.getAttribute("korisnik")); List<Porudzbina> porudzbine =
+	 * new ArrayList<Porudzbina>(); for (int i = 0; i < ps.findAll().size();
+	 * i++) { Porudzbina por = ps.findAll().get(i); if
+	 * (por.getRestoranId().equals(k.getRestoranId())) { porudzbine.add(por); }
+	 * } for (int i = 0; i < porudzbine.size(); i++) for (int j =
+	 * porudzbine.get(i).getHrana().size() - 1; j >= 0; j--) if
+	 * (!(porudzbine.get(i).getHrana().get(j).getTipJela().toString().equals(k.
+	 * getTipKuvara().toString())) ||
+	 * !(porudzbine.get(i).getHrana().get(j).getStatusJela().equals(StatusJela.
+	 * PREPARATION))) porudzbine.get(i).getHrana().remove(j); for (int n =
+	 * porudzbine.size() - 1; n >= 0; n--) { if
+	 * (porudzbine.get(n).getHrana().size() == 0) porudzbine.remove(n); } return
+	 * new ResponseEntity<>(porudzbine, HttpStatus.OK); }
+	 * 
+	 * @PostMapping(path = "prihvati/{id}")
+	 * 
+	 * @ResponseStatus(HttpStatus.CREATED) public void
+	 * prihvatiPorudzbinu(@PathVariable Long id) { Kuvar k = ((Kuvar)
+	 * session.getAttribute("korisnik")); Porudzbina p = ps.findOne(id); for
+	 * (Jelo j : p.getHrana()) { if
+	 * (j.getTipJela().toString().equals(k.getTipKuvara().toString()))
+	 * j.setStatusJela(StatusJela.PREPARATION); } //
+	 * p.setHranaStatus(HranaStatus.PREPARATION); ps.save(p); }
+	 */
 }

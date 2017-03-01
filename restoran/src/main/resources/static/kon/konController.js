@@ -34,8 +34,8 @@ app.controller('konController', [
 					$scope.porudzbineGotove = response.data;
 				});
 			}
-			
-			$scope.findAll2 = function(){
+
+			$scope.findAll2 = function() {
 				konService.porudzbineZaRest().then(function(response) {
 					$scope.porudzbine = response.data;
 				});
@@ -84,19 +84,6 @@ app.controller('konController', [
 						});
 			}
 
-			$scope.izbrisi = function(jelo, porudzbina) {
-				konService.izbrisi(jelo, porudzbina).then(function(response) {
-					$scope.porudzbina = response.data;
-				});
-			}
-
-			$scope.izbrisiPice = function(pice, porudzbina) {
-				konService.izbrisiPice(pice, porudzbina).then(
-						function(response) {
-							$scope.porudzbina = response.data;
-						});
-			}
-
 			$scope.dodajJelo = function(jelo) {
 				if ($scope.porudzbina !== undefined) {
 					konService.dodajJelo(jelo, $scope.porudzbina).then(
@@ -134,4 +121,19 @@ app.controller('konController', [
 
 			}
 
+			$scope.izbrisi = function(jelo, porudzbina) {
+				konService.izbrisi(jelo, porudzbina).then(function(response) {
+					$scope.porudzbina = response.data;
+					findAll();
+				});
+			}
+
+			$scope.izbrisiPice = function(pice, porudzbina) {
+				konService.izbrisiPice(pice, porudzbina).then(
+						function(response) {
+							$scope.porudzbina = response.data;
+							findAll();
+						});
+
+			}
 		} ]);

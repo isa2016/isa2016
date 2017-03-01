@@ -25,6 +25,7 @@ import restoran.model.osoba.Kuvar;
 import restoran.model.osoba.Ponudjac;
 import restoran.model.osoba.Sanker;
 import restoran.servis.RestoranServis;
+import scala.annotation.meta.setter;
 
 @RestController
 @RequestMapping("/menadzer")
@@ -103,6 +104,7 @@ public class MenadzerController {
 	public void dodajJelo(@PathVariable Long id, @Valid @RequestBody Jelo jelo) {
 
 		Restoran restaurant = restoranServis.findOne(id);
+		
 		restaurant.getJelovnik().add(jelo);
 		restoranServis.save(restaurant);
 	}

@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 import restoran.enumeracije.Obuca;
 import restoran.enumeracije.Odeca;
+import restoran.enumeracije.TipKuvara;
 import restoran.logovanje.Korisnik;
 
 @Data
@@ -34,6 +35,19 @@ public class Kuvar extends Korisnik {
 	private Obuca velicinaObuce;
 
 	private Long restoranId;
+
+	@Enumerated(EnumType.STRING)
+	@NotNull
+	@Column
+	private TipKuvara tipKuvara;
+	
+	public TipKuvara getTipKuvara() {
+		return tipKuvara;
+	}
+
+	public void setTipKuvara(TipKuvara tipKuvara) {
+		this.tipKuvara = tipKuvara;
+	}
 
 	public Long getRestoranId() {
 		return restoranId;

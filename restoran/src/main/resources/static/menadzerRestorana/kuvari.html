@@ -43,6 +43,13 @@
 			ng-model="$parent.kuv.mail" class="form-control" required>
 		Password:<br> <input type="text" name="password"
 			ng-model="$parent.kuv.password" class="form-control" required>
+		Type:
+		<select data-ng-model="$parent.kuv.tipKuvara" class="form-control" required>
+   		<option value=>Select type</option>
+     	<option value="salad">Salad</option>
+     	<option value="baked">Baked</option>
+     	<option value="cooked">Cooked</option>
+	</select>
 		<br> <br> <input type="submit" value="Submit"
 			ng-click="dodajKuvara()"> <a ui-sref="menadzerRestorana.kuvari">Cancel</a>
 

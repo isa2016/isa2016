@@ -7,11 +7,11 @@
 					<td>{{porudzbina.gost.mail}}</td>
 					<td>{{porudzbina.gost.ime}}</td>
 					<td><div ng-repeat="h in porudzbina.hrana">
-							{{h.naziv}}<br></br>
+							{{h.naziv}}<button ng-click="izbrisi(h, porudzbina)">X</button></br>
 						</div></td>
 					<td>
 						<div ng-repeat="p in porudzbina.pice">
-							{{p.naziv}}<br></br>
+							{{p.naziv}}<button ng-click="izbrisiPice(p, porudzbina)">X</button></br>
 						</div>
 					</td>
 					<td><a ng-click="unesi(porudzbina)"
@@ -26,11 +26,11 @@
 					<td>{{por.gost.mail}}</td>
 					<td>{{por.gost.ime}}</td>
 					<td><div ng-repeat="hr in por.hrana">
-							{{hr.naziv}}<br></br>
+							{{hr.naziv}}<div ng-hide="por.hranaStatus==='PREPARATION'"> <button ng-click="izbrisi(hr, por)">X</button></div><br>
 						</div></td>
 					<td>
 						<div ng-repeat="pi in por.pice">
-							{{pi.naziv}}<br></br>
+							{{pi.naziv}}<button data-ng-click="izbrisiPice(pi, por)">X</button><br>
 						</div>
 					</td>
 					<div>
