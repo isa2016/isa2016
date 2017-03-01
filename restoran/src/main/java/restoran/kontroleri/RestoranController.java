@@ -1,23 +1,32 @@
 package restoran.kontroleri;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import restoran.model.Jelo;
+import restoran.model.ObjavaPonude;
 import restoran.model.Pice;
 import restoran.model.Restoran;
 import restoran.model.osoba.Konobar;
 import restoran.model.osoba.Kuvar;
 import restoran.model.osoba.Ponudjac;
 import restoran.model.osoba.Sanker;
+import restoran.servis.JeloServis;
+import restoran.servis.ObjavaPonudeServis;
+import restoran.servis.PiceServis;
 import restoran.servis.PonudjacServis;
 import restoran.servis.RestoranServis;
 
@@ -28,14 +37,21 @@ public class RestoranController {
 	
 	private final RestoranServis restoranServis;
 	private final PonudjacServis pServis;
-	//private HttpSession httpSession;
+	private final JeloServis jeloServis;
+	private final PiceServis piceServis;
+	private HttpSession httpSession;
+	private final ObjavaPonudeServis objavaPonudeServis;
+	private final PonudjacServis ponudjacServis;
 
 	@Autowired
-	public RestoranController(final RestoranServis servis,final PonudjacServis pServis) {
+	public RestoranController(final RestoranServis servis,final PonudjacServis pServis, final JeloServis jServis,final HttpSession httpSession,final ObjavaPonudeServis objavaPonude,final PiceServis piceServis,final PonudjacServis ponudjacServis) {
 		this.restoranServis = servis;
 		this.pServis = pServis;
-		//this.httpSession = httpSession;
-
+		this.jeloServis = jServis;
+	    this.httpSession = httpSession;
+        this.objavaPonudeServis = objavaPonude;
+        this.piceServis = piceServis;
+	    this.ponudjacServis = ponudjacServis;
 	}
 	
 	@GetMapping("/{id}")
@@ -100,4 +116,91 @@ public class RestoranController {
 		
 	}
 	
+	@GetMapping("/napraviO/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<ObjavaPonude> dodavanjeObjave(@PathVariable Long id) {
+	
+		Jelo j = jeloServis.findOne(id);
+		ObjavaPonude o = new ObjavaPonude();
+
+		System.out.println(j.getNaziv());
+		System.out.println(o);
+		
+		o.getHrana().add(j);
+		objavaPonudeServis.save(o);
+
+		return new ResponseEntity<>(o, HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/napraviOb/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<ObjavaPonude> dodavanjeObjave2(@PathVariable Long id) {
+	
+		Pice p = piceServis.findOne(id);
+		ObjavaPonude o = new ObjavaPonude();
+
+
+		
+		o.getPice().add(p);
+		objavaPonudeServis.save(o);
+
+		return new ResponseEntity<>(o, HttpStatus.OK);
+		
+	}
+	
+	
+	@GetMapping("/objavaJelo/{id}/{id2}")
+	public ResponseEntity<ObjavaPonude> dodajJ(@PathVariable Long id, @PathVariable Long id2) {
+		Jelo j = jeloServis.findOne(id);
+		ObjavaPonude o = objavaPonudeServis.findOne(id2);
+		o.getHrana().add(j);
+		objavaPonudeServis.save(o);
+
+		return new ResponseEntity<>(o, HttpStatus.OK);
+	}
+	
+	@GetMapping("/objavaPice/{id}/{id2}")
+	public ResponseEntity<ObjavaPonude> dodajP(@PathVariable Long id, @PathVariable Long id2) {
+		Pice p = piceServis.findOne(id);
+		ObjavaPonude o = objavaPonudeServis.findOne(id2);
+		o.getPice().add(p);
+		objavaPonudeServis.save(o);
+
+		return new ResponseEntity<>(o, HttpStatus.OK);
+	}
+	
+	@PostMapping(path = "/restoranii/objavaPosalji/{id}/{pocetak}/{kraj}/{id2}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void potvrdaRezervacije2(@PathVariable Long id, @PathVariable String pocetak,@PathVariable String kraj,@PathVariable Long id2) throws ParseException {
+		
+		ObjavaPonude o = objavaPonudeServis.findOne(id);
+		/*
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+		Date date = format.parse(pocetak);
+		Date date2 = format.parse(kraj);		
+        */			
+		
+		System.out.println("AJDEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+		o.setPocetakVazenja(pocetak);
+		o.setKrajaVazenja(kraj);
+		o.setRestoranID(id2);
+		
+		objavaPonudeServis.save(o);
+		
+	    Restoran r = restoranServis.findOne(id2);
+	    
+	    List<Ponudjac> pon = r.getPonudjaci();
+	   
+	    for(int i=0; i<r.getPonudjaci().size(); i++){
+	    	r.getPonudjaci().get(i).getObjave().add(o);
+	    	ponudjacServis.save(r.getPonudjaci().get(i));
+	    	System.out.println(pon.get(i).getObjave().get(0).getId() + "aaaaaaaaaaaaaaaaaaaa");
+	    }
+	    
+	    
+	    
+	    
+	}
 }

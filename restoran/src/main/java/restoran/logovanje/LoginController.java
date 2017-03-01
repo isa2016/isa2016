@@ -165,6 +165,8 @@ public class LoginController {
 
 	@GetMapping(path = "/getLoggedUser")
 	public Korisnik getLoggedUser() {
+		Korisnik k = (Korisnik) httpSession.getAttribute("korisnik");
+		System.out.println(k.getIme());
 		return (Korisnik) httpSession.getAttribute("korisnik");
 	}
 
