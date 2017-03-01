@@ -176,6 +176,14 @@ public class KonobarController {
 		return p;
 	}
 
+	@GetMapping("/izmeni/{id}")
+	public Porudzbina izmeniPorudzbinu(@PathVariable Long id) {
+		Porudzbina p = ps.findOne(id);
+		// p.setPorudzbinaStatus(PorudzbinaStatus.PAID);
+		System.out.println("djesuuu?");
+		return p;
+	}
+	
 	@GetMapping("/porudzbineJelo/{id}/{id2}")
 	public ResponseEntity<Porudzbina> dodajJ(@PathVariable Long id, @PathVariable Long id2) {
 		Jelo j = jeloServis.findOne(id);

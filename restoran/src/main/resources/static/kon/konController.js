@@ -14,6 +14,8 @@ app.controller('konController', [
 					findRest($scope.loggedUser);
 					$scope.sakrij1 = false;
 					$scope.sakrij2 = true;
+					$scope.sakrijIzmena2 = true;
+					$scope.sakrijIzmena = false;
 				})
 			}
 
@@ -116,7 +118,10 @@ app.controller('konController', [
 				konService.naruci(porudzbina, $scope.resttt).then(
 						function(response) {
 							findAll();
+							$scope.sakrijIzmena2 = true;
+							$scope.sakrijIzmena = false;
 							$location.path('/konobar/porudzbine');
+
 						});
 
 			}
@@ -125,6 +130,15 @@ app.controller('konController', [
 				konService.izbrisi(jelo, porudzbina).then(function(response) {
 					$scope.porudzbina = response.data;
 					findAll();
+				});
+			}
+
+			$scope.izmena = function(porudzbina) {
+				konService.izmena(porudzbina).then(function(response) {
+					$scope.sakrijIzmena2 = false;
+					$scope.sakrijIzmena = true;
+					$scope.porudzbina = response.data;
+					// $location.path('/konobar/izmenaPorudzbina');
 				});
 			}
 

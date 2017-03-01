@@ -148,6 +148,12 @@ angular.module(
 						templateUrl : 'kon/novaPorudzbina.html',
 						controller : 'konController'
 					})
+					
+					.state('konobar.izmenaPorudzbina', {
+						url : '/izmenaPorudzbina',
+						templateUrl : 'kon/izmenaPorudzbina.html',
+						controller : 'konController'
+					})
 
 					.state('konobar.profil', {
 						url : '/profil',
